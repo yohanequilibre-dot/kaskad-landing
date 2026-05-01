@@ -87,14 +87,22 @@
       50%       { box-shadow: 0 6px 44px rgba(255,103,0,0.68), 0 0 0 10px rgba(255,103,0,0.07); }
     }
     @keyframes orb-drift-l {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33%       { transform: translate(45px, -55px) scale(1.07); }
-      66%       { transform: translate(-18px, 32px) scale(0.95); }
+      0%   { transform: translate(0,    0)    scale(1);    }
+      22%  { transform: translate(55px, -65px) scale(1.07); }
+      48%  { transform: translate(85px,  8px)  scale(1.03); }
+      72%  { transform: translate(38px,  72px) scale(1.06); }
+      100% { transform: translate(0,    0)    scale(1);    }
     }
     @keyframes orb-drift-r {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      40%       { transform: translate(-32px, 44px) scale(1.05); }
-      75%       { transform: translate(22px, -28px) scale(0.97); }
+      0%   { transform: translate(0,     0)    scale(1);    }
+      24%  { transform: translate(-60px, 60px)  scale(1.05); }
+      50%  { transform: translate(-88px, -6px)  scale(1.02); }
+      74%  { transform: translate(-32px, -68px) scale(1.07); }
+      100% { transform: translate(0,     0)    scale(1);    }
+    }
+    @keyframes hero-glow-breathe {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .76; }
     }
     @keyframes count-pop {
       0%   { transform: scale(1); }
@@ -340,7 +348,7 @@
         radial-gradient(ellipse 65% 55% at 88% 55%, rgba(0,127,255,.24) 0%, transparent 58%),
         radial-gradient(ellipse 45% 30% at 50% 0%,  rgba(255,103,0,.11) 0%, transparent 52%);
       pointer-events: none;
-      animation: hero-glow-in 1.9s var(--ease-out-expo) .08s both;
+      animation: hero-glow-breathe 7s ease-in-out infinite;
     }
     /* Parallax glow layer — shifts with scroll */
     .hero__parallax-glow {
@@ -366,14 +374,14 @@
       height: clamp(260px, 42vw, 500px);
       background: radial-gradient(circle, rgba(255,103,0,.14) 0%, transparent 70%);
       top: 18%; left: -6%;
-      animation: orb-drift-l 13s ease-in-out infinite;
+      animation: orb-drift-l 10s ease-in-out infinite;
     }
     .hero__orb--r {
       width: clamp(280px, 44vw, 520px);
       height: clamp(240px, 38vw, 460px);
       background: radial-gradient(circle, rgba(0,127,255,.11) 0%, transparent 70%);
       top: 12%; right: -5%;
-      animation: orb-drift-r 16s ease-in-out infinite;
+      animation: orb-drift-r 13s ease-in-out infinite;
     }
 
     /* Scroll progress bar */
@@ -1539,27 +1547,6 @@
         ph.remove(); frame.appendChild(iframe);
       }
     }
-
-    /* ── Hero orb entrance → drift ──────────── */
-    (function() {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const orbL = document.querySelector('.hero__orb--l');
-      const orbR = document.querySelector('.hero__orb--r');
-      if (!orbL || !orbR) return;
-      // Kill default CSS drift, play burst
-      orbL.style.animation = 'none';
-      orbR.style.animation = 'none';
-      void orbL.offsetWidth; // force reflow
-      orbL.style.animation = 'orb-arrive-l .92s cubic-bezier(0.16,1,0.3,1) .06s both';
-      orbR.style.animation = 'orb-arrive-r 1.12s cubic-bezier(0.16,1,0.3,1) .2s both';
-      // After burst, hand off to looping drift
-      orbL.addEventListener('animationend', () => {
-        orbL.style.animation = 'orb-drift-l 13s ease-in-out infinite';
-      }, { once: true });
-      orbR.addEventListener('animationend', () => {
-        orbR.style.animation = 'orb-drift-r 16s ease-in-out infinite';
-      }, { once: true });
-    })();
 
     /* ── Hero parallax glow ────────────────── */
     (function() {
