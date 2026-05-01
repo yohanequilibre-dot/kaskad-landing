@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaskad — Coaching Escalade Sur Mesure</title>
+  <meta name="description" content="Coaching escalade pour grimpeurs débutants, intermédiaires et experts. Diagnostic précis, plan personnalisé, garantie remboursement.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────── */
+    :root {
+      --orange:       #FF6700;
+      --orange-dark:  #e55d00;
+      --orange-light: #FF9148;
+      --orange-dim:   rgba(255,103,0,0.12);
+      --blue:         #007FFF;
+      --blue-dark:    #006fe0;
+      --blue-dim:     rgba(0,127,255,0.12);
+
+      --dark-900: #0A0E1A;
+      --dark-800: #1F2937;
+      --dark-700: #374151;
+      --gray-500: #6B7280;
+      --gray-400: #9CA3AF;
+      --gray-300: #D1D5DB;
+      --gray-200: #E5E7EB;
+      --gray-100: #F3F4F6;
+      --cream:    #E8E5DF;
+      --white:    #F0EDE8;   /* warm parchment — not harsh */
+
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+
+      --sp-1:  0.25rem; --sp-2:  0.5rem;  --sp-3: 0.75rem;
+      --sp-4:  1rem;    --sp-5:  1.25rem; --sp-6: 1.5rem;
+      --sp-8:  2rem;    --sp-10: 2.5rem;  --sp-12: 3rem;
+      --sp-16: 4rem;    --sp-20: 5rem;    --sp-24: 6rem;
+
+      --radius-sm:   8px;
+      --radius-md:   14px;
+      --radius-lg:   22px;
+      --radius-full: 9999px;
+      --nav-h:       66px;
+    }
+
+    /* ─────────────────────────────────────────
+       RESET
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--dark-700);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img, video, iframe { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; font-size: inherit; }
+    h1, h2, h3 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+
+    /* ─────────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────────── */
+    @keyframes hero-in {
+      from { opacity: 0; transform: translateY(22px); filter: blur(8px); }
+      to   { opacity: 1; transform: none;             filter: blur(0);   }
+    }
+    @keyframes levels-in {
+      from { opacity: 0; letter-spacing: 0.15em; }
+      to   { opacity: 1; letter-spacing: 0.06em; }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 4px 24px rgba(255,103,0,0.38); }
+      50%       { box-shadow: 0 6px 44px rgba(255,103,0,0.68), 0 0 0 10px rgba(255,103,0,0.07); }
+    }
+    @keyframes orb-drift-l {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(45px, -55px) scale(1.07); }
+      66%       { transform: translate(-18px, 32px) scale(0.95); }
+    }
+    @keyframes orb-drift-r {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      40%       { transform: translate(-32px, 44px) scale(1.05); }
+      75%       { transform: translate(22px, -28px) scale(0.97); }
+    }
+    @keyframes count-pop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.14); color: var(--orange-light); }
+      70%  { transform: scale(0.97); }
+      100% { transform: scale(1); color: var(--orange); }
+    }
+    @keyframes ripple-expand {
+      to { transform: scale(4.5); opacity: 0; }
+    }
+    @keyframes feat-in {
+      from { opacity: 0; transform: translateX(-10px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .feat { opacity: 0; }
+    .feat.feat-visible { animation: feat-in .38s var(--ease-out-expo) both; }
+
+    /* ─────────────────────────────────────────
+       SCROLL REVEAL
+    ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      filter: blur(3px);
+      transition:
+        opacity   0.72s var(--ease-out-expo),
+        transform 0.72s var(--ease-out-expo),
+        filter    0.55s var(--ease-out-expo);
+    }
+    .reveal.in { opacity: 1; transform: none; filter: blur(0); }
+    .reveal.d1 { transition-delay: 0.08s; }
+    .reveal.d2 { transition-delay: 0.17s; }
+    .reveal.d3 { transition-delay: 0.26s; }
+    .reveal.d4 { transition-delay: 0.35s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+      .hero__orb { animation: none !important; }
+      .count-done { animation: none !important; }
+      .btn__ripple { display: none; }
+      .feat { opacity: 1; animation: none !important; }
+    }
+
+    /* ─────────────────────────────────────────
+       LAYOUT
+    ───────────────────────────────────────── */
+    .wrap { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: var(--sp-6); }
+    .wrap--narrow { max-width: 860px; }
+
+    /* ─────────────────────────────────────────
+       BUTTONS
+    ───────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-2);
+      font-family: var(--font);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 0.875rem 1.875rem;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      transition: transform .2s var(--ease-out-quart), box-shadow .2s var(--ease-out-quart), background .2s, border-color .2s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn__ripple {
+      position: absolute;
+      border-radius: 50%;
+      width: 100px; height: 100px;
+      margin-top: -50px; margin-left: -50px;
+      background: rgba(255,255,255,0.26);
+      transform: scale(0);
+      pointer-events: none;
+      animation: ripple-expand .6s var(--ease-out-quart) forwards;
+    }
+    .btn:hover  { transform: translateY(-2px); }
+    .btn:active { transform: translateY(1px) scale(0.98); }
+    .btn-xl { font-size: 1.125rem; font-weight: 700; padding: 1.3125rem 3rem; }
+
+    .btn-orange { background: var(--orange); color: var(--white); box-shadow: 0 4px 24px rgba(255,103,0,.38); }
+    .btn-orange:hover { background: var(--orange-dark); box-shadow: 0 8px 36px rgba(255,103,0,.5); }
+    .btn-orange.btn-pulse { animation: pulse-glow 2.8s ease-in-out infinite; }
+    .btn-orange.btn-pulse:hover { animation: none; transform: translateY(-2px); box-shadow: 0 8px 36px rgba(255,103,0,.5); }
+
+    .btn-blue { background: var(--blue); color: var(--white); box-shadow: 0 4px 24px rgba(0,127,255,.32); }
+    .btn-blue:hover { background: var(--blue-dark); box-shadow: 0 8px 36px rgba(0,127,255,.45); }
+
+    .btn-ghost-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.35); }
+    .btn-ghost-white:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.7); }
+
+    .btn-white-on-orange { background: var(--white); color: var(--orange); font-weight: 700; }
+    .btn-white-on-orange:hover { box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+
+    /* ─────────────────────────────────────────
+       SECTION HEADERS
+    ───────────────────────────────────────── */
+    .sec-eyebrow {
+      display: block;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: var(--sp-2);
+    }
+    .sec-title {
+      font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      line-height: 1.06;
+      color: var(--dark-900);
+      margin-bottom: var(--sp-4);
+      letter-spacing: -0.035em;
+    }
+    .sec-title--white { color: var(--white); }
+    .sec-title--lg    { font-size: clamp(2.5rem, 5.5vw, 4rem); }
+    .sec-lead {
+      font-size: 1.0625rem;
+      color: var(--dark-700);
+      line-height: 1.75;
+      max-width: 58ch;
+    }
+    .sec-lead--white { color: rgba(255,255,255,.62); }
+
+    /* ─────────────────────────────────────────
+       NAV — section-aware
+    ───────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: 200;
+      transition: background .35s var(--ease-out-quart), box-shadow .35s var(--ease-out-quart);
+    }
+    .nav__logo   { color: var(--white); transition: color .35s; }
+    .nav__link   { color: rgba(255,255,255,.78); transition: color .35s; }
+    .nav__burger span { background: var(--white); transition: background .35s; }
+
+    .nav.on-light {
+      background: rgba(240,237,232,.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(0,0,0,.07);
+    }
+    .nav.on-light .nav__logo   { color: var(--dark-900); }
+    .nav.on-light .nav__link   { color: var(--dark-700); }
+    .nav.on-light .nav__burger span { background: var(--dark-900); }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-h);
+      padding-inline: var(--sp-6);
+      max-width: 1240px;
+      margin-inline: auto;
+    }
+    .nav__logo { font-weight: 800; font-size: 1.375rem; letter-spacing: -0.03em; }
+    .nav__links { display: flex; align-items: center; gap: var(--sp-8); }
+    .nav__link  { font-size: 0.875rem; font-weight: 500; }
+    .nav__link:hover { color: var(--orange) !important; }
+
+    .nav__cta {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--orange);
+      padding: .5rem 1.25rem;
+      border-radius: var(--radius-full);
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 2px 12px rgba(255,103,0,.3);
+    }
+    .nav__cta:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: 8px; -webkit-tap-highlight-color: transparent; }
+    .nav__burger span { display: block; width: 22px; height: 2px; border-radius: 2px; }
+
+    .nav-mobile {
+      display: none;
+      position: fixed; inset: 0; z-index: 199;
+      background: var(--dark-900);
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: var(--sp-8); padding: var(--sp-8);
+    }
+    .nav-mobile.is-open { display: flex; }
+    .nav-mobile__link { font-size: 2rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em; transition: color .2s; }
+    .nav-mobile__link:hover { color: var(--orange); }
+    .nav-mobile__close { position: absolute; top: var(--sp-6); right: var(--sp-6); font-size: 1.75rem; color: rgba(255,255,255,.55); transition: color .2s; padding: var(--sp-2); }
+    .nav-mobile__close:hover { color: var(--white); }
+
+    @media (max-width: 680px) { .nav__links { display: none; } .nav__burger { display: flex; } }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      background: var(--dark-900);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px var(--sp-6) var(--sp-12);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Vivid dual glow — orange left, blue right */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 12% 62%, rgba(255,103,0,.30) 0%, transparent 60%),
+        radial-gradient(ellipse 65% 55% at 88% 55%, rgba(0,127,255,.24) 0%, transparent 58%),
+        radial-gradient(ellipse 45% 30% at 50% 0%,  rgba(255,103,0,.11) 0%, transparent 52%);
+      pointer-events: none;
+    }
+    /* Animated ambient orbs */
+    .hero__orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(70px);
+      will-change: transform;
+      z-index: 0;
+    }
+    .hero__orb--l {
+      width: clamp(320px, 50vw, 580px);
+      height: clamp(260px, 42vw, 500px);
+      background: radial-gradient(circle, rgba(255,103,0,.14) 0%, transparent 70%);
+      top: 18%; left: -6%;
+      animation: orb-drift-l 13s ease-in-out infinite;
+    }
+    .hero__orb--r {
+      width: clamp(280px, 44vw, 520px);
+      height: clamp(240px, 38vw, 460px);
+      background: radial-gradient(circle, rgba(0,127,255,.11) 0%, transparent 70%);
+      top: 12%; right: -5%;
+      animation: orb-drift-r 16s ease-in-out infinite;
+    }
+
+    /* Scroll progress bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--orange);
+      z-index: 500;
+      pointer-events: none;
+      transition: width .08s linear;
+    }
+
+    /* Grid texture */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+      background-size: 60px 60px;
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero__content { position: relative; z-index: 1; }
+
+    /* "Pour les grimpeurs" */
+    .hero__for {
+      font-weight: 800;
+      font-size: clamp(3.125rem, 8.5vw, 6.75rem);
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      margin-bottom: var(--sp-4);
+      animation: hero-in .75s var(--ease-out-expo) .05s both;
+    }
+
+    /* Débutant, Intermédiaire ou Expert */
+    .hero__levels {
+      font-size: clamp(0.9375rem, 2.1vw, 1.1875rem);
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.06em;
+      margin-bottom: var(--sp-8);
+      animation: levels-in .7s var(--ease-out-expo) .2s both;
+    }
+
+    /* Orange claim — 2 lines */
+    .hero__claim {
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3.9vw, 2.625rem);
+      line-height: 1.25;
+      color: var(--orange-light);
+      width: max-content;
+      max-width: calc(100vw - var(--sp-12));
+      margin-inline: auto;
+      margin-bottom: var(--sp-4);
+      letter-spacing: -0.02em;
+      animation: hero-in .7s var(--ease-out-expo) .34s both;
+    }
+
+    /* Supporting — new order */
+    .hero__sub {
+      font-size: clamp(1.0625rem, 2vw, 1.3125rem);
+      color: rgba(255,255,255,.42);
+      margin-bottom: var(--sp-8);
+      line-height: 1.7;
+      animation: hero-in .65s var(--ease-out-expo) .48s both;
+    }
+
+    .hero__cta {
+      animation: hero-in .6s var(--ease-out-expo) .62s both;
+    }
+
+    /* ─────────────────────────────────────────
+       ACTION — Double CTA
+       Ordre : Stats → CTAs → Vidéo → Lire
+    ───────────────────────────────────────── */
+    .s-action {
+      background: var(--cream);
+      padding: var(--sp-10) 0;
+    }
+
+    .action-stats {
+      display: flex;
+      justify-content: center;
+      gap: clamp(var(--sp-8), 6vw, var(--sp-20));
+      flex-wrap: nowrap;
+      padding: var(--sp-5) 0;
+      margin-bottom: var(--sp-5);
+      border-block: 1px solid var(--gray-300);
+      overflow: visible;
+    }
+    .astat { text-align: center; }
+    .astat__n {
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .astat__l { font-size: .8125rem; color: var(--gray-500); margin-top: var(--sp-1); font-weight: 500; }
+
+    .action-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+      justify-content: center;
+      margin-bottom: var(--sp-6);
+    }
+    .action-ctas__note {
+      width: 100%;
+      text-align: center;
+      font-size: .8125rem;
+      color: var(--gray-400);
+      margin-top: var(--sp-1);
+    }
+
+    .video-frame {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: var(--dark-800);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: var(--sp-8);
+      box-shadow: 0 28px 80px rgba(0,0,0,.2);
+      transition: transform .4s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+    }
+    .video-frame:hover { transform: translateY(-4px); box-shadow: 0 36px 90px rgba(0,0,0,.25); }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: var(--sp-4); color: rgba(255,255,255,.3); font-size: .875rem; user-select: none;
+    }
+    .video-placeholder svg { width: 52px; height: 52px; opacity: .3; }
+
+    .action-read { max-width: 74ch; margin-inline: auto; text-align: center; }
+    .action-read__heading { font-size: 1.0625rem; font-weight: 700; color: var(--dark-900); margin-bottom: var(--sp-4); }
+    .action-read p { font-size: 1.0625rem; color: var(--dark-700); line-height: 1.75; margin-bottom: var(--sp-3); }
+    .action-read p:last-child { margin-bottom: 0; }
+
+    /* ─────────────────────────────────────────
+       PRICING
+    ───────────────────────────────────────── */
+    .s-pricing {
+      background: var(--cream);
+      padding: var(--sp-10) 0;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-5);
+      max-width: 940px;
+      margin-inline: auto;
+    }
+    .pcard {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8) var(--sp-6);
+      position: relative;
+      border: 2px solid var(--gray-200);
+      transition: box-shadow .35s var(--ease-out-quart);
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .pcard--pre { border-color: var(--blue);   box-shadow: 0 8px 48px rgba(0,127,255,.10); }
+    .pcard--std { border-color: var(--orange); box-shadow: 0 8px 48px rgba(255,103,0,.11); }
+
+    .pcard__badge {
+      position: absolute; top: -1px; right: var(--sp-6);
+      font-size: .625rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--white); background: var(--orange);
+      padding: 5px 14px; border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+    .pcard__badge--blue { background: var(--blue); }
+
+    .pcard__eyebrow { font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--orange); margin-bottom: var(--sp-2); }
+    .pcard__eyebrow--blue { color: var(--blue); }
+
+    .pcard__name { font-size: 1.375rem; font-weight: 800; color: var(--dark-900); margin-bottom: var(--sp-2); letter-spacing: -0.02em; line-height: 1.25; }
+    .pcard__tagline { font-size: .875rem; color: var(--dark-700); font-style: italic; margin-bottom: var(--sp-6); line-height: 1.55; }
+
+    .pcard__price-from { font-size: .75rem; color: var(--gray-400); margin-bottom: 2px; }
+    .pcard__price { font-size: 3.5rem; font-weight: 800; color: var(--dark-900); line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    .pcard__price-unit { font-size: 1rem; font-weight: 500; color: var(--dark-700); letter-spacing: 0; }
+    .pcard__price-options { font-size: .8125rem; color: var(--gray-400); margin-top: var(--sp-2); line-height: 1.9; }
+
+    .pcard__duo { font-size: .8125rem; color: var(--dark-700); margin-top: var(--sp-2); display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+    .pcard__duo strong { color: var(--dark-900); font-weight: 700; }
+
+    /* Tooltip */
+    .tooltip-wrap { position: relative; display: inline-flex; align-items: center; }
+    .tooltip-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: var(--gray-200); color: var(--gray-500);
+      font-size: .625rem; font-weight: 700;
+      cursor: help; font-style: normal; transition: background .2s;
+    }
+    .tooltip-icon:hover, .tooltip-icon:focus { background: var(--blue); color: var(--white); outline: none; }
+    .tooltip-body {
+      position: absolute;
+      bottom: calc(100% + 10px); left: 50%;
+      transform: translateX(-50%);
+      background: var(--dark-900); color: var(--white);
+      font-size: .8125rem; line-height: 1.6;
+      padding: 10px 14px; border-radius: var(--radius-md);
+      width: 280px; max-width: 90vw;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s var(--ease-out-quart);
+      z-index: 20;
+    }
+    .tooltip-body::after {
+      content: '';
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 7px solid transparent; border-top-color: var(--dark-900);
+    }
+    .tooltip-wrap:hover .tooltip-body,
+    .tooltip-icon:focus + .tooltip-body { opacity: 1; pointer-events: auto; }
+
+    .pcard__divider { height: 1px; background: var(--gray-300); margin: var(--sp-5) 0; }
+
+    .pcard__features { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-8); }
+    .feat { display: flex; align-items: flex-start; gap: var(--sp-3); font-size: .875rem; line-height: 1.55; }
+    .feat__icon { flex-shrink: 0; margin-top: 1px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .feat__icon svg { width: 10px; height: 10px; }
+    .feat--yes .feat__icon { background: rgba(0,170,70,.12); }
+    .feat--yes { color: var(--dark-700); }
+    .feat--no  .feat__icon { background: rgba(0,0,0,.05); }
+    .feat--no  { color: var(--gray-400); }
+    .feat-sep {
+      font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gray-400); padding-top: var(--sp-2); margin-top: var(--sp-1);
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .pcard__cta-sub { font-size: .8125rem; color: var(--gray-400); text-align: center; margin-top: var(--sp-3); line-height: 1.6; }
+    .pcard__cta-sub a { color: var(--orange); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; font-size: .9375rem; }
+    .pcard__cta-sub a:hover { color: var(--orange-dark); }
+
+    .pcard__engage-label { font-size: .75rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; margin-bottom: var(--sp-2); }
+    .pcard__engagements { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); margin-bottom: var(--sp-3); }
+    .btn-engage {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0.625rem 0.5rem; border-radius: var(--radius-md);
+      font-size: .8125rem; font-weight: 700;
+      color: #fff; background: var(--orange);
+      border: none;
+      transition: background .2s var(--ease-out-quart), transform .15s var(--ease-out-quart), box-shadow .2s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-engage:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(255,103,0,.4); }
+
+    /* Card hover glow — dramatic */
+    .pcard--pre { transition: box-shadow .4s var(--ease-out-quart); }
+    .pcard--std { transition: box-shadow .4s var(--ease-out-quart); }
+    .pcard--pre:hover { box-shadow: 0 20px 80px rgba(0,127,255,.4), 0 0 200px rgba(0,127,255,.55), 0 0 480px rgba(0,127,255,.28); }
+    .pcard--std:hover { box-shadow: 0 20px 80px rgba(255,103,0,.4), 0 0 200px rgba(255,103,0,.52), 0 0 480px rgba(255,103,0,.25); }
+
+    @media (max-width: 700px) {
+      .pricing-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: var(--sp-4); padding-bottom: var(--sp-4); }
+      .pricing-grid::-webkit-scrollbar { display: none; }
+      .pcard { min-width: min(320px, 85vw); scroll-snap-align: start; flex-shrink: 0; }
+    }
+
+    /* ─────────────────────────────────────────
+       GUARANTEE
+    ───────────────────────────────────────── */
+    .s-guarantee { background: var(--dark-800); padding: var(--sp-12) 0; }
+    .guarantee-inner { max-width: 1060px; margin-inline: auto; text-align: center; }
+    .guarantee-lead {
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      font-weight: 500;
+      color: rgba(255,255,255,.68);
+      line-height: 1.65;
+      max-width: 78ch;
+      margin-inline: auto;
+      margin-bottom: var(--sp-12);
+    }
+    .guarantee-rules { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin-bottom: var(--sp-10); text-align: left; }
+    .grule {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      display: flex; gap: var(--sp-4); align-items: flex-start;
+      transition: background .3s var(--ease-out-quart), transform .3s var(--ease-out-quart), box-shadow .3s var(--ease-out-quart);
+    }
+    .grule:hover { background: rgba(255,103,0,.09); border-color: rgba(255,103,0,.22); transform: translateY(-4px); box-shadow: 0 18px 56px rgba(255,103,0,.35), 0 0 180px rgba(255,103,0,.22), inset 0 0 0 1px rgba(255,103,0,.12); }
+    .grule__n { font-size: 2.25rem; font-weight: 800; color: var(--orange); line-height: 1; flex-shrink: 0; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    .grule__t { font-size: .9375rem; color: rgba(255,255,255,.75); line-height: 1.5; padding-top: 8px; font-weight: 500; white-space: nowrap; }
+
+    .guarantee-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--sp-4);
+    }
+    .guarantee-closing {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,.42);
+      line-height: 1.8;
+    }
+    .guarantee-contract {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-size: .9375rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.55);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-full);
+      padding: .5rem 1.25rem;
+      transition: background .2s, color .2s, transform .25s var(--ease-out-expo);
+      position: relative;
+      cursor: default;
+    }
+    .guarantee-contract:hover { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); transform: scale(1.06); }
+    .guarantee-contract svg { flex-shrink: 0; }
+
+    /* Contract hover popover — controlled by JS */
+    .contract-popover {
+      position: absolute;
+      bottom: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: 460px; max-width: min(460px, 92vw);
+      background: #fff;
+      color: #111827;
+      border: 1px solid rgba(0,0,0,.1);
+      border-radius: var(--radius-md);
+      padding: var(--sp-5);
+      box-shadow: 0 28px 80px rgba(0,0,0,.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .28s var(--ease-out-expo), transform .28s var(--ease-out-expo);
+      z-index: 200;
+      text-align: left;
+    }
+    .contract-popover::after {
+      content: '';
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 9px solid transparent;
+      border-top-color: #fff;
+    }
+    .contract-popover .c-art { font-size: .8rem; font-weight: 700; color: #0a0e1a; margin-bottom: var(--sp-3); font-family: Georgia, 'Times New Roman', serif; line-height: 1.4; }
+    .contract-popover p { font-size: .74rem; line-height: 1.6; color: #374151; margin-bottom: var(--sp-2); font-family: Georgia, 'Times New Roman', serif; }
+    .contract-popover .c-sub { padding-left: var(--sp-4); color: #4b5563; }
+    .contract-popover p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 560px) { .guarantee-rules { grid-template-columns: 1fr; } }
+
+    /* ─────────────────────────────────────────
+       TESTIMONIALS
+    ───────────────────────────────────────── */
+    .s-temoignages { background: var(--cream); padding: var(--sp-12) 0; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+    /* Each tblock = card + video thumb below */
+    .tblock { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .tcard {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8) var(--sp-6);
+      display: flex; flex-direction: column;
+      transition: transform .35s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .tcard--orange:hover { box-shadow: 0 20px 80px rgba(255,103,0,.4), 0 0 200px rgba(255,103,0,.52), 0 0 480px rgba(255,103,0,.25); }
+    .tcard--blue:hover   { box-shadow: 0 20px 80px rgba(0,127,255,.4), 0 0 200px rgba(0,127,255,.52), 0 0 480px rgba(0,127,255,.25); }
+    .tcard__stars { display: flex; gap: 2px; margin-bottom: var(--sp-4); }
+    .tcard__star  { color: var(--orange); font-size: .875rem; }
+    .tcard__quote { font-size: .9375rem; color: var(--dark-800); line-height: 1.78; flex: 1; margin-bottom: var(--sp-6); }
+    .tcard__quote::before { content: '\201C'; }
+    .tcard__quote::after  { content: '\201D'; }
+    .tcard__footer { display: flex; flex-direction: column; gap: var(--sp-2); }
+    .tcard__name { font-size: .875rem; font-weight: 700; color: var(--dark-900); }
+    .tcard__badge { display: inline-block; font-size: .6875rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--white); background: var(--orange); padding: 3px 10px; border-radius: var(--radius-full); width: fit-content; }
+    .tcard__badge--blue { background: var(--blue); }
+
+    /* Video thumbnail bubble below each card */
+    .tvideo {
+      display: block;
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: var(--dark-800);
+      transition: transform .35s var(--ease-out-quart), box-shadow .35s var(--ease-out-quart);
+      text-decoration: none;
+    }
+    .tvideo:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 52px rgba(0,0,0,.22); }
+    .tvideo__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tvideo__overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.32);
+      transition: background .25s;
+    }
+    .tvideo:hover .tvideo__overlay { background: rgba(0,0,0,.15); }
+    .tvideo__play { width: 48px; height: 48px; filter: drop-shadow(0 2px 10px rgba(0,0,0,.5)); }
+    /* Placeholder state (no video URL yet) */
+    .tvideo--empty {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: var(--sp-2);
+      cursor: default;
+    }
+    .tvideo--empty:hover { transform: none; box-shadow: none; }
+
+    @media (max-width: 860px) { .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; } }
+
+    /* ─────────────────────────────────────────
+       COMMENT ÇA MARCHE — dark rectangles
+    ───────────────────────────────────────── */
+    .s-how { background: var(--dark-800); padding: var(--sp-12) 0; }
+    .how-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-4);
+      max-width: 960px;
+      margin-inline: auto;
+    }
+    .hstep {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      display: flex;
+      gap: var(--sp-5);
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart), background .3s var(--ease-out-quart), border-color .3s var(--ease-out-quart);
+    }
+    .hstep__num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      flex-shrink: 0;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+      min-width: 2.75rem;
+    }
+    .hstep__content { flex: 1; }
+    .hstep__title { font-size: 1.0625rem; font-weight: 700; color: var(--white); margin-bottom: var(--sp-2); line-height: 1.3; letter-spacing: -0.01em; }
+    .hstep__body  { font-size: .875rem; color: rgba(255,255,255,.58); line-height: 1.72; }
+
+    /* Per-step accent colors */
+    .hstep--01 .hstep__num { color: var(--orange); }
+    .hstep--01:hover { background: rgba(255,103,0,.09); border-color: rgba(255,103,0,.22); transform: translateY(-4px); box-shadow: 0 16px 52px rgba(255,103,0,.3), 0 0 160px rgba(255,103,0,.18); }
+
+    .hstep--02 .hstep__num { color: #F59E0B; }
+    .hstep--02:hover { background: rgba(245,158,11,.09); border-color: rgba(245,158,11,.22); transform: translateY(-4px); box-shadow: 0 16px 52px rgba(245,158,11,.3), 0 0 160px rgba(245,158,11,.18); }
+
+    .hstep--03 .hstep__num { color: var(--blue); }
+    .hstep--03:hover { background: rgba(0,127,255,.09); border-color: rgba(0,127,255,.22); transform: translateY(-4px); box-shadow: 0 16px 52px rgba(0,127,255,.3), 0 0 160px rgba(0,127,255,.18); }
+
+    .hstep--04 .hstep__num { color: #8B5CF6; }
+    .hstep--04:hover { background: rgba(139,92,246,.09); border-color: rgba(139,92,246,.22); transform: translateY(-4px); box-shadow: 0 16px 52px rgba(139,92,246,.3), 0 0 160px rgba(139,92,246,.18); }
+
+    @media (max-width: 680px) { .how-steps { grid-template-columns: 1fr; } }
+
+    /* ─────────────────────────────────────────
+       TEAM
+    ───────────────────────────────────────── */
+    .s-team { background: var(--white); padding: var(--sp-12) 0; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-6);
+      max-width: 1100px;
+      margin-inline: auto;
+    }
+    .ccard {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8) var(--sp-6);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+    }
+    .ccard:hover { transform: translateY(-6px); }
+    .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.38), 0 0 440px rgba(255,103,0,.18); }
+    .ccard--blue:hover   { box-shadow: 0 20px 70px rgba(0,127,255,.22), 0 0 200px rgba(0,127,255,.38), 0 0 440px rgba(0,127,255,.18); }
+    .ccard--green:hover  { box-shadow: 0 20px 70px rgba(0,170,70,.22),  0 0 200px rgba(0,170,70,.38),  0 0 440px rgba(0,170,70,.18); }
+    .ccard__accent {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .ccard__avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      margin: 0 auto var(--sp-4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.625rem; font-weight: 800; color: var(--white);
+      overflow: hidden;
+    }
+    .ccard__name { font-weight: 800; font-size: 1.0625rem; color: var(--dark-900); margin-bottom: var(--sp-1); letter-spacing: -0.01em; }
+    .ccard__role { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--sp-4); }
+    .ccard__bio { font-size: .875rem; color: var(--dark-700); line-height: 1.72; }
+    @media (max-width: 680px) { .team-grid { grid-template-columns: 1fr; max-width: 380px; margin-inline: auto; } }
+
+    /* ─────────────────────────────────────────
+       FAQ — deep navy (distinct from dark-800 guarantee)
+    ───────────────────────────────────────── */
+    .s-faq { background: #1c2d42; padding: var(--sp-12) 0; }
+    .faq-list { max-width: 720px; margin-inline: auto; }
+    .fitem { border-bottom: 1px solid rgba(255,255,255,.1); transition: background .3s var(--ease-out-quart), padding .3s var(--ease-out-quart); border-radius: var(--radius-sm); }
+    .fitem:first-child { border-top: 1px solid rgba(255,255,255,.1); }
+    .fitem.is-open {
+      background: rgba(255,103,0,.07);
+      border-color: transparent;
+      padding-inline: var(--sp-4);
+      margin-inline: calc(-1 * var(--sp-4));
+    }
+    .fitem__q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: var(--sp-4); padding: var(--sp-6) 0; text-align: left;
+      font-size: 1.0625rem; font-weight: 600; color: rgba(255,255,255,.9); transition: color .2s;
+    }
+    .fitem__q:hover { color: var(--orange); }
+    .fitem.is-open .fitem__q { color: var(--orange); font-weight: 700; }
+    .fitem__icon {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center;
+      transition: background .3s var(--ease-out-quart), transform .4s var(--ease-out-quart);
+    }
+    .fitem.is-open .fitem__icon { background: var(--orange); transform: rotate(45deg); }
+    .fitem__icon svg { width: 12px; height: 12px; stroke: rgba(255,255,255,.75); stroke-width: 2.5; stroke-linecap: round; transition: stroke .25s; }
+    .fitem.is-open .fitem__icon svg { stroke: var(--white); }
+    .fitem__a { overflow: hidden; max-height: 0; transition: max-height .45s var(--ease-out-quart); }
+    .fitem__a-inner { padding: 0 0 var(--sp-6) 0; font-size: 1rem; color: rgba(255,255,255,.72); line-height: 1.8; max-width: 60ch; opacity: 0; transition: opacity .3s var(--ease-out-quart) .08s; }
+    .fitem.is-open .fitem__a-inner { opacity: 1; }
+    .count-done { animation: count-pop .45s var(--ease-out-quart) forwards; }
+
+    /* ─────────────────────────────────────────
+       FINAL CTA
+    ───────────────────────────────────────── */
+    .s-final { background: var(--orange); padding: var(--sp-12) 0; text-align: center; position: relative; overflow: hidden; }
+    .s-final::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 20% 50%, rgba(255,255,255,.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 50%, rgba(0,0,0,.08) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .s-final__inner { position: relative; z-index: 1; }
+    .s-final .sec-title { color: var(--white); }
+    .s-final__sub { font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 700; color: rgba(255,255,255,.8); margin-bottom: var(--sp-10); line-height: 1.3; letter-spacing: -0.01em; }
+    .s-final__btns { display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: center; margin-bottom: var(--sp-6); }
+    .s-final__reassure { font-size: .8125rem; color: rgba(255,255,255,.5); display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-3); }
+    .s-final__dot { opacity: .35; }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    .footer { background: var(--dark-900); padding: var(--sp-8) var(--sp-6); text-align: center; font-size: .75rem; color: #3D4455; }
+
+    /* ─────────────────────────────────────────
+       MISC
+    ───────────────────────────────────────── */
+    section[id] { scroll-margin-top: var(--nav-h); }
+
+    @media (max-width: 560px) {
+      .s-action, .s-pricing, .s-guarantee,
+      .s-temoignages, .s-faq, .s-final { padding-top: var(--sp-8); padding-bottom: var(--sp-8); }
+      .hero { padding-top: 100px; padding-bottom: var(--sp-12); }
+      .astat__n { font-size: clamp(1.375rem, 5vw, 2.25rem); }
+      .pcard__engagements { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════  NAV ═════ -->
+  <nav class="nav" id="nav" aria-label="Navigation principale">
+    <div class="nav__inner">
+      <a href="#top" class="nav__logo">Kaskad Coaching</a>
+      <div class="nav__links">
+        <a href="#formules" class="nav__link">Coaching Standard</a>
+        <a href="#formules" class="nav__link">Coaching Premium</a>
+        <a href="#" class="nav__cta js-calendly">Réserver un appel</a>
+      </div>
+      <button class="nav__burger" id="js-burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="js-mobile-nav" aria-label="Menu mobile" role="dialog">
+    <button class="nav-mobile__close" id="js-mobile-close" aria-label="Fermer le menu">✕</button>
+    <a href="#formules" class="nav-mobile__link js-mobile-close-link">Coaching Standard</a>
+    <a href="#formules" class="nav-mobile__link js-mobile-close-link">Coaching Premium</a>
+    <a href="#" class="btn btn-orange js-calendly js-mobile-close-link">Réserver un appel</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════  HERO ════ -->
+  <section class="hero" id="top" data-nav="dark">
+    <div class="hero__orb hero__orb--l" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--r" aria-hidden="true"></div>
+    <div class="hero__content">
+
+      <h1 class="hero__for">Pour les grimpeurs</h1>
+
+      <p class="hero__levels">Débutants, Intermédiaires ou Experts</p>
+
+      <p class="hero__claim">
+        On va t'aider à progresser<br>
+        pour que tu atteignes tes objectifs en escalade
+      </p>
+
+      <p class="hero__sub">
+        Sans sacrifier ton plaisir, sans changer ton emploi du temps, sans risquer de te blesser.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#formules" class="btn btn-orange btn-xl btn-pulse">Je suis prêt à progresser →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  ACTION ══ -->
+  <section class="s-action" id="action" data-nav="light">
+    <div class="wrap wrap--narrow">
+
+      <!-- Stats — 4 côte à côte -->
+      <div class="action-stats reveal">
+        <div class="astat">
+          <div class="astat__n js-count" data-target="70" data-suffix="+">70+</div>
+          <div class="astat__l">Grimpeurs accompagnés</div>
+        </div>
+        <div class="astat">
+          <div class="astat__n">6a–7c+</div>
+          <div class="astat__l">Niveaux coachés</div>
+        </div>
+        <div class="astat">
+          <div class="astat__n">France</div>
+          <div class="astat__l">entière</div>
+        </div>
+        <div class="astat">
+          <div class="astat__n js-count" data-target="100" data-suffix="%">100%</div>
+          <div class="astat__l">Sur mesure</div>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="action-ctas reveal d1">
+        <a href="#formules" class="btn btn-orange btn-xl">Rejoindre le Coaching</a>
+        <a href="#" class="btn btn-blue  btn-xl js-calendly">Réserver un appel →</a>
+        <p class="action-ctas__note">Paiement sécurisé Stripe &nbsp;·&nbsp; Appel sans engagement &nbsp;·&nbsp; Garantie remboursement</p>
+      </div>
+
+      <!-- Vidéo -->
+      <div class="reveal d2">
+        <div class="video-frame" id="js-video-frame">
+          <div class="video-placeholder" id="js-video-placeholder">
+            <svg viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="24" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M21 18l14 8-14 8V18z" fill="currentColor"/>
+            </svg>
+            <span>Vidéo à configurer — VIDEO_URL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lire -->
+      <div class="action-read reveal d3">
+        <p class="action-read__heading">Tu préfères lire ?</p>
+        <p>Tu grimpes 2, 3 parfois 4 fois par semaine mais tu plafonnes depuis des mois.</p>
+        <p>Tu sens que ce n'est pas une question de temps passé au mur, que tu dois changer quelque chose dans ton entraînement et tu as raison : il te faut une structure adaptée <strong style="color:var(--orange);font-weight:700;">à toi</strong>.</p>
+        <p>Chez Kaskad on te propose exactement ça : un écosystème de coaching qui a déjà fait ses preuves. On s'adapte à ta vraie vie : boulot / études, quotidien, blessures et habitudes. Voici exactement comment on procède :</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  COMMENT ÇA MARCHE ════ -->
+  <section class="s-how" id="methode" data-nav="dark">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:var(--sp-8);">
+        <span class="sec-eyebrow reveal" style="color:rgba(255,103,0,.85);">Méthode</span>
+        <h2 class="sec-title sec-title--white reveal d1">Comment ça marche</h2>
+      </div>
+      <div class="how-steps">
+
+        <div class="hstep hstep--01 reveal d1">
+          <div class="hstep__num">01</div>
+          <div class="hstep__content">
+            <h3 class="hstep__title">Diagnostic précis</h3>
+            <p class="hstep__body">Tu remplis un questionnaire, on échange, on en sort ton diagramme radar (21 axes) et les habitudes qui te limitent. Pas du blabla, on fonctionne sur des données précises.</p>
+          </div>
+        </div>
+
+        <div class="hstep hstep--02 reveal d2">
+          <div class="hstep__num">02</div>
+          <div class="hstep__content">
+            <h3 class="hstep__title">Programme d'entraînement</h3>
+            <p class="hstep__body">Nicolas ou Florentin construit ton plan personnalisé basé sur le diagnostic, ton emploi du temps, tes habitudes, ton matériel et tes objectifs. Chaque choix est expliqué.</p>
+          </div>
+        </div>
+
+        <div class="hstep hstep--03 reveal d3">
+          <div class="hstep__num">03</div>
+          <div class="hstep__content">
+            <h3 class="hstep__title">Exécution &amp; suivi</h3>
+            <p class="hstep__body">Tu fais tes séances et au moins une fois par semaine on fait le point. On ajuste en temps réel : tu progresses plus vite ? On adapte. Tu pars en vacances ? On adapte. Tu n'es jamais seul.</p>
+          </div>
+        </div>
+
+        <div class="hstep hstep--04 reveal d4">
+          <div class="hstep__num">04</div>
+          <div class="hstep__content">
+            <h3 class="hstep__title">Communauté</h3>
+            <p class="hstep__body">Tu rejoins l'écosystème Kaskad : échanges, rencontres, entraide. Tout est fait pour te faire progresser et te garder motivé sur la durée.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  PRICING ═ -->
+  <section class="s-pricing" id="formules" data-nav="light">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:var(--sp-8);">
+        <span class="sec-eyebrow reveal">Les formules</span>
+        <h2 class="sec-title sec-title--lg reveal d1">Choisis ton niveau d'accompagnement</h2>
+        <p class="sec-lead reveal d2" style="margin-inline:auto;">Deux formules. <strong>Un moteur</strong> : un diagnostic précis et un plan construit pour toi. La différence : <strong>l'intensité</strong>.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- PREMIUM — gauche (ancrage prix) -->
+        <div class="pcard pcard--pre reveal js-tilt">
+          <div class="pcard__badge pcard__badge--blue">Pour aller plus vite</div>
+          <p class="pcard__eyebrow pcard__eyebrow--blue">Coaching Premium</p>
+          <h3 class="pcard__name">Pour ceux qui veulent le meilleur</h3>
+          <p class="pcard__tagline">Une expérience à la «&nbsp;coach en équipe de France&nbsp;»</p>
+
+          <div class="pcard__price">499€<span class="pcard__price-unit"> / mois</span></div>
+          <p class="pcard__price-options">Tarifs dégressifs selon engagement</p>
+
+          <div class="pcard__divider"></div>
+
+          <ul class="pcard__features">
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Diagnostic précis</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Diagramme radar 21 axes personnalisé</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Plan d'entraînement 100% sur mesure</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Discord Kaskad</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Conversation privée avec ton coach + yohangrimpe</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Adaptations en temps réel à tes besoins</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Rencontres communautaires</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Bonus et ressources exclusives</li>
+            <li class="feat-sep">Exclusif Premium</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Appel hebdomadaire avec un coach (30 min)</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Suivi réalisé par 2 coachs</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Analyses vidéo illimitées sur ta grimpe</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Audit récupération + préparation mentale</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Séances de coaching en physique&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="En savoir plus">i</span><span class="tooltip-body">Nombre variable selon proximité géographique, plus d'informations lors de l'appel.</span></span></li>
+          </ul>
+
+          <a href="#" class="btn btn-blue js-calendly" style="width:100%;">Réserver un appel Premium</a>
+          <p class="pcard__cta-sub">Accès sur qualification · Entretien de 30 min</p>
+        </div>
+
+        <!-- STANDARD — droite -->
+        <div class="pcard pcard--std reveal d1 js-tilt">
+          <div class="pcard__badge">Le plus choisi</div>
+          <p class="pcard__eyebrow">Coaching Standard</p>
+          <h3 class="pcard__name">Pour ceux qui veulent l'excellence</h3>
+          <p class="pcard__tagline">Le système éprouvé pour progresser vite et durablement</p>
+
+          <div class="pcard__price">129€<span class="pcard__price-unit"> / mois</span></div>
+          <p class="pcard__duo">
+            Tarif duo : <strong>100€ / mois</strong>
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon" tabindex="0" role="button" aria-label="Comment fonctionne le tarif duo ?">i</span>
+              <span class="tooltip-body">Deux grimpeurs s'inscrivent ensemble. Chacun bénéficie du coaching Standard à 100€/mois au lieu de 129€. Le tarif s'applique à l'inscription simultanée de deux personnes.</span>
+            </span>
+          </p>
+
+          <div class="pcard__divider"></div>
+
+          <ul class="pcard__features">
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Diagnostic précis</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Diagramme radar 21 axes personnalisé</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Plan d'entraînement 100% sur mesure</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Discord Kaskad</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Conversation privée avec ton coach + yohangrimpe</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Adaptations en temps réel à tes besoins</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Rencontres communautaires</li>
+            <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Bonus et ressources exclusives</li>
+            <li class="feat-sep">Non inclus</li>
+            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Appel hebdomadaire avec un coach</li>
+            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Suivi par 2 coachs</li>
+            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Analyses vidéo illimitées</li>
+            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Audit récupération + prépa mentale</li>
+            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Séances de coaching en physique</li>
+          </ul>
+
+          <p class="pcard__engage-label"><strong>Choisis</strong> ton engagement :</p>
+          <div class="pcard__engagements">
+            <a href="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f" target="_blank" rel="noopener noreferrer" class="btn-engage">3 mois</a>
+            <a href="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l" target="_blank" rel="noopener noreferrer" class="btn-engage">6 mois</a>
+            <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn-engage">9 mois</a>
+            <a href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn-engage">12 mois</a>
+          </div>
+          <p class="pcard__cta-sub">ou <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer">Réserver un appel de 20 min →</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  GUARANTEE -->
+  <section class="s-guarantee" id="garantie" data-nav="dark">
+    <div class="wrap">
+      <div class="guarantee-inner">
+        <span class="sec-eyebrow reveal" style="color:rgba(255,103,0,.85);">Garantie</span>
+        <h2 class="sec-title sec-title--white sec-title--lg reveal d1">La garantie<br>«&nbsp;Récupère ton argent&nbsp;»</h2>
+        <p class="guarantee-lead reveal d2">
+          Sur tes <strong style="color:var(--orange-light);">3 premiers mois</strong>, tu respectes 4 règles simples, on te les rembourse entièrement. Pas parce qu'on est fous, parce qu'on veut te motiver.
+        </p>
+
+        <div class="guarantee-rules">
+          <div class="grule reveal d1">
+            <span class="grule__n">01</span>
+            <p class="grule__t">Un message par semaine à ton coach</p>
+          </div>
+          <div class="grule reveal d2">
+            <span class="grule__n">02</span>
+            <p class="grule__t">Une vidéo de toi qui grimpes par semaine</p>
+          </div>
+          <div class="grule reveal d3">
+            <span class="grule__n">03</span>
+            <p class="grule__t">Un message par semaine dans le Discord communautaire</p>
+          </div>
+          <div class="grule reveal d4">
+            <span class="grule__n">04</span>
+            <p class="grule__t">Participer à un appel de mi-parcours et un de fin-parcours</p>
+          </div>
+        </div>
+
+        <div class="guarantee-footer reveal d2">
+          <p class="guarantee-closing">Tu joues le jeu, on honore la promesse. Pas de petites lignes, pas de "sauf si", pas de mensonge.</p>
+          <span class="guarantee-contract">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="2" y="1" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M4.5 5h5M4.5 7.5h5M4.5 10h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+            C'est cadré par un contrat
+            <div class="contract-popover" role="tooltip">
+              <p class="c-art"><strong>Article 5 — Garantie « Récupère ton argent » : conditions et procédure</strong></p>
+              <p><strong>5.1 Conditions d'éligibilité</strong> — Durant les 3 premiers mois :</p>
+              <p class="c-sub">(a) Réalisation d'au moins 80&nbsp;% des séances prévues (sauf empêchement justifié) et respect des consignes de sécurité ;</p>
+              <p class="c-sub">(b) Au moins 1 point de suivi hebdomadaire (12 attendus sur 12 semaines, à l'initiative du Client) ;</p>
+              <p class="c-sub">(c) Participation à un appel de mi-parcours (semaine 6) et un de fin-parcours (semaine 13) ;</p>
+              <p class="c-sub">(d) Au moins 1 message par semaine dans le serveur Discord Kaskad Coaching ;</p>
+              <p class="c-sub">(e) 1 vidéo de toi grimpant par semaine dans le serveur Discord YohanGrimpe.</p>
+              <p><strong>5.2 Demande et preuves</strong> — Email à yohan@yohangrimpe.com, objet : "Demande remboursement — [Nom]", dans les 30 jours suivant la fin des 3 premiers mois.</p>
+              <p><strong>5.3 Décision et remboursement</strong> — Réponse écrite sous 14 jours. Remboursement par le même moyen de paiement, immédiatement à l'acceptation.</p>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  TÉMOIGNAGES -->
+  <section class="s-temoignages" id="temoignages" data-nav="light">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:var(--sp-10);">
+        <span class="sec-eyebrow reveal">Témoignages</span>
+        <h2 class="sec-title reveal d1">Ce que disent nos membres</h2>
+      </div>
+      <div class="testimonials-grid">
+
+        <!-- Thomas -->
+        <div class="tblock reveal d1">
+          <div class="tcard tcard--orange js-tilt">
+            <div class="tcard__stars"><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span></div>
+            <p class="tcard__quote">J'étais convaincu que mon problème c'était la force. En 6 semaines j'ai compris que c'était ma structure de séances. Premier 7a deux mois après.</p>
+            <div class="tcard__footer">
+              <span class="tcard__name">Thomas, 34 ans</span>
+              <span class="tcard__badge">Volumeur → 7a</span>
+            </div>
+          </div>
+          <a class="tvideo tvideo--empty js-tvideo" data-video-index="0" aria-label="Voir le témoignage vidéo de Thomas" target="_blank" rel="noopener noreferrer">
+            <svg class="tvideo__play" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="24" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+              <path d="M22 18l13 8-13 8V18z" fill="rgba(255,255,255,.5)"/>
+            </svg>
+            <span style="font-size:.75rem;color:rgba(255,255,255,.25);">Vidéo témoignage</span>
+          </a>
+        </div>
+
+        <!-- Marie -->
+        <div class="tblock reveal d2">
+          <div class="tcard tcard--blue js-tilt">
+            <div class="tcard__stars"><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span></div>
+            <p class="tcard__quote">Je me blessais tous les 2 mois depuis 3 ans. Pour la première fois depuis que je grimpe, j'ai fait 5 mois sans douleur et j'ai progressé en même temps.</p>
+            <div class="tcard__footer">
+              <span class="tcard__name">Marie, 29 ans</span>
+              <span class="tcard__badge tcard__badge--blue">Fusible → retour complet</span>
+            </div>
+          </div>
+          <a class="tvideo tvideo--empty js-tvideo" data-video-index="1" aria-label="Voir le témoignage vidéo de Marie" target="_blank" rel="noopener noreferrer">
+            <svg class="tvideo__play" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="24" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+              <path d="M22 18l13 8-13 8V18z" fill="rgba(255,255,255,.5)"/>
+            </svg>
+            <span style="font-size:.75rem;color:rgba(255,255,255,.25);">Vidéo témoignage</span>
+          </a>
+        </div>
+
+        <!-- Lucas -->
+        <div class="tblock reveal d3">
+          <div class="tcard tcard--orange js-tilt">
+            <div class="tcard__stars"><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span></div>
+            <p class="tcard__quote">J'avais peur en tête depuis mes débuts. Le programme m'a forcé à travailler ça sérieusement. En 3 mois, je grimpais des voies que j'osais pas toucher avant.</p>
+            <div class="tcard__footer">
+              <span class="tcard__name">Lucas, 31 ans</span>
+              <span class="tcard__badge">Tétanisé → grimpe en tête</span>
+            </div>
+          </div>
+          <a class="tvideo tvideo--empty js-tvideo" data-video-index="2" aria-label="Voir le témoignage vidéo de Lucas" target="_blank" rel="noopener noreferrer">
+            <svg class="tvideo__play" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="24" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+              <path d="M22 18l13 8-13 8V18z" fill="rgba(255,255,255,.5)"/>
+            </svg>
+            <span style="font-size:.75rem;color:rgba(255,255,255,.25);">Vidéo témoignage</span>
+          </a>
+        </div>
+
+      </div>
+      <div style="text-align:center;margin-top:var(--sp-8);" class="reveal">
+        <a href="https://www.instagram.com/kaskad.coaching/" target="_blank" rel="noopener noreferrer" class="btn btn-orange">Tous nos témoignages →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  ÉQUIPE ════ -->
+  <section class="s-team" id="equipe" data-nav="light">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:var(--sp-8);">
+        <span class="sec-eyebrow reveal">L'équipe</span>
+        <h2 class="sec-title reveal d1">L'équipe derrière tes progrès</h2>
+      </div>
+      <div class="team-grid">
+
+        <!-- Nicolas — gauche -->
+        <div class="ccard ccard--blue reveal d1">
+          <div class="ccard__accent" style="background:var(--blue);"></div>
+          <div class="ccard__avatar" style="background:var(--blue);">N</div>
+          <p class="ccard__name">Nicolas</p>
+          <p class="ccard__role" style="color:var(--blue);">Coach spécialisé</p>
+          <p class="ccard__bio">Je possède un DEJPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je suis spécialisé sur les programmes courts et j'ai travaillé quelques temps au pôle escalade France !</p>
+        </div>
+
+        <!-- Yohan — centre -->
+        <div class="ccard ccard--orange reveal d2">
+          <div class="ccard__accent" style="background:var(--orange);"></div>
+          <!-- Remplace le div ci-dessous par <img> quand tu as ta photo -->
+          <div class="ccard__avatar" style="background:var(--orange);">Y</div>
+          <p class="ccard__name">Yohan</p>
+          <p class="ccard__role" style="color:var(--orange);">Coordinateur</p>
+          <p class="ccard__bio">Je m'occupe de rendre clair et facilement applicable tout ce que partagent les coachs. Mon but c'est de te garder motivé et de te faciliter la vie !</p>
+        </div>
+
+        <!-- Florentin — droite -->
+        <div class="ccard ccard--green reveal d3">
+          <div class="ccard__accent" style="background:#00AA46;"></div>
+          <div class="ccard__avatar" style="background:#00AA46;">F</div>
+          <p class="ccard__name">Florentin</p>
+          <p class="ccard__role" style="color:#00AA46;">Coach spécialisé</p>
+          <p class="ccard__bio">Issu d'un DEJPS j'ai été chef ouvreur et coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances de la bonne manière !</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  FAQ ═══════ -->
+  <section class="s-faq" id="faq" data-nav="dark">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:var(--sp-10);">
+        <span class="sec-eyebrow reveal">FAQ</span>
+        <h2 class="sec-title sec-title--white reveal d1">Questions fréquentes</h2>
+      </div>
+      <div class="faq-list reveal">
+
+        <div class="fitem">
+          <button class="fitem__q" id="fq1" aria-expanded="false" aria-controls="fa1">
+            Quel niveau faut-il avoir pour rejoindre Kaskad Coaching ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa1" role="region" aria-labelledby="fq1">
+            <div class="fitem__a-inner">Le minimum recommandé est 6a (voie ou bloc). En dessous, les gains viennent principalement de la pratique régulière et tu n'as probablement pas encore besoin d'un plan structuré. La majorité de nos clients se situe entre le 6b et 7a au moment où ils démarrent.</div>
+          </div>
+        </div>
+
+        <div class="fitem">
+          <button class="fitem__q" id="fq2" aria-expanded="false" aria-controls="fa2">
+            Est-ce que je dois avoir un hangboard ou du matériel spécifique ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa2" role="region" aria-labelledby="fq2">
+            <div class="fitem__a-inner">Non, le programme est construit en fonction de ce dont tu disposes. Si tu n'as que ta salle, le programme est fait pour ta salle. Si tu as des élastiques à la maison, on l'intègre. Les coachs prennent en compte tout ce que tu as à ta disposition lors de la rédaction de ton plan. Tu peux t'acheter du matériel si tu veux mais ce n'est jamais un prérequis.</div>
+          </div>
+        </div>
+
+        <div class="fitem">
+          <button class="fitem__q" id="fq3" aria-expanded="false" aria-controls="fa3">
+            Comment ça se passe si je me blesse lors de l'accompagnement ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa3" role="region" aria-labelledby="fq3">
+            <div class="fitem__a-inner">Si tu te blesses en cours de programme, le plan est ajusté immédiatement. C'est exactement pour ça que notre suivi humain existe. Si c'est léger, ça peut être une diminution du rythme et de l'intensité, avec ajout d'exercices de rééducation. Si c'est plus grave, on met en pause l'accompagnement jusqu'à ce que tu puisses regrimper correctement.</div>
+          </div>
+        </div>
+
+        <div class="fitem">
+          <button class="fitem__q" id="fq4" aria-expanded="false" aria-controls="fa4">
+            Quelle est la différence concrète entre Standard et Premium ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa4" role="region" aria-labelledby="fq4">
+            <div class="fitem__a-inner">Le Standard te donne tout ce dont tu as besoin pour progresser (le plan + le cadre + le suivi + la communauté + les créneaux coachs hebdomadaires + les bonus), le Premium lui, ajoute tout ce dont tu as besoin pour être CERTAIN de progresser, et à ta vitesse maximale.<br><br>Chaque semaine tu fais le point en appel avec l'un des 2 coachs qui combinent leurs compétences pour toi. Les ajustements se font immédiatement et pas seulement selon des critères escalade : ta récupération, ton mental et tout les "à côté" sont pris en compte.<br><br>Ces éléments, plus les analyses de ta grimpe en illimité, les séances de coaching en physique <span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="En savoir plus">i</span><span class="tooltip-body">Nombre variable selon proximité géographique, plus d'informations lors de l'appel.</span></span> et les autres bonus font que tu es sûr d'atteindre ton objectif, peu importe à quel point il est ambitieux.</div>
+          </div>
+        </div>
+
+        <div class="fitem">
+          <button class="fitem__q" id="fq5" aria-expanded="false" aria-controls="fa5">
+            Est-ce que je peux arrêter le coaching quand je veux ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa5" role="region" aria-labelledby="fq5">
+            <div class="fitem__a-inner">On fonctionne en engagements de 3, 6, 9 ou 12 mois pour permettre aux coachs d'organiser ton entraînement (une planification de 3 mois n'a rien à voir avec une planification de 12 mois) et aussi, te garder engagé.<br><br>Si tu sais que tu es là pour 12 mois, tu vas rester motivé. Les résultats exceptionnels de nos membres ne sont pas uniquement dus au cadre qu'on pose, c'est aussi parce qu'on sait faire ressortir le meilleur de toi-même et te garder gonflé à bloc !<br><br>La garantie WYMB s'applique sur les 3 premiers mois quelle que soit la formule.</div>
+          </div>
+        </div>
+
+        <div class="fitem">
+          <button class="fitem__q" id="fq6" aria-expanded="false" aria-controls="fa6">
+            Combien de temps avant de voir des résultats ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa6" role="region" aria-labelledby="fq6">
+            <div class="fitem__a-inner">Les premiers signaux concrets (qualité de séance, compréhension de tes blocages, progression sur exercices ciblés) arrivent dès la première semaine.<br><br>Les progressions de cotation varient énormément — certains membres comme <a href="https://www.instagram.com/p/DXwwUR8sI-8/" target="_blank" rel="noopener noreferrer" style="color:var(--orange);font-weight:600;text-decoration:underline;text-underline-offset:2px;">Timothée</a> prennent une cotation en une semaine !<br><br>Pour la grande majorité de nos membres (niveau moyen entre 6b et 7a au démarrage), il faut 6 semaines pour passer une cotation supérieure.</div>
+          </div>
+        </div>
+
+        <div class="fitem">
+          <button class="fitem__q" id="fq7" aria-expanded="false" aria-controls="fa7">
+            Est-ce que ça marche si je grimpe seulement en salle ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa7" role="region" aria-labelledby="fq7">
+            <div class="fitem__a-inner">Oui. Le plan s'adapte à ton terrain de pratique : salle, falaise, les deux. On fait le point sur tous les outils que tu as à ta disposition et tout ce qui te plaît dans la grimpe avant de commencer la rédaction de ton programme !</div>
+          </div>
+        </div>
+
+        <div class="fitem">
+          <button class="fitem__q" id="fq8" aria-expanded="false" aria-controls="fa8">
+            Et si Kaskad Coaching ne me convient pas finalement ou que je dois annuler ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa8" role="region" aria-labelledby="fq8">
+            <div class="fitem__a-inner">Tu as 14 jours de rétractation légale dès la signature. Au-delà, la garantie WYMB te rembourse intégralement après 3 mois si tu as respecté les 4 règles.<br><br>On a tout intérêt à ce que tu restes donc on a tout intérêt à ce que ça marche pour toi. Notre écosystème fonctionne pour tous, il va aussi fonctionner pour toi.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  FINAL CTA -->
+  <section class="s-final" id="demarrer" data-nav="dark">
+    <div class="wrap s-final__inner">
+      <h2 class="sec-title reveal" style="color:var(--white);margin-bottom:var(--sp-4);">Tu as lu jusqu'ici.</h2>
+      <p class="s-final__sub reveal d1">Tu sais que c'est ce qu'il te faut.</p>
+      <div class="s-final__btns reveal d2">
+        <a href="#formules" class="btn btn-xl btn-white-on-orange">Démarrer en Standard — 129€/mois</a>
+        <a href="#" class="btn btn-xl btn-ghost-white js-calendly">Réserver un appel</a>
+      </div>
+      <p class="s-final__reassure reveal d3">
+        <span>Garantie remboursement sous conditions</span>
+        <span class="s-final__dot">·</span>
+        <span>Paiement sécurisé Stripe</span>
+        <span class="s-final__dot">·</span>
+        <span>Cadré par un contrat</span>
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 Kaskad Coaching · Tous droits réservés</p>
+  </footer>
+
+  <script>
+    /* ── URLs ─────────────────────────────── */
+    const KASKAD = {
+      VIDEO_URL:           '',
+      STRIPE_STANDARD_URL: '',
+      CALENDLY_URL:        'https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe',
+      /* YouTube URLs pour les témoignages vidéo — ex: 'https://youtu.be/dQw4w9WgXcQ' */
+      TESTIMONIAL_VIDEOS:  ['', '', ''],
+    };
+
+    document.querySelectorAll('.js-calendly').forEach(el => {
+      el.href = KASKAD.CALENDLY_URL; el.target = '_blank'; el.rel = 'noopener noreferrer';
+    });
+    document.querySelectorAll('.js-stripe').forEach(el => {
+      if (KASKAD.STRIPE_STANDARD_URL) { el.href = KASKAD.STRIPE_STANDARD_URL; el.target = '_blank'; el.rel = 'noopener noreferrer'; }
+    });
+
+    if (KASKAD.VIDEO_URL) {
+      const ph = document.getElementById('js-video-placeholder');
+      if (ph) {
+        const frame = document.getElementById('js-video-frame');
+        const sep   = KASKAD.VIDEO_URL.includes('?') ? '&' : '?';
+        const iframe = document.createElement('iframe');
+        iframe.src  = KASKAD.VIDEO_URL + sep + 'autoplay=1&mute=1&rel=0&modestbranding=1';
+        iframe.title = 'Kaskad Coaching — ta progression en escalade';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true; iframe.loading = 'lazy';
+        ph.remove(); frame.appendChild(iframe);
+      }
+    }
+
+    /* ── Scroll progress ──────────────────── */
+    const prog = document.getElementById('scroll-progress');
+    function updateProgress() {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      if (prog && total > 0) prog.style.width = (window.scrollY / total * 100) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+
+    /* ── Button ripple ─────────────────────── */
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const r    = btn.getBoundingClientRect();
+        const span = document.createElement('span');
+        span.className = 'btn__ripple';
+        span.style.top  = (e.clientY - r.top)  + 'px';
+        span.style.left = (e.clientX - r.left) + 'px';
+        btn.appendChild(span);
+        span.addEventListener('animationend', () => span.remove());
+      });
+    });
+
+    /* ── Section-aware nav ─────────────────── */
+    const nav = document.getElementById('nav');
+    const navSections = [...document.querySelectorAll('section[data-nav]')];
+    function updateNav() {
+      let active = navSections[0];
+      navSections.forEach(s => { if (s.getBoundingClientRect().top <= 80) active = s; });
+      nav.classList.toggle('on-light', active?.dataset.nav === 'light');
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    /* ── Mobile nav ────────────────────────── */
+    const burger = document.getElementById('js-burger');
+    const mob    = document.getElementById('js-mobile-nav');
+    const closeB = document.getElementById('js-mobile-close');
+    const openM  = () => { mob.classList.add('is-open');    document.body.style.overflow = 'hidden'; burger.setAttribute('aria-expanded','true'); };
+    const closeM = () => { mob.classList.remove('is-open'); document.body.style.overflow = '';       burger.setAttribute('aria-expanded','false'); };
+    burger.addEventListener('click', openM);
+    closeB.addEventListener('click', closeM);
+    document.querySelectorAll('.js-mobile-close-link').forEach(el => el.addEventListener('click', closeM));
+
+    /* ── Scroll reveal ─────────────────────── */
+    const revIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revIO.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revIO.observe(el));
+
+    /* ── Count-up ──────────────────────────── */
+    function animateCount(el) {
+      const target = parseInt(el.dataset.target, 10), suffix = el.dataset.suffix || '';
+      const start = performance.now();
+      (function step(now) {
+        const p = Math.min((now - start) / 1400, 1);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(e * target) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else { el.textContent = target + suffix; el.classList.add('count-done'); }
+      })(start);
+    }
+    const cntIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); cntIO.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.js-count').forEach(el => cntIO.observe(el));
+
+    /* ── Testimonial video thumbs ─────────── */
+    (function() {
+      function getYouTubeId(url) {
+        const m = url.match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
+        return m ? m[1] : null;
+      }
+      document.querySelectorAll('.js-tvideo').forEach(el => {
+        const idx = parseInt(el.dataset.videoIndex, 10);
+        const url = KASKAD.TESTIMONIAL_VIDEOS[idx] || '';
+        const vid = url ? getYouTubeId(url) : null;
+        if (vid) {
+          /* Replace placeholder with real thumbnail */
+          el.href = `https://www.youtube.com/watch?v=${vid}`;
+          el.classList.remove('tvideo--empty');
+          el.innerHTML = `
+            <img class="tvideo__img" src="https://img.youtube.com/vi/${vid}/hqdefault.jpg" alt="Témoignage vidéo" loading="lazy">
+            <div class="tvideo__overlay">
+              <svg class="tvideo__play" viewBox="0 0 52 52" fill="none">
+                <circle cx="26" cy="26" r="24" fill="rgba(0,0,0,.55)"/>
+                <path d="M22 18l13 8-13 8V18z" fill="white"/>
+              </svg>
+            </div>`;
+        }
+        /* If no URL: keep placeholder state, already styled */
+      });
+    })();
+
+    /* ── 3D card tilt ──────────────────────── */
+    document.querySelectorAll('.js-tilt').forEach(card => {
+      let animFrame;
+      const isBlue = card.classList.contains('pcard--pre') || card.classList.contains('tcard--blue');
+      const glowColor = isBlue ? 'rgba(0,127,255,.5)' : 'rgba(255,103,0,.46)';
+      card.addEventListener('mousemove', (e) => {
+        cancelAnimationFrame(animFrame);
+        animFrame = requestAnimationFrame(() => {
+          const r  = card.getBoundingClientRect();
+          const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+          const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+          card.style.transition = 'none';
+          card.style.transform  = `perspective(900px) rotateY(${dx * 4}deg) rotateX(${-dy * 3}deg) translateY(-5px) scale(1.01)`;
+          card.style.boxShadow  = `${-dx * 12}px ${-dy * 9}px 50px rgba(0,0,0,.14), 0 0 220px ${glowColor}`;
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(animFrame);
+        card.style.transition = 'transform .55s cubic-bezier(0.25,1,0.5,1), box-shadow .55s cubic-bezier(0.25,1,0.5,1)';
+        card.style.transform  = '';
+        card.style.boxShadow  = '';
+      });
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'none';
+      });
+    });
+
+    /* ── Feature stagger ──────────────────── */
+    document.querySelectorAll('.pcard').forEach(card => {
+      const feats = card.querySelectorAll('.feat');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            feats.forEach((f, i) => {
+              f.style.animationDelay = (0.06 + i * 0.055) + 's';
+              f.classList.add('feat-visible');
+            });
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      io.observe(card);
+    });
+
+    /* ── Contract popover (hover with 150ms leave-delay) ─── */
+    (function() {
+      const trigger = document.querySelector('.guarantee-contract');
+      const pop     = document.querySelector('.contract-popover');
+      if (!trigger || !pop) return;
+      let timer;
+      const show = () => {
+        clearTimeout(timer);
+        pop.style.opacity       = '1';
+        pop.style.pointerEvents = 'auto';
+        pop.style.transform     = 'translateX(-50%) translateY(0)';
+      };
+      const hide = () => {
+        timer = setTimeout(() => {
+          pop.style.opacity       = '0';
+          pop.style.pointerEvents = 'none';
+          pop.style.transform     = 'translateX(-50%) translateY(8px)';
+        }, 150);
+      };
+      trigger.addEventListener('mouseenter', show);
+      trigger.addEventListener('mouseleave', hide);
+      pop.addEventListener('mouseenter', () => clearTimeout(timer));
+      pop.addEventListener('mouseleave', hide);
+    })();
+
+    /* ── FAQ accordion ─────────────────────── */
+    document.querySelectorAll('.fitem__q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.fitem'), ans = item.querySelector('.fitem__a');
+        const was  = item.classList.contains('is-open');
+        document.querySelectorAll('.fitem.is-open').forEach(o => {
+          o.classList.remove('is-open');
+          o.querySelector('.fitem__a').style.maxHeight = '0';
+          o.querySelector('.fitem__q').setAttribute('aria-expanded','false');
+        });
+        if (!was) { item.classList.add('is-open'); ans.style.maxHeight = ans.scrollHeight + 'px'; btn.setAttribute('aria-expanded','true'); }
+      });
+    });
+  </script>
+
+</body>
+</html>
