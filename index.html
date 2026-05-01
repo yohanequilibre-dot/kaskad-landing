@@ -109,6 +109,30 @@
       from { opacity: 0; transform: translateX(-10px); }
       to   { opacity: 1; transform: none; }
     }
+    /* ── Hero glow entrance ── */
+    @keyframes hero-glow-in {
+      from { opacity: 0; transform: scale(.5); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes orb-arrive-l {
+      from { opacity: 0; transform: scale(1.85) translate(-12px, 26px); filter: blur(110px); }
+      to   { opacity: 1; transform: none; filter: blur(70px); }
+    }
+    @keyframes orb-arrive-r {
+      from { opacity: 0; transform: scale(1.95) translate(18px, -20px); filter: blur(110px); }
+      to   { opacity: 1; transform: none; filter: blur(70px); }
+    }
+    /* ── Section ambient drift ── */
+    @keyframes sect-orb-a {
+      0%, 100% { transform: translate(0, 0)    scale(1); }
+      45%       { transform: translate(34px, -44px) scale(1.06); }
+      72%       { transform: translate(-18px, 26px) scale(.96); }
+    }
+    @keyframes sect-orb-b {
+      0%, 100% { transform: translate(0, 0)    scale(1); }
+      38%       { transform: translate(-28px, 38px) scale(1.04); }
+      68%       { transform: translate(24px, -22px) scale(.97); }
+    }
     .feat { opacity: 0; }
     .feat.feat-visible { animation: feat-in .38s var(--ease-out-expo) both; }
 
@@ -131,7 +155,10 @@
     .reveal.d4 { transition-delay: 0.35s; }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; filter: none; transition: none; }
-      .hero__orb { animation: none !important; }
+      .hero__orb { animation: none !important; opacity: 1 !important; }
+      .hero::before { animation: none !important; opacity: 1 !important; }
+      .hero__parallax-glow { display: none; }
+      .sect-orb { animation: none !important; }
       .count-done { animation: none !important; }
       .btn__ripple { display: none; }
       .feat { opacity: 1; animation: none !important; }
@@ -313,6 +340,17 @@
         radial-gradient(ellipse 65% 55% at 88% 55%, rgba(0,127,255,.24) 0%, transparent 58%),
         radial-gradient(ellipse 45% 30% at 50% 0%,  rgba(255,103,0,.11) 0%, transparent 52%);
       pointer-events: none;
+      animation: hero-glow-in 1.9s var(--ease-out-expo) .08s both;
+    }
+    /* Parallax glow layer — shifts with scroll */
+    .hero__parallax-glow {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 14% 60%, rgba(255,103,0,.18) 0%, transparent 56%),
+        radial-gradient(ellipse 56% 50% at 86% 54%, rgba(0,127,255,.14) 0%, transparent 54%);
+      pointer-events: none;
+      will-change: transform;
+      z-index: 0;
     }
     /* Animated ambient orbs */
     .hero__orb {
@@ -612,7 +650,7 @@
     /* ─────────────────────────────────────────
        GUARANTEE
     ───────────────────────────────────────── */
-    .s-guarantee { background: var(--dark-800); padding: var(--sp-12) 0; }
+    .s-guarantee { background: var(--dark-800); padding: var(--sp-12) 0; position: relative; }
     .guarantee-inner { max-width: 1060px; margin-inline: auto; text-align: center; }
     .guarantee-lead {
       font-size: clamp(1.125rem, 2.5vw, 1.5rem);
@@ -758,9 +796,22 @@
     @media (max-width: 860px) { .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; } }
 
     /* ─────────────────────────────────────────
+       SECTION AMBIENT ORBS
+    ───────────────────────────────────────── */
+    .sect-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      will-change: transform;
+      z-index: 0;
+    }
+    .sect-orb--a { animation: sect-orb-a 20s ease-in-out infinite; }
+    .sect-orb--b { animation: sect-orb-b 26s ease-in-out infinite; }
+
+    /* ─────────────────────────────────────────
        COMMENT ÇA MARCHE — dark rectangles
     ───────────────────────────────────────── */
-    .s-how { background: var(--dark-800); padding: var(--sp-12) 0; }
+    .s-how { background: var(--dark-800); padding: var(--sp-12) 0; position: relative; overflow: hidden; }
     .how-steps {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -851,7 +902,7 @@
     /* ─────────────────────────────────────────
        FAQ — deep navy (distinct from dark-800 guarantee)
     ───────────────────────────────────────── */
-    .s-faq { background: #1c2d42; padding: var(--sp-12) 0; }
+    .s-faq { background: #1c2d42; padding: var(--sp-12) 0; position: relative; overflow: hidden; }
     .faq-list { max-width: 720px; margin-inline: auto; }
     .fitem { border-bottom: 1px solid rgba(255,255,255,.1); transition: background .3s var(--ease-out-quart), padding .3s var(--ease-out-quart); border-radius: var(--radius-sm); }
     .fitem:first-child { border-top: 1px solid rgba(255,255,255,.1); }
@@ -950,6 +1001,7 @@
   <section class="hero" id="top" data-nav="dark">
     <div class="hero__orb hero__orb--l" aria-hidden="true"></div>
     <div class="hero__orb hero__orb--r" aria-hidden="true"></div>
+    <div class="hero__parallax-glow" aria-hidden="true"></div>
     <div class="hero__content">
 
       <h1 class="hero__for">Pour les grimpeurs</h1>
@@ -1029,7 +1081,9 @@
 
   <!-- ═══════════════════════════════════════  COMMENT ÇA MARCHE ════ -->
   <section class="s-how" id="methode" data-nav="dark">
-    <div class="wrap">
+    <div class="sect-orb sect-orb--a" style="width:520px;height:440px;top:-12%;left:-7%;background:radial-gradient(circle,rgba(255,103,0,.11) 0%,transparent 70%);filter:blur(85px);" aria-hidden="true"></div>
+    <div class="sect-orb sect-orb--b" style="width:450px;height:400px;bottom:-14%;right:-6%;background:radial-gradient(circle,rgba(139,92,246,.10) 0%,transparent 70%);filter:blur(90px);animation-delay:-11s;" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative;z-index:1;">
       <div style="text-align:center;margin-bottom:var(--sp-8);">
         <span class="sec-eyebrow reveal" style="color:rgba(255,103,0,.85);">Méthode</span>
         <h2 class="sec-title sec-title--white reveal d1">Comment ça marche</h2>
@@ -1169,7 +1223,9 @@
 
   <!-- ═══════════════════════════════════════  GUARANTEE -->
   <section class="s-guarantee" id="garantie" data-nav="dark">
-    <div class="wrap">
+    <div class="sect-orb sect-orb--a" style="width:560px;height:500px;top:-8%;right:-9%;background:radial-gradient(circle,rgba(255,103,0,.10) 0%,transparent 70%);filter:blur(95px);animation-delay:-5s;" aria-hidden="true"></div>
+    <div class="sect-orb sect-orb--b" style="width:400px;height:380px;bottom:-10%;left:-5%;background:radial-gradient(circle,rgba(0,127,255,.08) 0%,transparent 70%);filter:blur(88px);animation-delay:-14s;" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative;z-index:1;">
       <div class="guarantee-inner">
         <span class="sec-eyebrow reveal" style="color:rgba(255,103,0,.85);">Garantie</span>
         <h2 class="sec-title sec-title--white sec-title--lg reveal d1">La garantie<br>«&nbsp;Récupère ton argent&nbsp;»</h2>
@@ -1337,7 +1393,9 @@
 
   <!-- ═══════════════════════════════════════  FAQ ═══════ -->
   <section class="s-faq" id="faq" data-nav="dark">
-    <div class="wrap">
+    <div class="sect-orb sect-orb--a" style="width:480px;height:440px;top:-10%;left:-8%;background:radial-gradient(circle,rgba(0,127,255,.09) 0%,transparent 70%);filter:blur(80px);animation-delay:-7s;" aria-hidden="true"></div>
+    <div class="sect-orb sect-orb--b" style="width:400px;height:360px;bottom:-8%;right:-5%;background:radial-gradient(circle,rgba(139,92,246,.09) 0%,transparent 70%);filter:blur(78px);animation-delay:-16s;" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative;z-index:1;">
       <div style="text-align:center;margin-bottom:var(--sp-10);">
         <span class="sec-eyebrow reveal">FAQ</span>
         <h2 class="sec-title sec-title--white reveal d1">Questions fréquentes</h2>
@@ -1481,6 +1539,44 @@
         ph.remove(); frame.appendChild(iframe);
       }
     }
+
+    /* ── Hero orb entrance → drift ──────────── */
+    (function() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const orbL = document.querySelector('.hero__orb--l');
+      const orbR = document.querySelector('.hero__orb--r');
+      if (!orbL || !orbR) return;
+      // Kill default CSS drift, play burst
+      orbL.style.animation = 'none';
+      orbR.style.animation = 'none';
+      void orbL.offsetWidth; // force reflow
+      orbL.style.animation = 'orb-arrive-l .92s cubic-bezier(0.16,1,0.3,1) .06s both';
+      orbR.style.animation = 'orb-arrive-r 1.12s cubic-bezier(0.16,1,0.3,1) .2s both';
+      // After burst, hand off to looping drift
+      orbL.addEventListener('animationend', () => {
+        orbL.style.animation = 'orb-drift-l 13s ease-in-out infinite';
+      }, { once: true });
+      orbR.addEventListener('animationend', () => {
+        orbR.style.animation = 'orb-drift-r 16s ease-in-out infinite';
+      }, { once: true });
+    })();
+
+    /* ── Hero parallax glow ────────────────── */
+    (function() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const pg = document.querySelector('.hero__parallax-glow');
+      if (!pg) return;
+      let raf;
+      window.addEventListener('scroll', () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y < window.innerHeight * 1.1) {
+            pg.style.transform = 'translateY(' + (y * .26) + 'px)';
+          }
+        });
+      }, { passive: true });
+    })();
 
     /* ── Scroll progress ──────────────────── */
     const prog = document.getElementById('scroll-progress');
