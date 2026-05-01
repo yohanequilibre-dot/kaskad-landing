@@ -886,42 +886,39 @@
       margin-inline: auto;
     }
     .ccard {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: var(--radius-lg);
-      overflow: hidden;
+      padding: var(--sp-8) var(--sp-6);
+      text-align: center;
       position: relative;
-      background: var(--dark-800);
-      transition: transform .35s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+      overflow: hidden;
+      transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
     }
-    .ccard:hover { transform: translateY(-8px); }
-    .ccard--orange:hover { box-shadow: 0 24px 80px rgba(255,103,0,.3), 0 0 260px rgba(255,103,0,.42), 0 0 520px rgba(255,103,0,.18); }
-    .ccard--blue:hover   { box-shadow: 0 24px 80px rgba(0,127,255,.3), 0 0 260px rgba(0,127,255,.42), 0 0 520px rgba(0,127,255,.18); }
-    .ccard--green:hover  { box-shadow: 0 24px 80px rgba(0,170,70,.3),  0 0 260px rgba(0,170,70,.42),  0 0 520px rgba(0,170,70,.18); }
-    .ccard__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 2; }
-    .ccard__photo-wrap { position: relative; aspect-ratio: 4/5; overflow: hidden; }
-    .ccard__photo {
+    .ccard:hover { transform: translateY(-6px); }
+    .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.38), 0 0 440px rgba(255,103,0,.18); border-color: rgba(255,103,0,.2); }
+    .ccard--blue:hover   { box-shadow: 0 20px 70px rgba(0,127,255,.22), 0 0 200px rgba(0,127,255,.38), 0 0 440px rgba(0,127,255,.18); border-color: rgba(0,127,255,.2); }
+    .ccard--green:hover  { box-shadow: 0 20px 70px rgba(0,170,70,.22),  0 0 200px rgba(0,170,70,.38),  0 0 440px rgba(0,170,70,.18); border-color: rgba(0,170,70,.2); }
+    .ccard__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .ccard__avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      margin: 0 auto var(--sp-4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 800; color: var(--white);
+      overflow: hidden;
+    }
+    .ccard__avatar img {
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center 15%;
-      transition: transform .55s var(--ease-out-quart);
-      display: block;
     }
-    .ccard:hover .ccard__photo { transform: scale(1.06); }
-    .ccard__photo-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(10,14,26,.72) 76%, rgba(10,14,26,.97) 100%);
-    }
-    .ccard--orange .ccard__photo-overlay { background: linear-gradient(to bottom, rgba(255,103,0,.06) 0%, transparent 36%, rgba(10,14,26,.72) 76%, rgba(10,14,26,.97) 100%); }
-    .ccard--blue   .ccard__photo-overlay { background: linear-gradient(to bottom, rgba(0,127,255,.06) 0%, transparent 36%, rgba(10,14,26,.72) 76%, rgba(10,14,26,.97) 100%); }
-    .ccard--green  .ccard__photo-overlay { background: linear-gradient(to bottom, rgba(0,170,70,.06)  0%, transparent 36%, rgba(10,14,26,.72) 76%, rgba(10,14,26,.97) 100%); }
-    .ccard__photo-info { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--sp-5) var(--sp-5) var(--sp-4); }
-    .ccard__name { font-weight: 800; font-size: 1.25rem; color: var(--white); letter-spacing: -0.02em; margin-bottom: var(--sp-1); }
-    .ccard__role { font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .ccard__name { font-weight: 800; font-size: 1.0625rem; color: var(--white); margin-bottom: var(--sp-1); letter-spacing: -0.01em; }
+    .ccard__role { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--sp-4); }
     .ccard--orange .ccard__role { color: var(--orange); }
     .ccard--blue   .ccard__role { color: var(--blue); }
     .ccard--green  .ccard__role { color: #00AA46; }
-    .ccard__bio-wrap { padding: var(--sp-5); border-top: 1px solid rgba(255,255,255,.07); }
-    .ccard__bio { font-size: .875rem; color: rgba(255,255,255,.62); line-height: 1.72; }
-    @media (max-width: 680px) { .team-grid { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; } }
+    .ccard__bio { font-size: .875rem; color: rgba(255,255,255,.6); line-height: 1.72; }
+    @media (max-width: 680px) { .team-grid { grid-template-columns: 1fr; max-width: 380px; margin-inline: auto; } }
 
     /* ─────────────────────────────────────────
        FAQ — deep navy (distinct from dark-800 guarantee)
@@ -1074,7 +1071,7 @@
 
       <!-- CTAs -->
       <div class="action-ctas reveal d1">
-        <a href="#formules" class="btn btn-orange btn-xl">Rejoindre le Coaching</a>
+        <a href="#formules" class="btn btn-orange btn-xl">Rejoindre directement le coaching</a>
         <a href="#" class="btn btn-blue  btn-xl js-calendly">Réserver un appel →</a>
         <p class="action-ctas__note">Paiement sécurisé Stripe &nbsp;·&nbsp; Appel sans engagement &nbsp;·&nbsp; Garantie remboursement</p>
       </div>
@@ -1388,49 +1385,34 @@
         <!-- Nicolas — gauche -->
         <div class="ccard ccard--blue reveal d1">
           <div class="ccard__accent" style="background:var(--blue);"></div>
-          <div class="ccard__photo-wrap">
-            <img class="ccard__photo" src="./nicolas.png" alt="Nicolas, coach spécialisé" loading="lazy">
-            <div class="ccard__photo-overlay"></div>
-            <div class="ccard__photo-info">
-              <p class="ccard__name">Nicolas</p>
-              <p class="ccard__role">Coach spécialisé</p>
-            </div>
+          <div class="ccard__avatar" style="background:var(--blue);">
+            <img src="./nicolas.png" alt="Nicolas" loading="lazy">
           </div>
-          <div class="ccard__bio-wrap">
-            <p class="ccard__bio">Je possède un DEJPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je suis spécialisé sur les programmes courts et j'ai travaillé quelques temps au pôle escalade France !</p>
-          </div>
+          <p class="ccard__name">Nicolas</p>
+          <p class="ccard__role">Coach spécialisé</p>
+          <p class="ccard__bio">Je possède un DEJPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je suis spécialisé sur les programmes courts et j'ai travaillé quelques temps au pôle escalade France !</p>
         </div>
 
         <!-- Yohan — centre -->
         <div class="ccard ccard--orange reveal d2">
           <div class="ccard__accent" style="background:var(--orange);"></div>
-          <div class="ccard__photo-wrap">
-            <img class="ccard__photo" src="./yohan (2).png" alt="Yohan, coordinateur" loading="lazy" style="object-position:center center;">
-            <div class="ccard__photo-overlay"></div>
-            <div class="ccard__photo-info">
-              <p class="ccard__name">Yohan</p>
-              <p class="ccard__role">Coordinateur</p>
-            </div>
+          <div class="ccard__avatar" style="background:var(--orange);">
+            <img src="./yohan (2).png" alt="Yohan" loading="lazy" style="object-position:center center;">
           </div>
-          <div class="ccard__bio-wrap">
-            <p class="ccard__bio">Je m'occupe de rendre clair et facilement applicable tout ce que partagent les coachs. Mon but c'est de te garder motivé et de te faciliter la vie !</p>
-          </div>
+          <p class="ccard__name">Yohan</p>
+          <p class="ccard__role">Coordinateur</p>
+          <p class="ccard__bio">Je m'occupe de rendre clair et facilement applicable tout ce que partagent les coachs. Mon but c'est de te garder motivé et de te faciliter la vie !</p>
         </div>
 
         <!-- Florentin — droite -->
         <div class="ccard ccard--green reveal d3">
           <div class="ccard__accent" style="background:#00AA46;"></div>
-          <div class="ccard__photo-wrap">
-            <img class="ccard__photo" src="./florentin (1).JPG" alt="Florentin, coach spécialisé" loading="lazy" style="object-position:center 28%;">
-            <div class="ccard__photo-overlay"></div>
-            <div class="ccard__photo-info">
-              <p class="ccard__name">Florentin</p>
-              <p class="ccard__role">Coach spécialisé</p>
-            </div>
+          <div class="ccard__avatar" style="background:#00AA46;">
+            <img src="./florentin (1).JPG" alt="Florentin" loading="lazy" style="object-position:center 28%;">
           </div>
-          <div class="ccard__bio-wrap">
-            <p class="ccard__bio">Issu d'un DEJPS j'ai été chef ouvreur et coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances de la bonne manière !</p>
-          </div>
+          <p class="ccard__name">Florentin</p>
+          <p class="ccard__role">Coach spécialisé</p>
+          <p class="ccard__bio">Issu d'un DEJPS j'ai été chef ouvreur et coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances de la bonne manière !</p>
         </div>
 
       </div>
