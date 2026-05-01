@@ -750,6 +750,39 @@
     @media (max-width: 560px) { .guarantee-rules { grid-template-columns: 1fr; } }
 
     /* ─────────────────────────────────────────
+       OBJECTIONS
+    ───────────────────────────────────────── */
+    .s-objections { background: var(--cream); padding: var(--sp-12) 0; }
+    .objections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-5);
+      max-width: 1100px;
+      margin-inline: auto;
+    }
+    .ocard {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      border: 1px solid var(--gray-200);
+      transition: transform .3s var(--ease-out-quart), box-shadow .3s var(--ease-out-quart);
+    }
+    .ocard:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,.08); }
+    .ocard__objection {
+      font-size: .9375rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1.45;
+      margin-bottom: var(--sp-4);
+      padding-bottom: var(--sp-4);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .ocard__objection::before { content: '\201C'; }
+    .ocard__objection::after  { content: '\201D'; }
+    .ocard__response { font-size: .875rem; color: var(--dark-700); line-height: 1.75; }
+    @media (max-width: 760px) { .objections-grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; } }
+
+    /* ─────────────────────────────────────────
        TESTIMONIALS
     ───────────────────────────────────────── */
     .s-temoignages { background: var(--cream); padding: var(--sp-12) 0; }
@@ -905,9 +938,10 @@
       overflow: hidden;
     }
     .ccard__avatar img {
-      width: 100%; height: 100%;
+      width: 120%; height: 120%;
       object-fit: cover;
       object-position: center 15%;
+      margin: -10%;
     }
     .ccard__name { font-weight: 800; font-size: 1.0625rem; color: var(--dark-900); margin-bottom: var(--sp-1); letter-spacing: -0.01em; }
     .ccard__role { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--sp-4); }
@@ -1026,7 +1060,7 @@
 
       <h1 class="hero__for">Pour les grimpeurs</h1>
 
-      <p class="hero__levels">Débutants, Intermédiaires ou Experts</p>
+      <p class="hero__levels">Entre le 6a et le 7c</p>
 
       <p class="hero__claim">
         On va t'aider à progresser<br>
@@ -1034,7 +1068,7 @@
       </p>
 
       <p class="hero__sub">
-        Sans sacrifier ton plaisir, sans changer ton emploi du temps, sans risquer de te blesser.
+        Sans sacrifier ton plaisir, sans changer ton emploi du temps et sans risquer de te blesser.
       </p>
 
       <div class="hero__cta">
@@ -1055,7 +1089,7 @@
           <div class="astat__l">Grimpeurs accompagnés</div>
         </div>
         <div class="astat">
-          <div class="astat__n">6a–7c+</div>
+          <div class="astat__n">6a–7c</div>
           <div class="astat__l">Niveaux coachés</div>
         </div>
         <div class="astat">
@@ -1091,7 +1125,7 @@
       <!-- Lire -->
       <div class="action-read reveal d3">
         <p class="action-read__heading">Tu préfères lire ?</p>
-        <p>Tu grimpes 2, 3 parfois 4 fois par semaine mais tu plafonnes depuis des mois.</p>
+        <p>Tu grimpes 2, 3 parfois 4 fois par semaine mais tu stagnes depuis des mois.</p>
         <p>Tu sens que ce n'est pas une question de temps passé au mur, que tu dois changer quelque chose dans ton entraînement et tu as raison : il te faut une structure adaptée <strong style="color:var(--orange);font-weight:700;">à toi</strong>.</p>
         <p>Chez Kaskad on te propose exactement ça : un écosystème de coaching qui a déjà fait ses preuves. On s'adapte à ta vraie vie : boulot / études, quotidien, blessures et habitudes. Voici exactement comment on procède :</p>
       </div>
@@ -1234,7 +1268,7 @@
             <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn-engage">9 mois</a>
             <a href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn-engage">12 mois</a>
           </div>
-          <p class="pcard__cta-sub">ou <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer">Réserver un appel de 20 min →</a></p>
+          <p class="pcard__cta-sub">Tu préfères qu'on en parle d'abord ? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer">Réserver un appel →</a></p>
         </div>
 
       </div>
@@ -1297,6 +1331,34 @@
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════  OBJECTIONS ═ -->
+  <section class="s-objections" data-nav="light">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:var(--sp-8);">
+        <span class="sec-eyebrow reveal">On t'entend</span>
+        <h2 class="sec-title reveal d1">Ce que tu te dis sûrement</h2>
+      </div>
+      <div class="objections-grid">
+
+        <div class="ocard reveal d1">
+          <p class="ocard__objection">J'ai pas la discipline et la motivation pour suivre un plan.</p>
+          <p class="ocard__response">C'est exactement pour ça que la garantie "Récupère ton argent", la communauté et le suivi avec ton coach existent. Notre écosystème remplace ta discipline et ta motivation afin que tu restes engagé vers ton objectif. De plus, ton programme est façonné de sorte à se superposer à ton rythme actuel, l'appliquer ne te demande donc presque aucun effort.</p>
+        </div>
+
+        <div class="ocard reveal d2">
+          <p class="ocard__objection">129€ par mois c'est beaucoup.</p>
+          <p class="ocard__response">Comparé à quoi ? Le prix d'une heure de coach en salle (60&ndash;80€), les mois que tu vas continuer à perdre à stagner, ou le coût d'une blessure qui t'arrête 3 mois ? Kaskad vaut le coup, et si tu en doutes, la garantie "Récupère ton argent" est là pour te le prouver. 3 mois qui peuvent te revenir gratuits. On est les seuls à le faire en France, en plus d'être les moins chers grâce à notre organisation.</p>
+        </div>
+
+        <div class="ocard reveal d3">
+          <p class="ocard__objection">Je suis pas sûr que ça marche pour mon profil.</p>
+          <p class="ocard__response">On a accompagné tous les profils qui existent, des niveaux 6a au 7c, en bloc et en voie, en salle et en falaise, en retour de blessure et en pleine forme. Et en plus, ton diagnostic est la première chose qu'on fait. Si Kaskad ne te convient pas, on te le dit en appel directement, avant qu'on démarre.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════════════════════════  TÉMOIGNAGES -->
   <section class="s-temoignages" id="temoignages" data-nav="light">
     <div class="wrap">
@@ -1313,7 +1375,6 @@
             <p class="tcard__quote">J'étais convaincu que mon problème c'était la force. En 6 semaines j'ai compris que c'était ma structure de séances. Premier 7a deux mois après.</p>
             <div class="tcard__footer">
               <span class="tcard__name">Thomas, 34 ans</span>
-              <span class="tcard__badge">Volumeur → 7a</span>
             </div>
           </div>
           <a class="tvideo tvideo--empty js-tvideo" data-video-index="0" aria-label="Voir le témoignage vidéo de Thomas" target="_blank" rel="noopener noreferrer">
@@ -1332,7 +1393,6 @@
             <p class="tcard__quote">Je me blessais tous les 2 mois depuis 3 ans. Pour la première fois depuis que je grimpe, j'ai fait 5 mois sans douleur et j'ai progressé en même temps.</p>
             <div class="tcard__footer">
               <span class="tcard__name">Marie, 29 ans</span>
-              <span class="tcard__badge tcard__badge--blue">Fusible → retour complet</span>
             </div>
           </div>
           <a class="tvideo tvideo--empty js-tvideo" data-video-index="1" aria-label="Voir le témoignage vidéo de Marie" target="_blank" rel="noopener noreferrer">
@@ -1351,7 +1411,6 @@
             <p class="tcard__quote">J'avais peur en tête depuis mes débuts. Le programme m'a forcé à travailler ça sérieusement. En 3 mois, je grimpais des voies que j'osais pas toucher avant.</p>
             <div class="tcard__footer">
               <span class="tcard__name">Lucas, 31 ans</span>
-              <span class="tcard__badge">Tétanisé → grimpe en tête</span>
             </div>
           </div>
           <a class="tvideo tvideo--empty js-tvideo" data-video-index="2" aria-label="Voir le témoignage vidéo de Lucas" target="_blank" rel="noopener noreferrer">
@@ -1409,7 +1468,7 @@
           </div>
           <p class="ccard__name">Florentin</p>
           <p class="ccard__role">Coach spécialisé</p>
-          <p class="ccard__bio">Issu d'un DEJPS j'ai été chef ouvreur et je suis coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances de la bonne manière !</p>
+          <p class="ccard__bio">Issu d'un DEJPS, j'ai été chef ouvreur et je suis coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances comme il faut !</p>
         </div>
 
       </div>
@@ -1515,7 +1574,7 @@
   <section class="s-final" id="demarrer" data-nav="dark">
     <div class="wrap s-final__inner">
       <h2 class="sec-title reveal" style="color:var(--white);margin-bottom:var(--sp-4);">Tu as lu jusqu'ici.</h2>
-      <p class="s-final__sub reveal d1">Tu sais que c'est ce qu'il te faut.</p>
+      <p class="s-final__sub reveal d1">Tu sais que tu as besoin de ça pour progresser.</p>
       <div class="s-final__btns reveal d2">
         <a href="#formules" class="btn btn-xl btn-white-on-orange">Démarrer en Standard — 129€/mois</a>
         <a href="#" class="btn btn-xl btn-ghost-white js-calendly">Réserver un appel</a>
