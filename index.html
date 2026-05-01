@@ -117,6 +117,18 @@
       from { opacity: 0; transform: translateX(-10px); }
       to   { opacity: 1; transform: none; }
     }
+    @keyframes objection-in {
+      from { opacity: 0; transform: translateY(8px); color: rgba(255,103,0,.3); }
+      to   { opacity: 1; transform: none;            color: var(--orange); }
+    }
+    @keyframes response-in {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .ocard .ocard__objection { opacity: 0; }
+    .ocard .ocard__response  { opacity: 0; }
+    .ocard.in .ocard__objection { animation: objection-in .5s var(--ease-out-expo) .12s both; }
+    .ocard.in .ocard__response  { animation: response-in  .5s var(--ease-out-expo) .32s both; }
     /* ── Hero glow entrance ── */
     @keyframes hero-glow-in {
       from { opacity: 0; transform: scale(.5); }
@@ -170,6 +182,7 @@
       .count-done { animation: none !important; }
       .btn__ripple { display: none; }
       .feat { opacity: 1; animation: none !important; }
+      .ocard .ocard__objection, .ocard .ocard__response { opacity: 1; animation: none !important; }
     }
 
     /* ─────────────────────────────────────────
@@ -1439,7 +1452,7 @@
       <div class="team-grid">
 
         <!-- Nicolas — gauche -->
-        <div class="ccard ccard--blue reveal d1">
+        <div class="ccard ccard--blue reveal d1 js-tilt">
           <div class="ccard__accent" style="background:var(--blue);"></div>
           <div class="ccard__avatar" style="background:var(--blue);">
             <img src="./nicolas.png" alt="Nicolas" loading="lazy">
@@ -1450,7 +1463,7 @@
         </div>
 
         <!-- Yohan — centre -->
-        <div class="ccard ccard--orange reveal d2">
+        <div class="ccard ccard--orange reveal d2 js-tilt">
           <div class="ccard__accent" style="background:var(--orange);"></div>
           <div class="ccard__avatar" style="background:var(--orange);">
             <img src="./yohan (2).png" alt="Yohan" loading="lazy" style="object-position:center center;">
@@ -1461,7 +1474,7 @@
         </div>
 
         <!-- Florentin — droite -->
-        <div class="ccard ccard--green reveal d3">
+        <div class="ccard ccard--green reveal d3 js-tilt">
           <div class="ccard__accent" style="background:#00AA46;"></div>
           <div class="ccard__avatar" style="background:#00AA46;">
             <img src="./florentin (1).JPG" alt="Florentin" loading="lazy" style="object-position:center 28%;">
@@ -1736,8 +1749,9 @@
     /* ── 3D card tilt ──────────────────────── */
     document.querySelectorAll('.js-tilt').forEach(card => {
       let animFrame;
-      const isBlue = card.classList.contains('pcard--pre') || card.classList.contains('tcard--blue');
-      const glowColor = isBlue ? 'rgba(0,127,255,.5)' : 'rgba(255,103,0,.46)';
+      const isBlue  = card.classList.contains('pcard--pre')   || card.classList.contains('tcard--blue')   || card.classList.contains('ccard--blue');
+      const isGreen = card.classList.contains('ccard--green');
+      const glowColor = isBlue ? 'rgba(0,127,255,.5)' : isGreen ? 'rgba(0,170,70,.46)' : 'rgba(255,103,0,.46)';
       card.addEventListener('mousemove', (e) => {
         cancelAnimationFrame(animFrame);
         animFrame = requestAnimationFrame(() => {
