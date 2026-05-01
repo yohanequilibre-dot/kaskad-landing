@@ -554,7 +554,12 @@
       will-change: transform;
     }
     .pcard--pre { border-color: var(--blue);   box-shadow: 0 8px 48px rgba(0,127,255,.10); }
-    .pcard--std { border-color: var(--orange); box-shadow: 0 8px 48px rgba(255,103,0,.11); }
+    .pcard--std {
+      border-color: var(--orange);
+      box-shadow: 0 20px 64px rgba(255,103,0,.22), 0 0 0 3px rgba(255,103,0,.14);
+      margin-top: -12px;
+      margin-bottom: 12px;
+    }
 
     .pcard__badge {
       position: absolute; top: -1px; right: var(--sp-6);
@@ -658,7 +663,7 @@
     /* ─────────────────────────────────────────
        GUARANTEE
     ───────────────────────────────────────── */
-    .s-guarantee { background: var(--dark-800); padding: var(--sp-12) 0; position: relative; }
+    .s-guarantee { background-color: var(--dark-800); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"); background-size: 200px 200px; padding: var(--sp-12) 0; position: relative; overflow: hidden; }
     .guarantee-inner { max-width: 1060px; margin-inline: auto; text-align: center; }
     .guarantee-lead {
       font-size: clamp(1.125rem, 2.5vw, 1.5rem);
@@ -819,7 +824,7 @@
     /* ─────────────────────────────────────────
        COMMENT ÇA MARCHE — dark rectangles
     ───────────────────────────────────────── */
-    .s-how { background: var(--dark-800); padding: var(--sp-12) 0; position: relative; overflow: hidden; }
+    .s-how { background-color: var(--dark-800); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"); background-size: 200px 200px; padding: var(--sp-12) 0; position: relative; overflow: hidden; }
     .how-steps {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -868,49 +873,60 @@
     @media (max-width: 680px) { .how-steps { grid-template-columns: 1fr; } }
 
     /* ─────────────────────────────────────────
-       TEAM
+       TEAM — dark, photo cards
     ───────────────────────────────────────── */
-    .s-team { background: var(--white); padding: var(--sp-12) 0; }
+    .s-team { background: var(--dark-900); padding: var(--sp-16) 0; position: relative; overflow: hidden; }
+    .s-team .sec-eyebrow { color: rgba(255,103,0,.85); }
+    .s-team .sec-title   { color: var(--white); }
     .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--sp-6);
+      gap: var(--sp-5);
       max-width: 1100px;
       margin-inline: auto;
     }
     .ccard {
-      background: var(--cream);
       border-radius: var(--radius-lg);
-      padding: var(--sp-8) var(--sp-6);
-      text-align: center;
+      overflow: hidden;
       position: relative;
-      overflow: hidden;
-      transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+      background: var(--dark-800);
+      transition: transform .35s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
     }
-    .ccard:hover { transform: translateY(-6px); }
-    .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.38), 0 0 440px rgba(255,103,0,.18); }
-    .ccard--blue:hover   { box-shadow: 0 20px 70px rgba(0,127,255,.22), 0 0 200px rgba(0,127,255,.38), 0 0 440px rgba(0,127,255,.18); }
-    .ccard--green:hover  { box-shadow: 0 20px 70px rgba(0,170,70,.22),  0 0 200px rgba(0,170,70,.38),  0 0 440px rgba(0,170,70,.18); }
-    .ccard__accent {
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
+    .ccard:hover { transform: translateY(-8px); }
+    .ccard--orange:hover { box-shadow: 0 24px 80px rgba(255,103,0,.3), 0 0 260px rgba(255,103,0,.42), 0 0 520px rgba(255,103,0,.18); }
+    .ccard--blue:hover   { box-shadow: 0 24px 80px rgba(0,127,255,.3), 0 0 260px rgba(0,127,255,.42), 0 0 520px rgba(0,127,255,.18); }
+    .ccard--green:hover  { box-shadow: 0 24px 80px rgba(0,170,70,.3),  0 0 260px rgba(0,170,70,.42),  0 0 520px rgba(0,170,70,.18); }
+    .ccard__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 2; }
+    .ccard__photo-wrap { position: relative; aspect-ratio: 4/5; overflow: hidden; }
+    .ccard__photo {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      transition: transform .55s var(--ease-out-quart);
+      display: block;
     }
-    .ccard__avatar {
-      width: 80px; height: 80px; border-radius: 50%;
-      margin: 0 auto var(--sp-4);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.625rem; font-weight: 800; color: var(--white);
-      overflow: hidden;
+    .ccard:hover .ccard__photo { transform: scale(1.06); }
+    .ccard__photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(10,14,26,.72) 76%, rgba(10,14,26,.97) 100%);
     }
-    .ccard__name { font-weight: 800; font-size: 1.0625rem; color: var(--dark-900); margin-bottom: var(--sp-1); letter-spacing: -0.01em; }
-    .ccard__role { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--sp-4); }
-    .ccard__bio { font-size: .875rem; color: var(--dark-700); line-height: 1.72; }
-    @media (max-width: 680px) { .team-grid { grid-template-columns: 1fr; max-width: 380px; margin-inline: auto; } }
+    .ccard--orange .ccard__photo-overlay { background: linear-gradient(to bottom, rgba(255,103,0,.06) 0%, transparent 36%, rgba(10,14,26,.72) 76%, rgba(10,14,26,.97) 100%); }
+    .ccard--blue   .ccard__photo-overlay { background: linear-gradient(to bottom, rgba(0,127,255,.06) 0%, transparent 36%, rgba(10,14,26,.72) 76%, rgba(10,14,26,.97) 100%); }
+    .ccard--green  .ccard__photo-overlay { background: linear-gradient(to bottom, rgba(0,170,70,.06)  0%, transparent 36%, rgba(10,14,26,.72) 76%, rgba(10,14,26,.97) 100%); }
+    .ccard__photo-info { position: absolute; bottom: 0; left: 0; right: 0; padding: var(--sp-5) var(--sp-5) var(--sp-4); }
+    .ccard__name { font-weight: 800; font-size: 1.25rem; color: var(--white); letter-spacing: -0.02em; margin-bottom: var(--sp-1); }
+    .ccard__role { font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .ccard--orange .ccard__role { color: var(--orange); }
+    .ccard--blue   .ccard__role { color: var(--blue); }
+    .ccard--green  .ccard__role { color: #00AA46; }
+    .ccard__bio-wrap { padding: var(--sp-5); border-top: 1px solid rgba(255,255,255,.07); }
+    .ccard__bio { font-size: .875rem; color: rgba(255,255,255,.62); line-height: 1.72; }
+    @media (max-width: 680px) { .team-grid { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; } }
 
     /* ─────────────────────────────────────────
        FAQ — deep navy (distinct from dark-800 guarantee)
     ───────────────────────────────────────── */
-    .s-faq { background: #1c2d42; padding: var(--sp-12) 0; position: relative; overflow: hidden; }
+    .s-faq { background-color: #1c2d42; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"); background-size: 200px 200px; padding: var(--sp-12) 0; position: relative; overflow: hidden; }
     .faq-list { max-width: 720px; margin-inline: auto; }
     .fitem { border-bottom: 1px solid rgba(255,255,255,.1); transition: background .3s var(--ease-out-quart), padding .3s var(--ease-out-quart); border-radius: var(--radius-sm); }
     .fitem:first-child { border-top: 1px solid rgba(255,255,255,.1); }
@@ -1359,9 +1375,11 @@
   </section>
 
   <!-- ═══════════════════════════════════════  ÉQUIPE ════ -->
-  <section class="s-team" id="equipe" data-nav="light">
-    <div class="wrap">
-      <div style="text-align:center;margin-bottom:var(--sp-8);">
+  <section class="s-team" id="equipe" data-nav="dark">
+    <div class="sect-orb sect-orb--a" style="width:500px;height:460px;top:-10%;left:-8%;background:radial-gradient(circle,rgba(0,127,255,.10) 0%,transparent 70%);filter:blur(88px);animation-delay:-3s;" aria-hidden="true"></div>
+    <div class="sect-orb sect-orb--b" style="width:440px;height:400px;bottom:-12%;right:-7%;background:radial-gradient(circle,rgba(255,103,0,.09) 0%,transparent 70%);filter:blur(85px);animation-delay:-14s;" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative;z-index:1;">
+      <div style="text-align:center;margin-bottom:var(--sp-10);">
         <span class="sec-eyebrow reveal">L'équipe</span>
         <h2 class="sec-title reveal d1">L'équipe derrière tes progrès</h2>
       </div>
@@ -1370,29 +1388,49 @@
         <!-- Nicolas — gauche -->
         <div class="ccard ccard--blue reveal d1">
           <div class="ccard__accent" style="background:var(--blue);"></div>
-          <div class="ccard__avatar" style="background:var(--blue);">N</div>
-          <p class="ccard__name">Nicolas</p>
-          <p class="ccard__role" style="color:var(--blue);">Coach spécialisé</p>
-          <p class="ccard__bio">Je possède un DEJPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je suis spécialisé sur les programmes courts et j'ai travaillé quelques temps au pôle escalade France !</p>
+          <div class="ccard__photo-wrap">
+            <img class="ccard__photo" src="./nicolas.png" alt="Nicolas, coach spécialisé" loading="lazy">
+            <div class="ccard__photo-overlay"></div>
+            <div class="ccard__photo-info">
+              <p class="ccard__name">Nicolas</p>
+              <p class="ccard__role">Coach spécialisé</p>
+            </div>
+          </div>
+          <div class="ccard__bio-wrap">
+            <p class="ccard__bio">Je possède un DEJPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je suis spécialisé sur les programmes courts et j'ai travaillé quelques temps au pôle escalade France !</p>
+          </div>
         </div>
 
         <!-- Yohan — centre -->
         <div class="ccard ccard--orange reveal d2">
           <div class="ccard__accent" style="background:var(--orange);"></div>
-          <!-- Remplace le div ci-dessous par <img> quand tu as ta photo -->
-          <div class="ccard__avatar" style="background:var(--orange);">Y</div>
-          <p class="ccard__name">Yohan</p>
-          <p class="ccard__role" style="color:var(--orange);">Coordinateur</p>
-          <p class="ccard__bio">Je m'occupe de rendre clair et facilement applicable tout ce que partagent les coachs. Mon but c'est de te garder motivé et de te faciliter la vie !</p>
+          <div class="ccard__photo-wrap">
+            <img class="ccard__photo" src="./yohan (2).png" alt="Yohan, coordinateur" loading="lazy" style="object-position:center center;">
+            <div class="ccard__photo-overlay"></div>
+            <div class="ccard__photo-info">
+              <p class="ccard__name">Yohan</p>
+              <p class="ccard__role">Coordinateur</p>
+            </div>
+          </div>
+          <div class="ccard__bio-wrap">
+            <p class="ccard__bio">Je m'occupe de rendre clair et facilement applicable tout ce que partagent les coachs. Mon but c'est de te garder motivé et de te faciliter la vie !</p>
+          </div>
         </div>
 
         <!-- Florentin — droite -->
         <div class="ccard ccard--green reveal d3">
           <div class="ccard__accent" style="background:#00AA46;"></div>
-          <div class="ccard__avatar" style="background:#00AA46;">F</div>
-          <p class="ccard__name">Florentin</p>
-          <p class="ccard__role" style="color:#00AA46;">Coach spécialisé</p>
-          <p class="ccard__bio">Issu d'un DEJPS j'ai été chef ouvreur et coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances de la bonne manière !</p>
+          <div class="ccard__photo-wrap">
+            <img class="ccard__photo" src="./florentin (1).JPG" alt="Florentin, coach spécialisé" loading="lazy" style="object-position:center 28%;">
+            <div class="ccard__photo-overlay"></div>
+            <div class="ccard__photo-info">
+              <p class="ccard__name">Florentin</p>
+              <p class="ccard__role">Coach spécialisé</p>
+            </div>
+          </div>
+          <div class="ccard__bio-wrap">
+            <p class="ccard__bio">Issu d'un DEJPS j'ai été chef ouvreur et coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances de la bonne manière !</p>
+          </div>
         </div>
 
       </div>
