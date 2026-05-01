@@ -875,9 +875,7 @@
     /* ─────────────────────────────────────────
        TEAM — dark, photo cards
     ───────────────────────────────────────── */
-    .s-team { background: var(--dark-900); padding: var(--sp-16) 0; position: relative; overflow: hidden; }
-    .s-team .sec-eyebrow { color: rgba(255,103,0,.85); }
-    .s-team .sec-title   { color: var(--white); }
+    .s-team { background: var(--white); padding: var(--sp-12) 0; }
     .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -886,8 +884,7 @@
       margin-inline: auto;
     }
     .ccard {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
+      background: var(--cream);
       border-radius: var(--radius-lg);
       padding: var(--sp-8) var(--sp-6);
       text-align: center;
@@ -896,15 +893,15 @@
       transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
     }
     .ccard:hover { transform: translateY(-6px); }
-    .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.38), 0 0 440px rgba(255,103,0,.18); border-color: rgba(255,103,0,.2); }
-    .ccard--blue:hover   { box-shadow: 0 20px 70px rgba(0,127,255,.22), 0 0 200px rgba(0,127,255,.38), 0 0 440px rgba(0,127,255,.18); border-color: rgba(0,127,255,.2); }
-    .ccard--green:hover  { box-shadow: 0 20px 70px rgba(0,170,70,.22),  0 0 200px rgba(0,170,70,.38),  0 0 440px rgba(0,170,70,.18); border-color: rgba(0,170,70,.2); }
+    .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.38), 0 0 440px rgba(255,103,0,.18); }
+    .ccard--blue:hover   { box-shadow: 0 20px 70px rgba(0,127,255,.22), 0 0 200px rgba(0,127,255,.38), 0 0 440px rgba(0,127,255,.18); }
+    .ccard--green:hover  { box-shadow: 0 20px 70px rgba(0,170,70,.22),  0 0 200px rgba(0,170,70,.38),  0 0 440px rgba(0,170,70,.18); }
     .ccard__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .ccard__avatar {
-      width: 72px; height: 72px; border-radius: 50%;
+      width: 101px; height: 101px; border-radius: 50%;
       margin: 0 auto var(--sp-4);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; font-weight: 800; color: var(--white);
+      font-size: 2.125rem; font-weight: 800; color: var(--white);
       overflow: hidden;
     }
     .ccard__avatar img {
@@ -912,12 +909,14 @@
       object-fit: cover;
       object-position: center 15%;
     }
-    .ccard__name { font-weight: 800; font-size: 1.0625rem; color: var(--white); margin-bottom: var(--sp-1); letter-spacing: -0.01em; }
+    .ccard__name { font-weight: 800; font-size: 1.0625rem; color: var(--dark-900); margin-bottom: var(--sp-1); letter-spacing: -0.01em; }
     .ccard__role { font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--sp-4); }
     .ccard--orange .ccard__role { color: var(--orange); }
     .ccard--blue   .ccard__role { color: var(--blue); }
     .ccard--green  .ccard__role { color: #00AA46; }
-    .ccard__bio { font-size: .875rem; color: rgba(255,255,255,.6); line-height: 1.72; }
+    .ccard__bio { font-size: .875rem; color: var(--dark-700); line-height: 1.72; font-style: italic; }
+    .ccard__bio::before { content: '\201C'; font-style: normal; font-size: 1.1rem; opacity: .5; }
+    .ccard__bio::after  { content: '\201D'; font-style: normal; font-size: 1.1rem; opacity: .5; }
     @media (max-width: 680px) { .team-grid { grid-template-columns: 1fr; max-width: 380px; margin-inline: auto; } }
 
     /* ─────────────────────────────────────────
@@ -1372,10 +1371,8 @@
   </section>
 
   <!-- ═══════════════════════════════════════  ÉQUIPE ════ -->
-  <section class="s-team" id="equipe" data-nav="dark">
-    <div class="sect-orb sect-orb--a" style="width:500px;height:460px;top:-10%;left:-8%;background:radial-gradient(circle,rgba(0,127,255,.10) 0%,transparent 70%);filter:blur(88px);animation-delay:-3s;" aria-hidden="true"></div>
-    <div class="sect-orb sect-orb--b" style="width:440px;height:400px;bottom:-12%;right:-7%;background:radial-gradient(circle,rgba(255,103,0,.09) 0%,transparent 70%);filter:blur(85px);animation-delay:-14s;" aria-hidden="true"></div>
-    <div class="wrap" style="position:relative;z-index:1;">
+  <section class="s-team" id="equipe" data-nav="light">
+    <div class="wrap">
       <div style="text-align:center;margin-bottom:var(--sp-10);">
         <span class="sec-eyebrow reveal">L'équipe</span>
         <h2 class="sec-title reveal d1">L'équipe derrière tes progrès</h2>
@@ -1390,7 +1387,7 @@
           </div>
           <p class="ccard__name">Nicolas</p>
           <p class="ccard__role">Coach spécialisé</p>
-          <p class="ccard__bio">Je possède un DEJPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je suis spécialisé sur les programmes courts et j'ai travaillé quelques temps au pôle escalade France !</p>
+          <p class="ccard__bio">Je possède un DEJPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je gère les programmes courts et j'ai travaillé quelques temps au pôle escalade France !</p>
         </div>
 
         <!-- Yohan — centre -->
@@ -1412,7 +1409,7 @@
           </div>
           <p class="ccard__name">Florentin</p>
           <p class="ccard__role">Coach spécialisé</p>
-          <p class="ccard__bio">Issu d'un DEJPS j'ai été chef ouvreur et coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances de la bonne manière !</p>
+          <p class="ccard__bio">Issu d'un DEJPS j'ai été chef ouvreur et je suis coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances de la bonne manière !</p>
         </div>
 
       </div>
