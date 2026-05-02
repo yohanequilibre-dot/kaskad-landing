@@ -86,28 +86,28 @@
       0%, 100% { box-shadow: 0 4px 24px rgba(255,103,0,0.38); }
       50%       { box-shadow: 0 6px 44px rgba(255,103,0,0.68), 0 0 0 10px rgba(255,103,0,0.07); }
     }
-    /* True circular orbits — 8-point approximation with linear timing */
-    @keyframes orb-drift-l {
-      0%     { transform: translate(  0px,    0px); }
-      12.5%  { transform: translate( 50px,  -21px); }
-      25%    { transform: translate( 70px,  -70px); }
-      37.5%  { transform: translate( 50px, -119px); }
-      50%    { transform: translate(  0px, -140px); }
-      62.5%  { transform: translate(-50px, -119px); }
-      75%    { transform: translate(-70px,  -70px); }
-      87.5%  { transform: translate(-50px,  -21px); }
-      100%   { transform: translate(  0px,    0px); }
+    /* Full-page clockwise orbit — orange starts left, blue starts right */
+    @keyframes orb-orbit-l {
+      0%     { transform: translate(-40vw,   0);     }
+      12.5%  { transform: translate(-28vw, -28vh);   }
+      25%    { transform: translate(  0,   -40vh);   }
+      37.5%  { transform: translate( 28vw, -28vh);   }
+      50%    { transform: translate( 40vw,   0);     }
+      62.5%  { transform: translate( 28vw,  28vh);   }
+      75%    { transform: translate(  0,    40vh);   }
+      87.5%  { transform: translate(-28vw,  28vh);   }
+      100%   { transform: translate(-40vw,   0);     }
     }
-    @keyframes orb-drift-r {
-      0%     { transform: translate(  0px,    0px); }
-      12.5%  { transform: translate(-46px,  -19px); }
-      25%    { transform: translate(-65px,  -65px); }
-      37.5%  { transform: translate(-46px, -111px); }
-      50%    { transform: translate(  0px, -130px); }
-      62.5%  { transform: translate( 46px, -111px); }
-      75%    { transform: translate( 65px,  -65px); }
-      87.5%  { transform: translate( 46px,  -19px); }
-      100%   { transform: translate(  0px,    0px); }
+    @keyframes orb-orbit-r {
+      0%     { transform: translate( 36vw,   0);     }
+      12.5%  { transform: translate( 25vw,  25vh);   }
+      25%    { transform: translate(  0,    36vh);   }
+      37.5%  { transform: translate(-25vw,  25vh);   }
+      50%    { transform: translate(-36vw,   0);     }
+      62.5%  { transform: translate(-25vw, -25vh);   }
+      75%    { transform: translate(  0,   -36vh);   }
+      87.5%  { transform: translate( 25vw, -25vh);   }
+      100%   { transform: translate( 36vw,   0);     }
     }
     @keyframes hero-glow-breathe {
       0%, 100% { opacity: 1; }
@@ -382,28 +382,29 @@
       will-change: transform;
       z-index: 0;
     }
-    /* Animated ambient orbs */
+    /* Ambient orbs — fixed to viewport, orbit the full page */
     .hero__orb {
-      position: absolute;
+      position: fixed;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(70px);
+      filter: blur(110px);
       will-change: transform;
       z-index: 0;
+      mix-blend-mode: screen;
     }
     .hero__orb--l {
-      width: clamp(320px, 50vw, 580px);
-      height: clamp(260px, 42vw, 500px);
-      background: radial-gradient(circle, rgba(255,103,0,.14) 0%, transparent 70%);
-      top: 18%; left: -6%;
-      animation: orb-drift-l 14s linear infinite;
+      width: 720px; height: 720px;
+      background: radial-gradient(circle, rgba(255,103,0,.36) 0%, transparent 62%);
+      top: calc(50vh - 360px);
+      left: calc(50vw - 360px);
+      animation: orb-orbit-l 24s linear infinite;
     }
     .hero__orb--r {
-      width: clamp(280px, 44vw, 520px);
-      height: clamp(240px, 38vw, 460px);
-      background: radial-gradient(circle, rgba(0,127,255,.11) 0%, transparent 70%);
-      top: 12%; right: -5%;
-      animation: orb-drift-r 17s linear infinite;
+      width: 660px; height: 660px;
+      background: radial-gradient(circle, rgba(0,127,255,.30) 0%, transparent 62%);
+      top: calc(50vh - 330px);
+      left: calc(50vw - 330px);
+      animation: orb-orbit-r 30s linear infinite;
     }
 
     /* Scroll progress bar */
