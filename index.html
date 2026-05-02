@@ -86,19 +86,28 @@
       0%, 100% { box-shadow: 0 4px 24px rgba(255,103,0,0.38); }
       50%       { box-shadow: 0 6px 44px rgba(255,103,0,0.68), 0 0 0 10px rgba(255,103,0,0.07); }
     }
+    /* True circular orbits — 8-point approximation with linear timing */
     @keyframes orb-drift-l {
-      0%   { transform: translate(0,    0)    scale(1);    }
-      22%  { transform: translate(55px, -65px) scale(1.07); }
-      48%  { transform: translate(85px,  8px)  scale(1.03); }
-      72%  { transform: translate(38px,  72px) scale(1.06); }
-      100% { transform: translate(0,    0)    scale(1);    }
+      0%     { transform: translate(  0px,    0px); }
+      12.5%  { transform: translate( 50px,  -21px); }
+      25%    { transform: translate( 70px,  -70px); }
+      37.5%  { transform: translate( 50px, -119px); }
+      50%    { transform: translate(  0px, -140px); }
+      62.5%  { transform: translate(-50px, -119px); }
+      75%    { transform: translate(-70px,  -70px); }
+      87.5%  { transform: translate(-50px,  -21px); }
+      100%   { transform: translate(  0px,    0px); }
     }
     @keyframes orb-drift-r {
-      0%   { transform: translate(0,     0)    scale(1);    }
-      24%  { transform: translate(-60px, 60px)  scale(1.05); }
-      50%  { transform: translate(-88px, -6px)  scale(1.02); }
-      74%  { transform: translate(-32px, -68px) scale(1.07); }
-      100% { transform: translate(0,     0)    scale(1);    }
+      0%     { transform: translate(  0px,    0px); }
+      12.5%  { transform: translate(-46px,  -19px); }
+      25%    { transform: translate(-65px,  -65px); }
+      37.5%  { transform: translate(-46px, -111px); }
+      50%    { transform: translate(  0px, -130px); }
+      62.5%  { transform: translate( 46px, -111px); }
+      75%    { transform: translate( 65px,  -65px); }
+      87.5%  { transform: translate( 46px,  -19px); }
+      100%   { transform: translate(  0px,    0px); }
     }
     @keyframes hero-glow-breathe {
       0%, 100% { opacity: 1; }
@@ -387,14 +396,14 @@
       height: clamp(260px, 42vw, 500px);
       background: radial-gradient(circle, rgba(255,103,0,.14) 0%, transparent 70%);
       top: 18%; left: -6%;
-      animation: orb-drift-l 10s ease-in-out infinite;
+      animation: orb-drift-l 14s linear infinite;
     }
     .hero__orb--r {
       width: clamp(280px, 44vw, 520px);
       height: clamp(240px, 38vw, 460px);
       background: radial-gradient(circle, rgba(0,127,255,.11) 0%, transparent 70%);
       top: 12%; right: -5%;
-      animation: orb-drift-r 13s ease-in-out infinite;
+      animation: orb-drift-r 17s linear infinite;
     }
 
     /* Scroll progress bar */
