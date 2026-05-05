@@ -55,7 +55,7 @@
        RESET
     ───────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--font);
       font-size: 1rem;
@@ -178,11 +178,17 @@
         filter    0.55s var(--ease-out-expo);
     }
     .reveal.in { opacity: 1; transform: none; filter: blur(0); }
-    .reveal.d1 { transition-delay: 0.08s; }
-    .reveal.d2 { transition-delay: 0.17s; }
-    .reveal.d3 { transition-delay: 0.26s; }
-    .reveal.d4 { transition-delay: 0.35s; }
+    .reveal.d1 { transition-delay: 0.05s; }
+    .reveal.d2 { transition-delay: 0.10s; }
+    .reveal.d3 { transition-delay: 0.15s; }
+    .reveal.d4 { transition-delay: 0.20s; }
     @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:        0.01ms !important;
+        animation-iteration-count: 1      !important;
+        transition-duration:       0.01ms !important;
+        scroll-behavior:           auto   !important;
+      }
       .reveal { opacity: 1; transform: none; filter: none; transition: none; }
       .hero__orb { animation: none !important; opacity: 1 !important; }
       .hero::before { animation: none !important; opacity: 1 !important; }
@@ -192,6 +198,9 @@
       .btn__ripple { display: none; }
       .feat { opacity: 1; animation: none !important; }
       .ocard .ocard__objection, .ocard .ocard__response { opacity: 1; animation: none !important; }
+    }
+    @media (max-width: 768px) {
+      .hero__parallax-glow { transform: none !important; }
     }
 
     /* ─────────────────────────────────────────
@@ -246,6 +255,10 @@
 
     .btn-white-on-orange { background: var(--white); color: var(--orange); font-weight: 700; }
     .btn-white-on-orange:hover { box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+    @media (max-width: 768px) {
+      .btn { min-height: 44px; }
+      .btn-xl { padding: 1rem 1.5rem; font-size: 1rem; }
+    }
 
     /* ─────────────────────────────────────────
        SECTION HEADERS
@@ -1780,7 +1793,7 @@
         <div class="ccard ccard--blue reveal d1 js-tilt">
           <div class="ccard__accent" style="background:var(--blue);"></div>
           <div class="ccard__avatar" style="background:var(--blue);">
-            <img src="./nicolas.png" alt="Nicolas" loading="lazy">
+            <img src="./nicolas.png" alt="Nicolas" loading="lazy" decoding="async">
           </div>
           <p class="ccard__name">Nicolas</p>
           <p class="ccard__role">Coach spécialisé</p>
@@ -1791,7 +1804,7 @@
         <div class="ccard ccard--orange reveal d2 js-tilt">
           <div class="ccard__accent" style="background:var(--orange);"></div>
           <div class="ccard__avatar" style="background:var(--orange);">
-            <img src="./yohan (2).png" alt="Yohan" loading="lazy" style="object-position:center center;">
+            <img src="./yohan (2).png" alt="Yohan" loading="lazy" decoding="async" style="object-position:center center;">
           </div>
           <p class="ccard__name">Yohan</p>
           <p class="ccard__role">Coordinateur</p>
@@ -1802,7 +1815,7 @@
         <div class="ccard ccard--green reveal d3 js-tilt">
           <div class="ccard__accent" style="background:#00AA46;"></div>
           <div class="ccard__avatar" style="background:#00AA46;">
-            <img src="./florentin (1).JPG" alt="Florentin" loading="lazy" style="object-position:center 28%;">
+            <img src="./florentin (1).JPG" alt="Florentin" loading="lazy" decoding="async" style="object-position:center 28%;">
           </div>
           <p class="ccard__name">Florentin</p>
           <p class="ccard__role">Coach spécialisé</p>
@@ -1904,6 +1917,16 @@
           </div>
         </div>
 
+        <div class="fitem">
+          <button class="fitem__q" id="fq9" aria-expanded="false" aria-controls="fa9">
+            Comment ça se passe avec mon coach au quotidien ?
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="fa9" role="region" aria-labelledby="fq9">
+            <div class="fitem__a-inner">Tu échanges avec ton coach (Florentin, Nicolas ou Brayan) dans une conversation privée dédiée. Il répond chaque jour ouvrable, analyse tes vidéos de grimpe et fait un point hebdomadaire avec toi pour ajuster la trajectoire. Si tu pars en vacances, si tu te blesses ou si ton emploi du temps change, le plan s'adapte en temps réel. Tu n'es jamais seul avec une feuille de programme à interpréter.</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1967,6 +1990,7 @@
     /* ── Hero parallax glow ────────────────── */
     (function() {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!window.matchMedia('(min-width: 769px)').matches) return;
       const pg = document.querySelector('.hero__parallax-glow');
       if (!pg) return;
       let raf;
