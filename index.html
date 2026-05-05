@@ -434,52 +434,48 @@
 
     .hero__content { position: relative; z-index: 1; }
 
-    /* "Pour les grimpeurs" */
-    .hero__for {
-      font-weight: 800;
-      font-size: clamp(3.125rem, 8.5vw, 6.75rem);
-      line-height: 1;
-      color: var(--white);
-      letter-spacing: -0.04em;
-      margin-bottom: var(--sp-4);
-      animation: hero-in .75s var(--ease-out-expo) .05s both;
-    }
-
-    /* Débutant, Intermédiaire ou Expert */
-    .hero__levels {
-      font-size: clamp(0.9375rem, 2.1vw, 1.1875rem);
-      font-weight: 600;
-      color: var(--blue);
-      letter-spacing: 0.06em;
-      margin-bottom: var(--sp-8);
-      animation: levels-in .7s var(--ease-out-expo) .2s both;
-    }
-
-    /* Orange claim — 2 lines */
-    .hero__claim {
+    /* Hero eyebrow + H1 */
+    .hero__eyebrow {
+      font-size: clamp(0.875rem, 1.6vw, 1.0625rem);
       font-weight: 700;
-      font-size: clamp(1.5rem, 3.9vw, 2.625rem);
-      line-height: 1.25;
+      color: var(--blue);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-6);
+      animation: hero-in .6s var(--ease-out-expo) .05s both;
+    }
+    .hero__claim-h1 {
+      font-weight: 800;
+      font-size: clamp(2.25rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: var(--sp-6);
+      animation: hero-in .65s var(--ease-out-expo) .2s both;
+    }
+    .hero__claim-h1__accent {
       color: var(--orange-light);
-      width: max-content;
-      max-width: calc(100vw - var(--sp-12));
-      margin-inline: auto;
-      margin-bottom: var(--sp-4);
-      letter-spacing: -0.02em;
-      animation: hero-in .7s var(--ease-out-expo) .34s both;
+      display: block;
     }
 
-    /* Supporting — new order */
+    /* Supporting */
     .hero__sub {
       font-size: clamp(1.0625rem, 2vw, 1.3125rem);
       color: rgba(255,255,255,.42);
       margin-bottom: var(--sp-8);
       line-height: 1.7;
-      animation: hero-in .65s var(--ease-out-expo) .48s both;
+      animation: hero-in .55s var(--ease-out-expo) .35s both;
     }
 
     .hero__cta {
-      animation: hero-in .6s var(--ease-out-expo) .62s both;
+      animation: hero-in .5s var(--ease-out-expo) .5s both;
+    }
+    .hero__trust {
+      margin-top: var(--sp-6);
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+      animation: hero-in .5s var(--ease-out-expo) .65s both;
     }
 
     /* ─────────────────────────────────────────
@@ -527,6 +523,34 @@
       color: var(--gray-400);
       margin-top: var(--sp-1);
     }
+    .action-ctas-primary {
+      display: flex;
+      justify-content: center;
+      margin-bottom: var(--sp-4);
+      width: 100%;
+    }
+    .action-ctas-secondary {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--gray-500);
+      margin-bottom: var(--sp-4);
+      width: 100%;
+    }
+    .link-calendly {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 600;
+    }
+    .link-calendly:hover { color: var(--blue-dark); }
+    .final-secondary {
+      text-align: center;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: var(--sp-4);
+    }
+    .final-secondary .link-calendly { color: rgba(255,255,255,0.9); }
+    .final-secondary .link-calendly:hover { color: var(--white); }
 
     .video-frame {
       position: relative;
@@ -605,6 +629,55 @@
 
     .pcard__duo { font-size: .8125rem; color: var(--dark-700); margin-top: var(--sp-2); display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
     .pcard__duo strong { color: var(--dark-900); font-weight: 700; }
+    .tier-pricing {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-4);
+      margin: var(--sp-5) 0;
+    }
+    .tier-pricing__option {
+      text-align: center;
+      padding: var(--sp-4) var(--sp-5);
+      border-radius: 12px;
+      background: rgba(0,0,0,0.03);
+      flex: 1;
+      max-width: 160px;
+    }
+    .tier-pricing__option--highlight {
+      background: rgba(255,103,0,0.08);
+      border: 1px solid rgba(255,103,0,0.25);
+    }
+    .tier-pricing__amount {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--dark-900);
+      line-height: 1;
+    }
+    .tier-pricing__period {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      margin-top: 0.25rem;
+    }
+    .tier-pricing__label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+    }
+    .tier-pricing__separator {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    @media (max-width: 480px) {
+      .tier-pricing { flex-direction: column; gap: var(--sp-2); }
+      .tier-pricing__option { max-width: none; width: 100%; }
+    }
 
     /* Tooltip */
     .tooltip-wrap { position: relative; display: inline-flex; align-items: center; }
@@ -652,24 +725,83 @@
       color: var(--gray-400); padding-top: var(--sp-2); margin-top: var(--sp-1);
       border-top: 1px solid var(--gray-200);
     }
+    .tier-list .li-separator {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-top: var(--sp-4);
+      margin-bottom: var(--sp-2);
+      list-style: none;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: var(--sp-3);
+    }
+    .tier-list .li-separator--excluded { color: var(--gray-500); }
+    .tier-list .li-separator--premium  { color: var(--orange); }
+    .tier-list .li-excluded {
+      opacity: 0.55;
+      text-decoration: line-through;
+      text-decoration-color: rgba(0,0,0,0.2);
+    }
 
     .pcard__cta-sub { font-size: .8125rem; color: var(--gray-400); text-align: center; margin-top: var(--sp-3); line-height: 1.6; }
     .pcard__cta-sub a { color: var(--orange); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; font-size: .9375rem; }
     .pcard__cta-sub a:hover { color: var(--orange-dark); }
 
     .pcard__engage-label { font-size: .75rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; margin-bottom: var(--sp-2); }
-    .pcard__engagements { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); margin-bottom: var(--sp-3); }
-    .btn-engage {
-      display: flex; align-items: center; justify-content: center;
-      padding: 0.625rem 0.5rem; border-radius: var(--radius-md);
-      font-size: .8125rem; font-weight: 700;
-      color: #fff; background: var(--orange);
-      border: none;
-      transition: background .2s var(--ease-out-quart), transform .15s var(--ease-out-quart), box-shadow .2s;
-      text-decoration: none;
-      white-space: nowrap;
+    .pricing-engagement-toggle {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: rgba(0,0,0,0.04);
+      border-radius: 999px;
+      padding: 4px;
+      margin: var(--sp-5) 0 var(--sp-4);
     }
-    .btn-engage:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(255,103,0,.4); }
+    .pet-btn {
+      position: relative;
+      padding: 0.625rem 0.5rem;
+      border-radius: 999px;
+      background: transparent;
+      border: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1.3;
+    }
+    .pet-btn:hover { color: var(--dark-900); }
+    .pet-btn--active {
+      background: white;
+      color: var(--dark-900);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .pet-btn__badge {
+      display: block;
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+    .pricing-cta-wrap { text-align: center; margin-top: var(--sp-5); }
+    .pricing-main-cta { width: 100%; max-width: 100%; justify-content: center; }
+    .pricing-cta-note {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      margin-top: var(--sp-3);
+    }
+    .pricing-cta-fineprint {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      margin-top: var(--sp-2);
+      line-height: 1.5;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+    .pricing-cta-asterisk { color: var(--orange); font-weight: 700; }
 
     /* Card hover glow — dramatic */
     .pcard--pre { transition: box-shadow .4s var(--ease-out-quart); }
@@ -710,6 +842,26 @@
     .grule__n { font-size: 2.25rem; font-weight: 800; color: var(--orange); line-height: 1; flex-shrink: 0; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
     .grule__t { font-size: .9375rem; color: rgba(255,255,255,.75); line-height: 1.5; padding-top: 8px; font-weight: 500; white-space: nowrap; }
 
+    .guarantee-clarification {
+      margin-top: var(--sp-6);
+      padding: var(--sp-5);
+      background: rgba(255,103,0,0.08);
+      border-left: 3px solid var(--orange);
+      border-radius: 6px;
+      text-align: left;
+      max-width: 720px;
+      margin-inline: auto;
+    }
+    .guarantee-clarification p {
+      margin: 0;
+      color: var(--white);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    .guarantee-clarification strong {
+      color: var(--orange-light);
+      font-weight: 700;
+    }
     .guarantee-footer {
       display: flex;
       flex-direction: column;
@@ -1081,14 +1233,12 @@
     <div class="hero__parallax-glow" aria-hidden="true"></div>
     <div class="hero__content">
 
-      <h1 class="hero__for">Pour les grimpeurs</h1>
+      <p class="hero__eyebrow">POUR LES GRIMPEURS · 6a → 7c</p>
 
-      <p class="hero__levels">Entre le 6a et le 7c</p>
-
-      <p class="hero__claim">
-        On va t'aider à progresser<br>
-        pour que tu atteignes tes objectifs en escalade
-      </p>
+      <h1 class="hero__claim-h1">
+        On t'aide à comprendre pourquoi tu stagnes,<br>
+        <span class="hero__claim-h1__accent">et à passer ta prochaine cotation.</span>
+      </h1>
 
       <p class="hero__sub">
         Sans sacrifier ton plaisir, sans changer ton emploi du temps et sans risquer de te blesser.
@@ -1097,6 +1247,8 @@
       <div class="hero__cta">
         <a href="#formules" class="btn btn-orange btn-xl btn-pulse">Je suis prêt à progresser →</a>
       </div>
+
+      <p class="hero__trust">70+ grimpeurs accompagnés · Garantie remboursement</p>
 
     </div>
   </section>
@@ -1127,9 +1279,13 @@
 
       <!-- CTAs -->
       <div class="action-ctas reveal d1">
-        <a href="#formules" class="btn btn-orange btn-xl">Rejoindre directement le coaching</a>
-        <a href="#" class="btn btn-blue  btn-xl js-calendly">Réserver un appel →</a>
-        <p class="action-ctas__note">Paiement sécurisé Stripe &nbsp;·&nbsp; Appel sans engagement &nbsp;·&nbsp; Garantie remboursement</p>
+        <div class="action-ctas-primary">
+          <a href="#formules" class="btn btn-orange btn-xl">Rejoindre Kaskad maintenant →</a>
+        </div>
+        <p class="action-ctas-secondary">
+          Tu préfères en parler avant&nbsp;? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer" class="link-calendly">Réserver un appel découverte</a>
+        </p>
+        <p class="action-ctas__note">Paiement sécurisé Stripe · Garantie remboursement · Appel sans engagement</p>
       </div>
 
       <!-- Vidéo -->
@@ -1218,7 +1374,7 @@
         <div class="pcard pcard--pre reveal js-tilt">
           <div class="pcard__badge pcard__badge--blue">Pour aller plus vite</div>
           <p class="pcard__eyebrow pcard__eyebrow--blue">Coaching Premium</p>
-          <h3 class="pcard__name">Pour ceux qui veulent le meilleur</h3>
+          <h3 class="pcard__name">Coaching haute intensité pour grimpeurs prêts à pousser leurs limites.</h3>
           <p class="pcard__tagline">Une expérience à la «&nbsp;coach en équipe de France&nbsp;»</p>
 
           <div class="pcard__price">499€<span class="pcard__price-unit"> / mois</span></div>
@@ -1236,7 +1392,7 @@
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Rencontres communautaires</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Bonus et ressources exclusives</li>
-            <li class="feat-sep">Exclusif Premium</li>
+            <li class="feat-sep li-separator li-separator--premium">Exclusif Premium</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Appel hebdomadaire avec un coach (30 min)</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Suivi réalisé par 2 coachs</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Analyses vidéo illimitées sur ta grimpe</li>
@@ -1252,21 +1408,26 @@
         <div class="pcard pcard--std reveal d1 js-tilt">
           <div class="pcard__badge">Le plus choisi</div>
           <p class="pcard__eyebrow">Coaching Standard</p>
-          <h3 class="pcard__name">Pour ceux qui veulent l'excellence</h3>
+          <h3 class="pcard__name">Le programme complet pour passer ta prochaine cotation.</h3>
           <p class="pcard__tagline">Le système éprouvé pour progresser vite et durablement</p>
 
-          <div class="pcard__price">129€<span class="pcard__price-unit"> / mois</span></div>
-          <p class="pcard__duo">
-            Tarif duo : <strong>100€ / mois</strong>
-            <span class="tooltip-wrap">
-              <span class="tooltip-icon" tabindex="0" role="button" aria-label="Comment fonctionne le tarif duo ?">i</span>
-              <span class="tooltip-body">Deux grimpeurs s'inscrivent ensemble. Chacun bénéficie du coaching Standard à 100€/mois au lieu de 129€. Le tarif s'applique à l'inscription simultanée de deux personnes.</span>
-            </span>
-          </p>
+          <div class="tier-pricing">
+            <div class="tier-pricing__option">
+              <div class="tier-pricing__amount">129€</div>
+              <div class="tier-pricing__period">/mois</div>
+              <div class="tier-pricing__label">En solo</div>
+            </div>
+            <div class="tier-pricing__separator">ou</div>
+            <div class="tier-pricing__option tier-pricing__option--highlight">
+              <div class="tier-pricing__amount">100€</div>
+              <div class="tier-pricing__period">/mois <span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="Comment fonctionne le tarif duo ?">i</span><span class="tooltip-body">Deux grimpeurs s'inscrivent ensemble. Chacun bénéficie du coaching Standard à 100€/mois au lieu de 129€. Le tarif s'applique à l'inscription simultanée de deux personnes.</span></span></div>
+              <div class="tier-pricing__label">En duo (à 2)</div>
+            </div>
+          </div>
 
           <div class="pcard__divider"></div>
 
-          <ul class="pcard__features">
+          <ul class="pcard__features tier-list">
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Diagnostic précis</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Diagramme radar 21 axes personnalisé</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Plan d'entraînement 100% sur mesure</li>
@@ -1276,22 +1437,35 @@
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Rencontres communautaires</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Bonus et ressources exclusives</li>
-            <li class="feat-sep">Non inclus</li>
-            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Appel hebdomadaire avec un coach</li>
-            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Suivi par 2 coachs</li>
-            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Analyses vidéo illimitées</li>
-            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Audit récupération + prépa mentale</li>
-            <li class="feat feat--no"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Séances de coaching en physique</li>
+            <li class="feat-sep li-separator li-separator--excluded">Non inclus</li>
+            <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Appel hebdomadaire avec un coach</li>
+            <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Suivi par 2 coachs</li>
+            <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Analyses vidéo illimitées</li>
+            <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Audit récupération + prépa mentale</li>
+            <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Séances de coaching en physique</li>
           </ul>
 
-          <p class="pcard__engage-label"><strong>Choisis</strong> ton engagement :</p>
-          <div class="pcard__engagements">
-            <a href="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f" target="_blank" rel="noopener noreferrer" class="btn-engage">3 mois</a>
-            <a href="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l" target="_blank" rel="noopener noreferrer" class="btn-engage">6 mois</a>
-            <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn-engage">9 mois</a>
-            <a href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn-engage">12 mois</a>
+          <div class="pricing-engagement-toggle" role="tablist" aria-label="Durée d'engagement">
+            <button class="pet-btn" data-engagement="3" data-stripe="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f" role="tab" aria-selected="false">3 mois</button>
+            <button class="pet-btn" data-engagement="6" data-stripe="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l" role="tab" aria-selected="false">6 mois</button>
+            <button class="pet-btn pet-btn--active" data-engagement="9" data-stripe="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" role="tab" aria-selected="true">
+              9 mois
+              <span class="pet-btn__badge">Recommandé</span>
+            </button>
+            <button class="pet-btn" data-engagement="12" data-stripe="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" role="tab" aria-selected="false">12 mois</button>
           </div>
-          <p class="pcard__cta-sub">Tu préfères qu'on en parle d'abord ? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer">Réserver un appel →</a></p>
+
+          <div class="pricing-cta-wrap">
+            <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-xl pricing-main-cta" data-cta-engagement="9">
+              Démarrer en Standard — <span class="pricing-cta-eng-display">9 mois d'engagement</span>
+            </a>
+            <p class="pricing-cta-note">
+              Garantie remboursement les 3 premiers mois <span class="pricing-cta-asterisk">*</span>
+            </p>
+            <p class="pricing-cta-fineprint">
+              <span class="pricing-cta-asterisk">*</span> La garantie WYMB couvre uniquement les 3 premiers mois si les 4 règles sont respectées. L'engagement total continue après. Si on te rembourse, l'engagement saute aussi.
+            </p>
+          </div>
         </div>
 
       </div>
@@ -1329,7 +1503,11 @@
           </div>
         </div>
 
-        <div class="guarantee-footer reveal d2">
+        <div class="guarantee-clarification reveal d2">
+          <p><strong>Et l'engagement&nbsp;?</strong> Si on te rembourse les 3 premiers mois, l'engagement saute aussi. Tu repars sans rien devoir, tu gardes ton diagnostic et ton plan. Si tu prends 9 mois et qu'on rembourse à mois 3, tu n'as pas à payer les 6 mois restants. Pas de petites lignes, pas de retenue.</p>
+        </div>
+
+        <div class="guarantee-footer reveal d3">
           <p class="guarantee-closing">Tu joues le jeu, on honore la promesse. Pas de petites lignes, pas de "sauf si", pas de mensonge.</p>
           <span class="guarantee-contract">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1599,10 +1777,12 @@
       <h2 class="sec-title reveal" style="color:var(--white);margin-bottom:var(--sp-4);">Tu as lu jusqu'ici.</h2>
       <p class="s-final__sub reveal d1">Tu sais que tu as besoin de ça pour progresser.</p>
       <div class="s-final__btns reveal d2">
-        <a href="#formules" class="btn btn-xl btn-white-on-orange">Démarrer en Standard — 129€/mois</a>
-        <a href="#" class="btn btn-xl btn-ghost-white js-calendly">Réserver un appel</a>
+        <a href="#formules" class="btn btn-xl btn-white-on-orange">Démarrer en Standard maintenant</a>
       </div>
-      <p class="s-final__reassure reveal d3">
+      <p class="final-secondary reveal d3">
+        Tu hésites&nbsp;? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer" class="link-calendly">Réserver un appel</a>
+      </p>
+      <p class="s-final__reassure reveal d4">
         <span>Garantie remboursement sous conditions</span>
         <span class="s-final__dot">·</span>
         <span>Paiement sécurisé Stripe</span>
@@ -1824,6 +2004,31 @@
       trigger.addEventListener('mouseleave', hide);
       pop.addEventListener('mouseenter', () => clearTimeout(timer));
       pop.addEventListener('mouseleave', hide);
+    })();
+
+    /* ── Pricing engagement toggle ─────────── */
+    (function() {
+      const toggle = document.querySelector('.pricing-engagement-toggle');
+      if (!toggle) return;
+      const cta    = document.querySelector('.pricing-main-cta');
+      const engDisplay = document.querySelector('.pricing-cta-eng-display');
+      toggle.addEventListener('click', (e) => {
+        const btn = e.target.closest('.pet-btn');
+        if (!btn) return;
+        toggle.querySelectorAll('.pet-btn').forEach(b => {
+          b.classList.remove('pet-btn--active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('pet-btn--active');
+        btn.setAttribute('aria-selected', 'true');
+        const eng    = btn.dataset.engagement;
+        const stripe = btn.dataset.stripe;
+        if (cta) {
+          cta.href = stripe;
+          cta.setAttribute('data-cta-engagement', eng);
+        }
+        if (engDisplay) engDisplay.textContent = eng + ' mois d\'engagement';
+      });
     })();
 
     /* ── FAQ accordion ─────────────────────── */
