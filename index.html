@@ -447,28 +447,35 @@
 
     .hero__content { position: relative; z-index: 1; }
 
-    /* Hero eyebrow + H1 */
-    .hero__eyebrow {
-      font-size: clamp(0.875rem, 1.6vw, 1.0625rem);
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: var(--sp-6);
-      animation: hero-in .6s var(--ease-out-expo) .05s both;
-    }
-    .hero__claim-h1 {
+    /* Hero — Pour les grimpeurs */
+    .hero__for {
       font-weight: 800;
-      font-size: clamp(2.25rem, 6vw, 4.5rem);
-      line-height: 1.05;
+      font-size: clamp(3.125rem, 8.5vw, 6.75rem);
+      line-height: 1;
       color: var(--white);
-      letter-spacing: -0.03em;
-      margin-bottom: var(--sp-6);
-      animation: hero-in .65s var(--ease-out-expo) .2s both;
+      letter-spacing: -0.04em;
+      margin-bottom: var(--sp-4);
+      animation: hero-in .75s var(--ease-out-expo) .05s both;
     }
-    .hero__claim-h1__accent {
+    .hero__levels {
+      font-size: clamp(0.9375rem, 2.1vw, 1.1875rem);
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.06em;
+      margin-bottom: var(--sp-8);
+      animation: levels-in .7s var(--ease-out-expo) .2s both;
+    }
+    .hero__claim {
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3.9vw, 2.625rem);
+      line-height: 1.25;
       color: var(--orange-light);
-      display: block;
+      width: max-content;
+      max-width: calc(100vw - var(--sp-12));
+      margin-inline: auto;
+      margin-bottom: var(--sp-4);
+      letter-spacing: -0.02em;
+      animation: hero-in .7s var(--ease-out-expo) .34s both;
     }
 
     /* Supporting */
@@ -477,18 +484,10 @@
       color: rgba(255,255,255,.42);
       margin-bottom: var(--sp-8);
       line-height: 1.7;
-      animation: hero-in .55s var(--ease-out-expo) .35s both;
+      animation: hero-in .65s var(--ease-out-expo) .48s both;
     }
-
     .hero__cta {
-      animation: hero-in .5s var(--ease-out-expo) .5s both;
-    }
-    .hero__trust {
-      margin-top: var(--sp-6);
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.04em;
-      animation: hero-in .5s var(--ease-out-expo) .65s both;
+      animation: hero-in .6s var(--ease-out-expo) .62s both;
     }
 
     /* ─────────────────────────────────────────
@@ -536,34 +535,19 @@
       color: var(--gray-400);
       margin-top: var(--sp-1);
     }
-    .action-ctas-primary {
-      display: flex;
-      justify-content: center;
-      margin-bottom: var(--sp-4);
-      width: 100%;
-    }
-    .action-ctas-secondary {
-      text-align: center;
-      font-size: 1rem;
-      color: var(--gray-500);
-      margin-bottom: var(--sp-4);
-      width: 100%;
-    }
-    .link-calendly {
-      color: var(--blue);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      font-weight: 600;
-    }
-    .link-calendly:hover { color: var(--blue-dark); }
     .final-secondary {
       text-align: center;
       font-size: 1rem;
       color: rgba(255,255,255,0.65);
       margin-bottom: var(--sp-4);
     }
-    .final-secondary .link-calendly { color: rgba(255,255,255,0.9); }
-    .final-secondary .link-calendly:hover { color: var(--white); }
+    .link-calendly {
+      color: rgba(255,255,255,0.9);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 600;
+    }
+    .link-calendly:hover { color: var(--white); }
 
     .video-frame {
       position: relative;
@@ -642,6 +626,16 @@
 
     .pcard__duo { font-size: .8125rem; color: var(--dark-700); margin-top: var(--sp-2); display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
     .pcard__duo strong { color: var(--dark-900); font-weight: 700; }
+    .pcard__engagements { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); margin-top: var(--sp-3); margin-bottom: var(--sp-3); }
+    .btn-engage {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0.625rem 0.5rem; border-radius: var(--radius-md);
+      font-size: .8125rem; font-weight: 700;
+      color: var(--white); background: var(--orange);
+      transition: background .2s var(--ease-out-quart), transform .15s var(--ease-out-quart), box-shadow .2s;
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn-engage:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(255,103,0,.4); }
     .tier-pricing {
       display: flex;
       align-items: center;
@@ -942,73 +936,20 @@
     ───────────────────────────────────────── */
     .s-objections { background: var(--cream); padding: var(--sp-12) 0; }
     .s-objections .wrap { max-width: 56rem; }
-    .objections-grid {
-      display: grid;
-      gap: var(--sp-6);
-      margin-top: var(--sp-10);
-    }
-    .objection-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: var(--sp-8);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.04);
-      position: relative;
-      overflow: hidden;
-    }
-    .objection-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; bottom: 0;
-      width: 4px;
-      background: linear-gradient(to bottom, var(--orange), var(--blue));
-    }
-    .objection-card__quote {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--sp-3);
-      margin-bottom: var(--sp-4);
-    }
-    .objection-card__quote-mark {
-      font-family: Georgia, serif;
-      font-size: 4rem;
-      line-height: 0.8;
-      color: var(--orange);
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: -0.5rem;
-    }
-    .objection-card__objection {
-      font-size: clamp(1.25rem, 2.6vw, 1.625rem);
-      font-weight: 700;
-      color: var(--dark-900);
-      line-height: 1.3;
-      letter-spacing: -0.02em;
-      margin: 0;
-      flex: 1;
-    }
-    .objection-card__answer {
-      padding-left: calc(var(--sp-3) + 2.5rem);
-      border-top: 1px solid rgba(0,0,0,0.06);
-      padding-top: var(--sp-4);
-      margin-top: var(--sp-4);
-    }
-    .objection-card__answer p {
-      font-size: 1.0625rem;
-      line-height: 1.7;
-      color: var(--dark-700);
-      margin: 0;
-    }
-    @media (max-width: 640px) {
-      .objection-card { padding: var(--sp-5); }
-      .objection-card__quote-mark { font-size: 3rem; }
-      .objection-card__answer { padding-left: 0; }
-    }
+    /* Accordion light overrides (réutilise .fitem du FAQ) */
+    .s-objections .fitem { border-color: rgba(0,0,0,.12); }
+    .s-objections .fitem:first-child { border-color: rgba(0,0,0,.12); }
+    .s-objections .fitem.is-open { background: rgba(0,0,0,.025); }
+    .s-objections .fitem__q { color: var(--dark-900); font-size: 1rem; }
+    .s-objections .fitem.is-open .fitem__q { color: var(--orange); }
+    .s-objections .fitem__icon { background: var(--gray-300); }
+    .s-objections .fitem.is-open .fitem__icon { background: var(--orange); }
+    .s-objections .fitem__a-inner { color: var(--dark-700); }
 
     /* ─────────────────────────────────────────
        TESTIMONIALS
     ───────────────────────────────────────── */
-    .s-temoignages { background: var(--dark-800); padding: var(--sp-12) 0; }
+    .s-temoignages { background: var(--cream); padding: var(--sp-12) 0; }
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
     .testimonial-card {
       background: rgba(255,255,255,0.04);
@@ -1091,10 +1032,29 @@
     .testimonials-disclaimer {
       text-align: center;
       font-size: 0.875rem;
-      color: rgba(255,255,255,0.5);
+      color: var(--gray-500);
       margin-top: var(--sp-8);
       font-style: italic;
     }
+    /* Testimonial cards — old format */
+    .tcard {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8) var(--sp-6);
+      display: flex; flex-direction: column;
+      transition: transform .35s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .tcard--orange:hover { box-shadow: 0 20px 80px rgba(255,103,0,.4), 0 0 200px rgba(255,103,0,.52), 0 0 480px rgba(255,103,0,.25); }
+    .tcard--blue:hover   { box-shadow: 0 20px 80px rgba(0,127,255,.4), 0 0 200px rgba(0,127,255,.52), 0 0 480px rgba(0,127,255,.28); }
+    .tcard__stars { display: flex; gap: 2px; margin-bottom: var(--sp-4); }
+    .tcard__star  { color: var(--orange); font-size: .875rem; }
+    .tcard__quote { font-size: .9375rem; color: var(--dark-800); line-height: 1.78; flex: 1; margin-bottom: var(--sp-6); }
+    .tcard__quote::before { content: '\201C'; }
+    .tcard__quote::after  { content: '\201D'; }
+    .tcard__footer { display: flex; flex-direction: column; gap: var(--sp-2); }
+    .tcard__name { font-size: .875rem; font-weight: 700; color: var(--dark-900); }
     /* Video thumbnails */
     .tblock { display: flex; flex-direction: column; gap: var(--sp-3); }
     .tvideo {
@@ -1338,12 +1298,14 @@
     <div class="hero__parallax-glow" aria-hidden="true"></div>
     <div class="hero__content">
 
-      <p class="hero__eyebrow">POUR LES GRIMPEURS · 6a → 7c</p>
+      <h1 class="hero__for">Pour les grimpeurs</h1>
 
-      <h1 class="hero__claim-h1">
-        On t'aide à comprendre pourquoi tu stagnes,<br>
-        <span class="hero__claim-h1__accent">et à passer ta prochaine cotation.</span>
-      </h1>
+      <p class="hero__levels">Entre le 6a et le 7c</p>
+
+      <p class="hero__claim">
+        On va t'aider à progresser<br>
+        pour que tu atteignes tes objectifs en escalade
+      </p>
 
       <p class="hero__sub">
         Sans sacrifier ton plaisir, sans changer ton emploi du temps et sans risquer de te blesser.
@@ -1352,8 +1314,6 @@
       <div class="hero__cta">
         <a href="#formules" class="btn btn-orange btn-xl btn-pulse">Je suis prêt à progresser →</a>
       </div>
-
-      <p class="hero__trust">70+ grimpeurs accompagnés · Garantie remboursement</p>
 
     </div>
   </section>
@@ -1384,13 +1344,9 @@
 
       <!-- CTAs -->
       <div class="action-ctas reveal d1">
-        <div class="action-ctas-primary">
-          <a href="#formules" class="btn btn-orange btn-xl">Rejoindre Kaskad maintenant →</a>
-        </div>
-        <p class="action-ctas-secondary">
-          Tu préfères en parler avant&nbsp;? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer" class="link-calendly">Réserver un appel découverte</a>
-        </p>
-        <p class="action-ctas__note">Paiement sécurisé Stripe · Garantie remboursement · Appel sans engagement</p>
+        <a href="#formules" class="btn btn-orange btn-xl">Rejoindre directement le coaching</a>
+        <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer" class="btn btn-blue js-calendly">Réserver un appel →</a>
+        <p class="action-ctas__note">Paiement sécurisé Stripe · Appel sans engagement · Garantie remboursement</p>
       </div>
 
       <!-- Vidéo -->
@@ -1479,7 +1435,7 @@
         <div class="pcard pcard--pre reveal js-tilt">
           <div class="pcard__badge pcard__badge--blue">Pour aller plus vite</div>
           <p class="pcard__eyebrow pcard__eyebrow--blue">Coaching Premium</p>
-          <h3 class="pcard__name">Coaching haute intensité pour grimpeurs prêts à pousser leurs limites.</h3>
+          <h3 class="pcard__name">Pour ceux qui veulent le meilleur</h3>
           <p class="pcard__tagline">Une expérience à la «&nbsp;coach en équipe de France&nbsp;»</p>
 
           <div class="pcard__price">499€<span class="pcard__price-unit"> / mois</span></div>
@@ -1516,19 +1472,14 @@
           <h3 class="pcard__name">Le programme complet pour passer ta prochaine cotation.</h3>
           <p class="pcard__tagline">Le système éprouvé pour progresser vite et durablement</p>
 
-          <div class="tier-pricing">
-            <div class="tier-pricing__option">
-              <div class="tier-pricing__amount">129€</div>
-              <div class="tier-pricing__period">/mois</div>
-              <div class="tier-pricing__label">En solo</div>
-            </div>
-            <div class="tier-pricing__separator">ou</div>
-            <div class="tier-pricing__option tier-pricing__option--highlight">
-              <div class="tier-pricing__amount">100€</div>
-              <div class="tier-pricing__period">/mois <span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="Comment fonctionne le tarif duo ?">i</span><span class="tooltip-body">Deux grimpeurs s'inscrivent ensemble. Chacun bénéficie du coaching Standard à 100€/mois au lieu de 129€. Le tarif s'applique à l'inscription simultanée de deux personnes.</span></span></div>
-              <div class="tier-pricing__label">En duo (à 2)</div>
-            </div>
-          </div>
+          <div class="pcard__price">129€<span class="pcard__price-unit"> / mois</span></div>
+          <p class="pcard__duo">
+            Tarif duo&nbsp;: <strong>100€ / mois</strong>
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon" tabindex="0" role="button" aria-label="Comment fonctionne le tarif duo ?">i</span>
+              <span class="tooltip-body">Deux grimpeurs s'inscrivent ensemble. Chacun bénéficie du coaching Standard à 100€/mois au lieu de 129€. Le tarif s'applique à l'inscription simultanée de deux personnes.</span>
+            </span>
+          </p>
 
           <div class="pcard__divider"></div>
 
@@ -1550,27 +1501,18 @@
             <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Séances de coaching en physique</li>
           </ul>
 
-          <div class="pricing-engagement-toggle" role="tablist" aria-label="Durée d'engagement">
-            <button class="pet-btn" data-engagement="3" data-stripe="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f" role="tab" aria-selected="false">3 mois</button>
-            <button class="pet-btn" data-engagement="6" data-stripe="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l" role="tab" aria-selected="false">6 mois</button>
-            <button class="pet-btn pet-btn--active" data-engagement="9" data-stripe="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" role="tab" aria-selected="true">
-              9 mois
-              <span class="pet-btn__badge">Recommandé</span>
-            </button>
-            <button class="pet-btn" data-engagement="12" data-stripe="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" role="tab" aria-selected="false">12 mois</button>
-          </div>
+          <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-xl" style="width:100%;justify-content:center;margin-top:var(--sp-5);">
+            Démarrer en Standard →
+          </a>
 
-          <div class="pricing-cta-wrap">
-            <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-xl pricing-main-cta" data-cta-engagement="9">
-              Démarrer en Standard — <span class="pricing-cta-eng-display">9 mois d'engagement</span>
-            </a>
-            <p class="pricing-cta-note">
-              Garantie remboursement les 3 premiers mois <span class="pricing-cta-asterisk">*</span>
-            </p>
-            <p class="pricing-cta-fineprint">
-              <span class="pricing-cta-asterisk">*</span> La garantie WYMB couvre uniquement les 3 premiers mois si les 4 règles sont respectées. L'engagement total continue après. Si on te rembourse, l'engagement saute aussi.
-            </p>
+          <p class="pcard__engage-label" style="margin-top:var(--sp-4);">Choisir un engagement :</p>
+          <div class="pcard__engagements">
+            <a href="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f" target="_blank" rel="noopener noreferrer" class="btn-engage">3 mois</a>
+            <a href="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l" target="_blank" rel="noopener noreferrer" class="btn-engage">6 mois</a>
+            <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn-engage">9 mois</a>
+            <a href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn-engage">12 mois</a>
           </div>
+          <p class="pcard__cta-sub">Tu préfères qu'on en parle d'abord&nbsp;? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer">Réserver un appel →</a></p>
         </div>
 
       </div>
@@ -1584,7 +1526,7 @@
     <div class="wrap" style="position:relative;z-index:1;">
       <div class="guarantee-inner">
         <span class="sec-eyebrow reveal" style="color:rgba(255,103,0,.85);">Garantie</span>
-        <h2 class="sec-title sec-title--white sec-title--lg reveal d1">La garantie<br>«&nbsp;Récupère ton argent&nbsp;»</h2>
+        <h2 class="sec-title sec-title--white sec-title--lg reveal d1">Notre garantie<br>«&nbsp;Récupère ton argent&nbsp;»</h2>
         <p class="guarantee-lead reveal d2">
           Sur tes <strong style="color:var(--orange-light);">3 premiers mois</strong>, tu respectes 4 règles simples, on te les rembourse entièrement. Pas parce qu'on est fous, parce qu'on veut te motiver.
         </p>
@@ -1606,10 +1548,6 @@
             <span class="grule__n">04</span>
             <p class="grule__t">Participer à un appel de mi-parcours et un de fin-parcours</p>
           </div>
-        </div>
-
-        <div class="guarantee-clarification reveal d2">
-          <p><strong>Et l'engagement&nbsp;?</strong> Si on te rembourse les 3 premiers mois, l'engagement saute aussi. Tu repars sans rien devoir, tu gardes ton diagnostic et ton plan. Si tu prends 9 mois et qu'on rembourse à mois 3, tu n'as pas à payer les 6 mois restants. Pas de petites lignes, pas de retenue.</p>
         </div>
 
         <div class="guarantee-footer reveal d3">
@@ -1644,138 +1582,129 @@
         <span class="sec-eyebrow reveal">On t'entend</span>
         <h2 class="sec-title reveal d1">Ce que tu te dis sûrement</h2>
       </div>
-      <div class="objections-grid">
+      <div class="faq-list reveal">
 
-        <article class="objection-card reveal">
-          <div class="objection-card__quote">
-            <span class="objection-card__quote-mark" aria-hidden="true">"</span>
-            <h3 class="objection-card__objection">J'ai pas la discipline et la motivation pour suivre un plan.</h3>
+        <div class="fitem">
+          <button class="fitem__q" id="oq1" aria-expanded="false" aria-controls="oa1">
+            "J'ai pas la discipline et la motivation pour suivre un plan."
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="oa1" role="region" aria-labelledby="oq1">
+            <div class="fitem__a-inner">C'est exactement pour ça que la garantie "Récupère ton argent", la communauté et le suivi avec ton coach existent. Notre écosystème remplace ta discipline et ta motivation afin que tu restes engagé vers ton objectif. Ton programme est conçu pour se superposer à ton rythme actuel, l'appliquer ne te demande presque aucun effort supplémentaire.</div>
           </div>
-          <div class="objection-card__answer">
-            <p>C'est exactement pour ça que la garantie "Récupère ton argent", la communauté et le suivi avec ton coach existent. Notre écosystème remplace ta discipline et ta motivation afin que tu restes engagé vers ton objectif. Ton programme est conçu pour se superposer à ton rythme actuel — l'appliquer ne te demande presque aucun effort supplémentaire.</p>
-          </div>
-        </article>
+        </div>
 
-        <article class="objection-card reveal">
-          <div class="objection-card__quote">
-            <span class="objection-card__quote-mark" aria-hidden="true">"</span>
-            <h3 class="objection-card__objection">129€ par mois c'est beaucoup.</h3>
+        <div class="fitem">
+          <button class="fitem__q" id="oq2" aria-expanded="false" aria-controls="oa2">
+            "129€ par mois c'est beaucoup."
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="oa2" role="region" aria-labelledby="oq2">
+            <div class="fitem__a-inner">Comparé à quoi ? Le prix d'une heure de coach en salle (60-80€), les mois que tu vas continuer à perdre à stagner, ou le coût d'une blessure qui t'arrête 3 mois ? Kaskad vaut le coup, et si tu en doutes, la garantie "Récupère ton argent" est là pour te le prouver. 3 mois qui peuvent te revenir gratuits. On est les seuls à le faire en France, en plus d'être les moins chers grâce à notre organisation.</div>
           </div>
-          <div class="objection-card__answer">
-            <p>Comparé à quoi ? Le prix d'une heure de coach en salle (60–80€), les mois que tu vas continuer à perdre à stagner, ou le coût d'une blessure qui t'arrête 3 mois ? Kaskad vaut le coup, et si tu en doutes, la garantie "Récupère ton argent" est là pour te le prouver. 3 mois qui peuvent te revenir gratuits. On est les seuls à le faire en France, en plus d'être les moins chers grâce à notre organisation.</p>
-          </div>
-        </article>
+        </div>
 
-        <article class="objection-card reveal">
-          <div class="objection-card__quote">
-            <span class="objection-card__quote-mark" aria-hidden="true">"</span>
-            <h3 class="objection-card__objection">J'ai déjà essayé d'autres programmes ou coachs et ça n'a pas marché.</h3>
+        <div class="fitem">
+          <button class="fitem__q" id="oq3" aria-expanded="false" aria-controls="oa3">
+            "J'ai déjà essayé d'autres programmes ou coachs et ça n'a pas marché."
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="oa3" role="region" aria-labelledby="oq3">
+            <div class="fitem__a-inner">C'est précisément pour ça qu'on commence par un diagnostic. La plupart des programmes te donnent un plan générique avant même de savoir d'où tu viens. Chez Kaskad, le diagramme radar 21 axes identifie d'abord ce qui te bloque vraiment, ensuite seulement on construit. Si on n'identifie pas un blocage clair lors du diagnostic, on te le dit et on ne te prend pas comme client.</div>
           </div>
-          <div class="objection-card__answer">
-            <p>C'est précisément pour ça qu'on commence par un diagnostic. La plupart des programmes te donnent un plan générique avant même de savoir d'où tu viens. Chez Kaskad, le diagramme radar 21 axes identifie d'abord ce qui te bloque vraiment — ensuite seulement on construit. Si on n'identifie pas un blocage clair lors du diagnostic, on te le dit et on ne te prend pas comme client.</p>
-          </div>
-        </article>
+        </div>
 
-        <article class="objection-card reveal">
-          <div class="objection-card__quote">
-            <span class="objection-card__quote-mark" aria-hidden="true">"</span>
-            <h3 class="objection-card__objection">Je grimpe seulement 2 fois par semaine. Ça vaut le coup&nbsp;?</h3>
+        <div class="fitem">
+          <button class="fitem__q" id="oq4" aria-expanded="false" aria-controls="oa4">
+            "Je grimpe seulement 2 fois par semaine. Ça vaut le coup ?"
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="oa4" role="region" aria-labelledby="oq4">
+            <div class="fitem__a-inner">Oui, et c'est même souvent là que les gains sont les plus rapides. La plupart des grimpeurs qui stagnent ne stagnent pas par manque de temps, mais par mauvaise structure du peu de temps qu'ils ont. Notre plan est calibré sur ta vraie disponibilité (2, 3, 4 séances/semaine), pas sur un volume théorique. 2 séances bien structurées battent 4 séances au feeling.</div>
           </div>
-          <div class="objection-card__answer">
-            <p>Oui — et c'est même souvent là que les gains sont les plus rapides. La plupart des grimpeurs qui stagnent ne stagnent pas par manque de temps, mais par mauvaise structure du peu de temps qu'ils ont. Notre plan est calibré sur ta vraie disponibilité (2, 3, 4 séances/semaine), pas sur un volume théorique. 2 séances bien structurées battent 4 séances au feeling.</p>
-          </div>
-        </article>
+        </div>
 
-        <article class="objection-card reveal">
-          <div class="objection-card__quote">
-            <span class="objection-card__quote-mark" aria-hidden="true">"</span>
-            <h3 class="objection-card__objection">Je suis pas sûr que ça marche pour mon profil.</h3>
+        <div class="fitem">
+          <button class="fitem__q" id="oq5" aria-expanded="false" aria-controls="oa5">
+            "Je suis pas sûr que ça marche pour mon profil."
+            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
+          </button>
+          <div class="fitem__a" id="oa5" role="region" aria-labelledby="oq5">
+            <div class="fitem__a-inner">On a accompagné tous les profils qui existent, des niveaux 6a au 7c, en bloc et en voie, en salle et en falaise, en retour de blessure et en pleine forme. Et ton diagnostic est la première chose qu'on fait. Si Kaskad ne te convient pas, on te le dit en appel directement, avant qu'on démarre.</div>
           </div>
-          <div class="objection-card__answer">
-            <p>On a accompagné tous les profils qui existent, des niveaux 6a au 7c, en bloc et en voie, en salle et en falaise, en retour de blessure et en pleine forme. Et ton diagnostic est la première chose qu'on fait. Si Kaskad ne te convient pas, on te le dit en appel directement, avant qu'on démarre.</p>
-          </div>
-        </article>
+        </div>
 
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════  TÉMOIGNAGES -->
-  <section class="s-temoignages" id="temoignages" data-nav="dark">
+  <section class="s-temoignages" id="temoignages" data-nav="light">
     <div class="wrap">
       <div style="text-align:center;margin-bottom:var(--sp-10);">
-        <span class="sec-eyebrow reveal" style="color:rgba(255,103,0,.85);">Témoignages</span>
-        <h2 class="sec-title sec-title--white reveal d1">Ce que disent nos membres</h2>
+        <span class="sec-eyebrow reveal">Témoignages</span>
+        <h2 class="sec-title reveal d1">Ce que disent nos membres</h2>
       </div>
       <div class="testimonials-grid">
 
         <!-- Thomas -->
-        <article class="testimonial-card reveal d1 js-tilt">
-          <div class="testimonial-card__header">
-            <div class="testimonial-card__avatar" style="--avatar-color: var(--orange);">TH</div>
-            <div class="testimonial-card__meta">
-              <p class="testimonial-card__name">Thomas, 34 ans</p>
-              <p class="testimonial-card__archetype">Niveau confirmé</p>
+        <div class="tblock reveal d1">
+          <div class="tcard tcard--orange js-tilt">
+            <div class="tcard__stars"><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span></div>
+            <p class="tcard__quote">J'étais convaincu que mon problème c'était la force. En 6 semaines j'ai compris que c'était ma structure de séances. Premier 7a deux mois après.</p>
+            <div class="tcard__footer">
+              <span class="tcard__name">Thomas, 34 ans</span>
             </div>
           </div>
-          <div class="testimonial-card__progress">
-            <span class="testimonial-card__before">–</span>
-            <span class="testimonial-card__arrow" aria-hidden="true">→</span>
-            <span class="testimonial-card__after">7a</span>
-            <span class="testimonial-card__time">en 2 mois</span>
-          </div>
-          <blockquote class="testimonial-card__quote">
-            J'étais convaincu que mon problème c'était la force. En 6 semaines j'ai compris que c'était ma structure de séances. Premier 7a deux mois après.
-          </blockquote>
-          <div class="testimonial-card__stars" aria-label="5 étoiles sur 5">★★★★★</div>
-        </article>
+          <a class="tvideo tvideo--empty js-tvideo" data-video-index="0" aria-label="Voir le témoignage vidéo de Thomas" target="_blank" rel="noopener noreferrer">
+            <svg class="tvideo__play" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="24" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+              <path d="M22 18l13 8-13 8V18z" fill="rgba(255,255,255,.5)"/>
+            </svg>
+            <span style="font-size:.75rem;color:rgba(255,255,255,.25);">Vidéo témoignage</span>
+          </a>
+        </div>
 
         <!-- Marie -->
-        <article class="testimonial-card reveal d2 js-tilt">
-          <div class="testimonial-card__header">
-            <div class="testimonial-card__avatar" style="--avatar-color: var(--blue);">MA</div>
-            <div class="testimonial-card__meta">
-              <p class="testimonial-card__name">Marie, 29 ans</p>
-              <p class="testimonial-card__archetype">Niveau confirmé</p>
+        <div class="tblock reveal d2">
+          <div class="tcard tcard--blue js-tilt">
+            <div class="tcard__stars"><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span></div>
+            <p class="tcard__quote">Je me blessais tous les 2 mois depuis 3 ans. Pour la première fois depuis que je grimpe, j'ai fait 5 mois sans douleur et j'ai progressé en même temps.</p>
+            <div class="tcard__footer">
+              <span class="tcard__name">Marie, 29 ans</span>
             </div>
           </div>
-          <div class="testimonial-card__progress">
-            <span class="testimonial-card__before">–</span>
-            <span class="testimonial-card__arrow" aria-hidden="true">→</span>
-            <span class="testimonial-card__after">5 mois sans blessure</span>
-            <span class="testimonial-card__time"></span>
-          </div>
-          <blockquote class="testimonial-card__quote">
-            Je me blessais tous les 2 mois depuis 3 ans. Pour la première fois depuis que je grimpe, j'ai fait 5 mois sans douleur et j'ai progressé en même temps.
-          </blockquote>
-          <div class="testimonial-card__stars" aria-label="5 étoiles sur 5">★★★★★</div>
-        </article>
+          <a class="tvideo tvideo--empty js-tvideo" data-video-index="1" aria-label="Voir le témoignage vidéo de Marie" target="_blank" rel="noopener noreferrer">
+            <svg class="tvideo__play" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="24" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+              <path d="M22 18l13 8-13 8V18z" fill="rgba(255,255,255,.5)"/>
+            </svg>
+            <span style="font-size:.75rem;color:rgba(255,255,255,.25);">Vidéo témoignage</span>
+          </a>
+        </div>
 
         <!-- Lucas -->
-        <article class="testimonial-card reveal d3 js-tilt">
-          <div class="testimonial-card__header">
-            <div class="testimonial-card__avatar" style="--avatar-color: #374151;">LU</div>
-            <div class="testimonial-card__meta">
-              <p class="testimonial-card__name">Lucas, 31 ans</p>
-              <p class="testimonial-card__archetype">Niveau confirmé</p>
+        <div class="tblock reveal d3">
+          <div class="tcard tcard--orange js-tilt">
+            <div class="tcard__stars"><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span><span class="tcard__star">★</span></div>
+            <p class="tcard__quote">J'avais peur en tête depuis mes débuts. Le programme m'a forcé à travailler ça sérieusement. En 3 mois, je grimpais des voies que j'osais pas toucher avant.</p>
+            <div class="tcard__footer">
+              <span class="tcard__name">Lucas, 31 ans</span>
             </div>
           </div>
-          <div class="testimonial-card__progress">
-            <span class="testimonial-card__before">–</span>
-            <span class="testimonial-card__arrow" aria-hidden="true">→</span>
-            <span class="testimonial-card__after">Peur en tête éliminée</span>
-            <span class="testimonial-card__time">en 3 mois</span>
-          </div>
-          <blockquote class="testimonial-card__quote">
-            J'avais peur en tête depuis mes débuts. Le programme m'a forcé à travailler ça sérieusement. En 3 mois, je grimpais des voies que j'osais pas toucher avant.
-          </blockquote>
-          <div class="testimonial-card__stars" aria-label="5 étoiles sur 5">★★★★★</div>
-        </article>
+          <a class="tvideo tvideo--empty js-tvideo" data-video-index="2" aria-label="Voir le témoignage vidéo de Lucas" target="_blank" rel="noopener noreferrer">
+            <svg class="tvideo__play" viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="24" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+              <path d="M22 18l13 8-13 8V18z" fill="rgba(255,255,255,.5)"/>
+            </svg>
+            <span style="font-size:.75rem;color:rgba(255,255,255,.25);">Vidéo témoignage</span>
+          </a>
+        </div>
 
       </div>
       <p class="testimonials-disclaimer reveal">Tous nos témoignages sont vérifiables. Demande à voir le programme complet d'un membre lors de ton appel découverte.</p>
       <div style="text-align:center;margin-top:var(--sp-6);" class="reveal">
-        <a href="https://www.instagram.com/kaskad.coaching/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-white">Tous nos témoignages →</a>
+        <a href="https://www.instagram.com/kaskad.coaching/" target="_blank" rel="noopener noreferrer" class="btn btn-orange">Tous nos témoignages →</a>
       </div>
     </div>
   </section>
@@ -1923,7 +1852,7 @@
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
           <div class="fitem__a" id="fa9" role="region" aria-labelledby="fq9">
-            <div class="fitem__a-inner">Tu échanges avec ton coach (Florentin, Nicolas ou Brayan) dans une conversation privée dédiée. Il répond chaque jour ouvrable, analyse tes vidéos de grimpe et fait un point hebdomadaire avec toi pour ajuster la trajectoire. Si tu pars en vacances, si tu te blesses ou si ton emploi du temps change, le plan s'adapte en temps réel. Tu n'es jamais seul avec une feuille de programme à interpréter.</div>
+            <div class="fitem__a-inner">Tu échanges avec moi et ton coach (Nicolas ou Florentin) dans une conversation privée dédiée. On répond chacun en 24h en moyenne que ça soit pour analyser tes vidéos de grimpe ou faire un point hebdomadaire avec toi pour ajuster la trajectoire. Si tu pars en vacances, si tu te blesses ou si ton emploi du temps change, le plan s'adapte en temps réel. Tu n'es jamais seul.</div>
           </div>
         </div>
 
