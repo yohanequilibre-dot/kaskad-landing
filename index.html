@@ -241,8 +241,8 @@
     }
     .btn:hover  { transform: translateY(-2px); }
     .btn:active { transform: translateY(1px) scale(0.98); }
-    .btn-xl { font-size: 1.25rem;    font-weight: 700; padding: 1.4375rem 3.25rem; }
-    .btn-lg { font-size: 0.9375rem;  font-weight: 700; padding: 1.0625rem 2.4375rem; }
+    .btn-xl { font-size: 1.25rem; font-weight: 700; padding: 1.4375rem 3.25rem; }
+    .btn-lg { font-size: 1.25rem; font-weight: 700; padding: 1.0625rem 2.5rem; }
 
     .btn-orange { background: var(--orange); color: var(--white); box-shadow: 0 4px 24px rgba(255,103,0,.38); }
     .btn-orange:hover { background: var(--orange-dark); box-shadow: 0 8px 36px rgba(255,103,0,.5); }
@@ -260,7 +260,7 @@
     @media (max-width: 768px) {
       .btn { min-height: 44px; }
       .btn-xl { padding: 1rem 1.5rem; font-size: 1rem; }
-      .btn-lg { padding: 0.875rem 1.25rem; font-size: 0.9375rem; }
+      .btn-lg { padding: 0.875rem 1.25rem; font-size: 1rem; }
     }
 
     /* ─────────────────────────────────────────
@@ -749,6 +749,12 @@
     .pcard__divider { height: 1px; background: var(--gray-300); margin: var(--sp-5) 0; }
 
     .pcard__features { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-8); }
+    .pcard__footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 13.5rem;
+    }
     .feat { display: flex; align-items: flex-start; gap: var(--sp-3); font-size: .875rem; line-height: 1.55; }
     .feat__icon { flex-shrink: 0; margin-top: 1px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .feat__icon svg { width: 10px; height: 10px; }
@@ -1507,8 +1513,10 @@
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Séances de coaching en physique&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="En savoir plus">i</span><span class="tooltip-body">Nombre variable selon proximité géographique, plus d'informations lors de l'appel.</span></span></li>
           </ul>
 
-          <a href="#" class="btn btn-blue btn-lg js-calendly" style="width:100%;">Réserver un appel Premium</a>
-          <p class="pcard__cta-sub">Accès sur qualification · Entretien de 30 min</p>
+          <div class="pcard__footer">
+            <a href="#" class="btn btn-blue btn-lg js-calendly" style="width:100%;">Réserver un appel Premium</a>
+            <p class="pcard__cta-sub">Accès sur qualification · Entretien de 30 min</p>
+          </div>
         </div>
 
         <!-- STANDARD — droite -->
@@ -1516,7 +1524,7 @@
           <div class="pcard__badge">Le plus choisi</div>
           <p class="pcard__eyebrow">Coaching Standard</p>
           <h3 class="pcard__name">Pour ceux qui veulent l'excellence</h3>
-          <p class="pcard__tagline">Le système éprouvé pour progresser vite et durablement</p>
+          <p class="pcard__tagline">Le système éprouvé pour progresser vite et sans se blesser</p>
 
           <div class="pcard__price">129€<span class="pcard__price-unit"> / mois</span></div>
           <p class="pcard__duo">
@@ -1547,21 +1555,23 @@
             <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Séances de coaching en physique</li>
           </ul>
 
-          <a id="js-standard-cta" href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-lg" style="width:100%;justify-content:center;margin-top:var(--sp-5);">
-            <span class="js-standard-cta-text">Démarrer en Standard 12 mois</span>
-          </a>
+          <div class="pcard__footer">
+            <a id="js-standard-cta" href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-lg" style="width:100%;justify-content:center;">
+              <span class="js-standard-cta-text">Démarrer en Standard 12 mois</span>
+            </a>
 
-          <p class="pcard__engage-label" style="margin-top:var(--sp-4);">Choisir un engagement :</p>
-          <div class="pcard__engagements">
-            <button type="button" class="btn-engage js-engage" data-months="3" data-url="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f">3 mois</button>
-            <button type="button" class="btn-engage js-engage" data-months="6" data-url="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l">6 mois</button>
-            <button type="button" class="btn-engage js-engage" data-months="9" data-url="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m">9 mois</button>
-            <button type="button" class="btn-engage js-engage is-active" data-months="12" data-url="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n">
-              12 mois
-              <span class="btn-engage__rec">Recommandé</span>
-            </button>
+            <p class="pcard__engage-label" style="margin-top:var(--sp-4);">Choisir un engagement :</p>
+            <div class="pcard__engagements">
+              <button type="button" class="btn-engage js-engage" data-months="3" data-url="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f">3 mois</button>
+              <button type="button" class="btn-engage js-engage" data-months="6" data-url="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l">6 mois</button>
+              <button type="button" class="btn-engage js-engage" data-months="9" data-url="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m">9 mois</button>
+              <button type="button" class="btn-engage js-engage is-active" data-months="12" data-url="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n">
+                12 mois
+                <span class="btn-engage__rec">Recommandé</span>
+              </button>
+            </div>
+            <p class="pcard__cta-sub">Tu préfères qu'on en parle d'abord&nbsp;? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer">Réserver un appel →</a></p>
           </div>
-          <p class="pcard__cta-sub">Tu préfères qu'on en parle d'abord&nbsp;? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer">Réserver un appel →</a></p>
         </div>
 
       </div>
