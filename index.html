@@ -242,6 +242,7 @@
     .btn:hover  { transform: translateY(-2px); }
     .btn:active { transform: translateY(1px) scale(0.98); }
     .btn-xl { font-size: 1.125rem; font-weight: 700; padding: 1.3125rem 3rem; }
+    .btn-lg { font-size: 1rem;     font-weight: 700; padding: 1.0625rem 2.375rem; }
 
     .btn-orange { background: var(--orange); color: var(--white); box-shadow: 0 4px 24px rgba(255,103,0,.38); }
     .btn-orange:hover { background: var(--orange-dark); box-shadow: 0 8px 36px rgba(255,103,0,.5); }
@@ -259,6 +260,7 @@
     @media (max-width: 768px) {
       .btn { min-height: 44px; }
       .btn-xl { padding: 1rem 1.5rem; font-size: 1rem; }
+      .btn-lg { padding: 0.875rem 1.25rem; font-size: 0.9375rem; }
     }
 
     /* ─────────────────────────────────────────
@@ -457,19 +459,19 @@
     /* Hero — Pour les grimpeurs */
     .hero__for {
       font-weight: 800;
-      font-size: clamp(3.125rem, 8.5vw, 6.75rem);
+      font-size: clamp(3.5rem, 9.5vw, 7.75rem);
       line-height: 1;
       color: var(--white);
       letter-spacing: -0.04em;
-      margin-bottom: var(--sp-4);
+      margin-bottom: var(--sp-3);
       animation: hero-in .75s var(--ease-out-expo) .05s both;
     }
     .hero__levels {
-      font-size: clamp(0.9375rem, 2.1vw, 1.1875rem);
+      font-size: clamp(1.0625rem, 2.4vw, 1.375rem);
       font-weight: 600;
       color: var(--blue);
       letter-spacing: 0.06em;
-      margin-bottom: var(--sp-8);
+      margin-bottom: var(--sp-4);
       animation: levels-in .7s var(--ease-out-expo) .2s both;
     }
     .hero__claim {
@@ -635,14 +637,29 @@
     .pcard__duo strong { color: var(--dark-900); font-weight: 700; }
     .pcard__engagements { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); margin-top: var(--sp-3); margin-bottom: var(--sp-3); }
     .btn-engage {
+      position: relative;
       display: flex; align-items: center; justify-content: center;
       padding: 0.625rem 0.5rem; border-radius: var(--radius-md);
       font-size: .8125rem; font-weight: 700;
-      color: var(--white); background: var(--orange);
-      transition: background .2s var(--ease-out-quart), transform .15s var(--ease-out-quart), box-shadow .2s;
-      text-decoration: none; white-space: nowrap;
+      color: var(--orange); background: transparent;
+      border: 1.5px solid rgba(255,103,0,.35);
+      transition: background .2s var(--ease-out-quart), color .2s, border-color .2s, transform .15s var(--ease-out-quart), box-shadow .2s;
+      text-decoration: none; white-space: nowrap; cursor: pointer; font-family: inherit;
     }
-    .btn-engage:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(255,103,0,.4); }
+    .btn-engage:hover { background: rgba(255,103,0,.08); border-color: var(--orange); transform: translateY(-1px); }
+    .btn-engage.is-active {
+      color: var(--white); background: var(--orange); border-color: var(--orange);
+      box-shadow: 0 4px 16px rgba(255,103,0,.35);
+    }
+    .btn-engage__rec {
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      background: var(--blue); color: var(--white);
+      font-size: 0.5625rem; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: var(--radius-full);
+      box-shadow: 0 2px 8px rgba(0,127,255,.4);
+      white-space: nowrap; pointer-events: none;
+    }
     .tier-pricing {
       display: flex;
       align-items: center;
@@ -956,7 +973,11 @@
     /* ─────────────────────────────────────────
        TESTIMONIALS
     ───────────────────────────────────────── */
-    .s-temoignages { background: var(--cream); padding: var(--sp-12) 0; }
+    .s-temoignages {
+      background: var(--white);
+      padding: var(--sp-12) 0;
+      box-shadow: inset 0 1px 0 rgba(0,0,0,.06);
+    }
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
     .testimonial-card {
       background: rgba(255,255,255,0.04);
@@ -1045,18 +1066,23 @@
     }
     /* Testimonial cards — old format */
     .tcard {
-      background: var(--white);
+      background: var(--cream);
       border-radius: var(--radius-md);
       padding: var(--sp-8) var(--sp-6);
       display: flex; flex-direction: column;
-      transition: transform .35s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+      transition: transform .35s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart), border-color .35s;
       transform-style: preserve-3d;
       will-change: transform;
+      border-top: 4px solid transparent;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
     }
+    .tcard--orange { border-top-color: var(--orange); }
+    .tcard--blue   { border-top-color: var(--blue); }
     .tcard--orange:hover { box-shadow: 0 20px 80px rgba(255,103,0,.4), 0 0 200px rgba(255,103,0,.52), 0 0 480px rgba(255,103,0,.25); }
     .tcard--blue:hover   { box-shadow: 0 20px 80px rgba(0,127,255,.4), 0 0 200px rgba(0,127,255,.52), 0 0 480px rgba(0,127,255,.28); }
     .tcard__stars { display: flex; gap: 2px; margin-bottom: var(--sp-4); }
     .tcard__star  { color: var(--orange); font-size: .875rem; }
+    .tcard--blue .tcard__star { color: var(--blue); }
     .tcard__quote { font-size: .9375rem; color: var(--dark-800); line-height: 1.78; flex: 1; margin-bottom: var(--sp-6); }
     .tcard__quote::before { content: '\201C'; }
     .tcard__quote::after  { content: '\201D'; }
@@ -1352,7 +1378,7 @@
       <!-- CTAs -->
       <div class="action-ctas reveal d1">
         <a href="#formules" class="btn btn-orange btn-xl">Rejoindre directement le coaching</a>
-        <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer" class="btn btn-blue js-calendly">Réserver un appel →</a>
+        <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer" class="btn btn-blue btn-lg js-calendly">Réserver un appel →</a>
         <p class="action-ctas__note">Paiement sécurisé Stripe · Appel sans engagement · Garantie remboursement</p>
       </div>
 
@@ -1476,7 +1502,7 @@
         <div class="pcard pcard--std reveal d1 js-tilt">
           <div class="pcard__badge">Le plus choisi</div>
           <p class="pcard__eyebrow">Coaching Standard</p>
-          <h3 class="pcard__name">Le programme complet pour passer ta prochaine cotation.</h3>
+          <h3 class="pcard__name">Pour ceux qui veulent l'excellence</h3>
           <p class="pcard__tagline">Le système éprouvé pour progresser vite et durablement</p>
 
           <div class="pcard__price">129€<span class="pcard__price-unit"> / mois</span></div>
@@ -1508,16 +1534,19 @@
             <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Séances de coaching en physique</li>
           </ul>
 
-          <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-xl" style="width:100%;justify-content:center;margin-top:var(--sp-5);">
-            Démarrer en Standard →
+          <a id="js-standard-cta" href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-xl" style="width:100%;justify-content:center;margin-top:var(--sp-5);">
+            <span class="js-standard-cta-text">Démarrer en Standard 12 mois</span>&nbsp;→
           </a>
 
           <p class="pcard__engage-label" style="margin-top:var(--sp-4);">Choisir un engagement :</p>
           <div class="pcard__engagements">
-            <a href="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f" target="_blank" rel="noopener noreferrer" class="btn-engage">3 mois</a>
-            <a href="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l" target="_blank" rel="noopener noreferrer" class="btn-engage">6 mois</a>
-            <a href="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m" target="_blank" rel="noopener noreferrer" class="btn-engage">9 mois</a>
-            <a href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn-engage">12 mois</a>
+            <button type="button" class="btn-engage js-engage" data-months="3" data-url="https://buy.stripe.com/4gMdR80Ya2WybvZ99jfAc0f">3 mois</button>
+            <button type="button" class="btn-engage js-engage" data-months="6" data-url="https://buy.stripe.com/00wfZg4am68KgQjgBLfAc0l">6 mois</button>
+            <button type="button" class="btn-engage js-engage" data-months="9" data-url="https://buy.stripe.com/aFa5kC0Ya40CarVbhrfAc0m">9 mois</button>
+            <button type="button" class="btn-engage js-engage is-active" data-months="12" data-url="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n">
+              12 mois
+              <span class="btn-engage__rec">Recommandé</span>
+            </button>
           </div>
           <p class="pcard__cta-sub">Tu préfères qu'on en parle d'abord&nbsp;? <a href="https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe" target="_blank" rel="noopener noreferrer">Réserver un appel →</a></p>
         </div>
@@ -1908,6 +1937,24 @@
     document.querySelectorAll('.js-stripe').forEach(el => {
       if (KASKAD.STRIPE_STANDARD_URL) { el.href = KASKAD.STRIPE_STANDARD_URL; el.target = '_blank'; el.rel = 'noopener noreferrer'; }
     });
+
+    /* ── Standard engagement selector ──────── */
+    (function() {
+      const cta     = document.getElementById('js-standard-cta');
+      const ctaText = cta?.querySelector('.js-standard-cta-text');
+      const btns    = document.querySelectorAll('.js-engage');
+      if (!cta || !ctaText || !btns.length) return;
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          const months = btn.dataset.months;
+          const url    = btn.dataset.url;
+          if (months) ctaText.textContent = `Démarrer en Standard ${months} mois`;
+          if (url)    cta.href = url;
+        });
+      });
+    })();
 
     if (KASKAD.VIDEO_URL) {
       const ph = document.getElementById('js-video-placeholder');
