@@ -143,13 +143,14 @@
       from { opacity: 0; transform: scale(.5); }
       to   { opacity: 1; transform: none; }
     }
+    /* Orbs burst from centre then hand off to orbit */
     @keyframes orb-arrive-l {
-      from { opacity: 0; transform: scale(1.85) translate(-12px, 26px); filter: blur(110px); }
-      to   { opacity: 1; transform: none; filter: blur(70px); }
+      from { opacity: 0; transform: translate(0, 0) scale(0.08); filter: blur(50px); }
+      to   { opacity: 1; transform: translate(-40vw, 0) scale(1); filter: blur(0px); }
     }
     @keyframes orb-arrive-r {
-      from { opacity: 0; transform: scale(1.95) translate(18px, -20px); filter: blur(110px); }
-      to   { opacity: 1; transform: none; filter: blur(70px); }
+      from { opacity: 0; transform: translate(0, 0) scale(0.08); filter: blur(50px); }
+      to   { opacity: 1; transform: translate(36vw, 0) scale(1); filter: blur(0px); }
     }
     /* ── Section ambient drift ── */
     @keyframes sect-orb-a {
@@ -410,14 +411,20 @@
       background: radial-gradient(circle, rgba(255,103,0,.36) 0%, transparent 62%);
       top: calc(50vh - 360px);
       left: calc(50vw - 360px);
-      animation: orb-orbit-l 24s linear infinite;
+      /* arrive (1.8s) → orbit starts exactly where arrive ends */
+      animation:
+        orb-arrive-l 1.8s var(--ease-out-expo) both,
+        orb-orbit-l  24s linear 1.8s infinite;
     }
     .hero__orb--r {
       width: 660px; height: 660px;
       background: radial-gradient(circle, rgba(0,127,255,.30) 0%, transparent 62%);
       top: calc(50vh - 330px);
       left: calc(50vw - 330px);
-      animation: orb-orbit-r 30s linear infinite;
+      /* slight delay so blue trails the orange by ~0.3s */
+      animation:
+        orb-arrive-r 1.8s var(--ease-out-expo) 0.3s both,
+        orb-orbit-r  30s linear 2.1s infinite;
     }
 
     /* Scroll progress bar */
