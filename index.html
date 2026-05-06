@@ -546,9 +546,14 @@
     }
     .final-secondary {
       text-align: center;
-      font-size: 1rem;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: var(--sp-4);
+      font-size: 1.1875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: var(--sp-6);
+    }
+    .s-final .final-secondary .link-calendly {
+      font-size: 1.1875rem;
+      font-weight: 700;
     }
     .link-calendly {
       color: rgba(255,255,255,0.9);
@@ -605,13 +610,13 @@
       transition: box-shadow .35s var(--ease-out-quart);
       transform-style: preserve-3d;
       will-change: transform;
+      display: flex;
+      flex-direction: column;
     }
     .pcard--pre { border-color: var(--blue);   box-shadow: 0 8px 48px rgba(0,127,255,.10); }
     .pcard--std {
       border-color: var(--orange);
       box-shadow: 0 20px 64px rgba(255,103,0,.22), 0 0 0 3px rgba(255,103,0,.14);
-      margin-top: -12px;
-      margin-bottom: 12px;
     }
 
     .pcard__badge {
@@ -631,9 +636,9 @@
     .pcard__price-from { font-size: .75rem; color: var(--gray-400); margin-bottom: 2px; }
     .pcard__price { font-size: 3.5rem; font-weight: 800; color: var(--dark-900); line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
     .pcard__price-unit { font-size: 1rem; font-weight: 500; color: var(--dark-700); letter-spacing: 0; }
-    .pcard__price-options { font-size: .8125rem; color: var(--gray-400); margin-top: var(--sp-2); line-height: 1.9; }
+    .pcard__price-options { font-size: .8125rem; color: var(--gray-400); margin-top: var(--sp-2); line-height: 1.65; min-height: 1.7rem; }
 
-    .pcard__duo { font-size: .8125rem; color: var(--dark-700); margin-top: var(--sp-2); display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+    .pcard__duo { font-size: .8125rem; color: var(--dark-700); margin-top: var(--sp-2); line-height: 1.65; min-height: 1.7rem; display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
     .pcard__duo strong { color: var(--dark-900); font-weight: 700; }
     .pcard__engagements { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); margin-top: var(--sp-3); margin-bottom: var(--sp-3); }
     .btn-engage {
@@ -743,7 +748,7 @@
 
     .pcard__divider { height: 1px; background: var(--gray-300); margin: var(--sp-5) 0; }
 
-    .pcard__features { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-8); }
+    .pcard__features { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-8); flex: 1; }
     .feat { display: flex; align-items: flex-start; gap: var(--sp-3); font-size: .875rem; line-height: 1.55; }
     .feat__icon { flex-shrink: 0; margin-top: 1px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .feat__icon svg { width: 10px; height: 10px; }
@@ -1484,7 +1489,7 @@
 
           <div class="pcard__divider"></div>
 
-          <ul class="pcard__features">
+          <ul class="pcard__features tier-list">
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Diagnostic précis</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Diagramme radar 21 axes personnalisé</li>
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Plan d'entraînement 100% sur mesure</li>
@@ -1502,7 +1507,7 @@
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Séances de coaching en physique&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="En savoir plus">i</span><span class="tooltip-body">Nombre variable selon proximité géographique, plus d'informations lors de l'appel.</span></span></li>
           </ul>
 
-          <a href="#" class="btn btn-blue btn-xl js-calendly" style="width:100%;">Réserver un appel Premium</a>
+          <a href="#" class="btn btn-blue btn-lg js-calendly" style="width:100%;">Réserver un appel Premium</a>
           <p class="pcard__cta-sub">Accès sur qualification · Entretien de 30 min</p>
         </div>
 
@@ -1542,7 +1547,7 @@
             <li class="feat feat--no li-excluded"><span class="feat__icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#9CA3AF" stroke-width="2"/></svg></span>Séances de coaching en physique</li>
           </ul>
 
-          <a id="js-standard-cta" href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-xl" style="width:100%;justify-content:center;margin-top:var(--sp-5);">
+          <a id="js-standard-cta" href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-lg" style="width:100%;justify-content:center;margin-top:var(--sp-5);">
             <span class="js-standard-cta-text">Démarrer en Standard 12 mois</span>
           </a>
 
@@ -1908,7 +1913,7 @@
   <section class="s-final" id="demarrer" data-nav="dark">
     <div class="wrap s-final__inner">
       <h2 class="sec-title reveal" style="color:var(--white);margin-bottom:var(--sp-4);">Tu as lu jusqu'ici.</h2>
-      <p class="s-final__sub reveal d1">Tu sais que tu as besoin de ça pour progresser.</p>
+      <p class="s-final__sub reveal d1">Tu sais que c'est ce qu'il te faut pour progresser.</p>
       <div class="s-final__btns reveal d2">
         <a href="#formules" class="btn btn-xl btn-white-on-orange">Démarrer en Standard maintenant</a>
       </div>
