@@ -241,8 +241,8 @@
     }
     .btn:hover  { transform: translateY(-2px); }
     .btn:active { transform: translateY(1px) scale(0.98); }
-    .btn-xl { font-size: 1.125rem; font-weight: 700; padding: 1.3125rem 3rem; }
-    .btn-lg { font-size: 1rem;     font-weight: 700; padding: 1.0625rem 2.375rem; }
+    .btn-xl { font-size: 1.25rem;   font-weight: 700; padding: 1.4375rem 3.25rem; }
+    .btn-lg { font-size: 1.0625rem; font-weight: 700; padding: 1.1875rem 2.625rem; }
 
     .btn-orange { background: var(--orange); color: var(--white); box-shadow: 0 4px 24px rgba(255,103,0,.38); }
     .btn-orange:hover { background: var(--orange-dark); box-shadow: 0 8px 36px rgba(255,103,0,.5); }
@@ -963,12 +963,17 @@
     /* Accordion light overrides (réutilise .fitem du FAQ) */
     .s-objections .fitem { border-color: rgba(0,0,0,.12); }
     .s-objections .fitem:first-child { border-color: rgba(0,0,0,.12); }
-    .s-objections .fitem.is-open { background: rgba(0,0,0,.025); }
+    .s-objections .fitem.is-open { background: rgba(0,0,0,.04); }
     .s-objections .fitem__q { color: var(--dark-900); font-size: 1rem; }
     .s-objections .fitem.is-open .fitem__q { color: var(--orange); }
     .s-objections .fitem__icon { background: var(--gray-300); }
     .s-objections .fitem.is-open .fitem__icon { background: var(--orange); }
-    .s-objections .fitem__a-inner { color: var(--dark-700); }
+    .s-objections .fitem__a-inner {
+      color: var(--dark-900);
+      font-weight: 500;
+      font-size: 1.0625rem;
+      line-height: 1.75;
+    }
 
     /* ─────────────────────────────────────────
        TESTIMONIALS
@@ -976,7 +981,9 @@
     .s-temoignages {
       background: var(--white);
       padding: var(--sp-12) 0;
-      box-shadow: inset 0 1px 0 rgba(0,0,0,.06);
+      border-top: 1px solid rgba(0,0,0,.09);
+      border-bottom: 1px solid rgba(0,0,0,.09);
+      box-shadow: inset 0 6px 16px -10px rgba(0,0,0,.12), inset 0 -6px 16px -10px rgba(0,0,0,.12);
     }
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
     .testimonial-card {
@@ -1181,7 +1188,7 @@
     /* ─────────────────────────────────────────
        TEAM — dark, photo cards
     ───────────────────────────────────────── */
-    .s-team { background: var(--white); padding: var(--sp-12) 0; }
+    .s-team { background: var(--cream); padding: var(--sp-12) 0; }
     .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1190,13 +1197,14 @@
       margin-inline: auto;
     }
     .ccard {
-      background: var(--cream);
+      background: var(--white);
       border-radius: var(--radius-lg);
       padding: var(--sp-8) var(--sp-6);
       text-align: center;
       position: relative;
       overflow: hidden;
       transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
     }
     .ccard:hover { transform: translateY(-6px); }
     .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.38), 0 0 440px rgba(255,103,0,.18); }
@@ -1494,7 +1502,7 @@
             <li class="feat feat--yes"><span class="feat__icon"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.8 2.8L9 1" stroke="#00AA46" stroke-width="2.2"/></svg></span>Séances de coaching en physique&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="En savoir plus">i</span><span class="tooltip-body">Nombre variable selon proximité géographique, plus d'informations lors de l'appel.</span></span></li>
           </ul>
 
-          <a href="#" class="btn btn-blue js-calendly" style="width:100%;">Réserver un appel Premium</a>
+          <a href="#" class="btn btn-blue btn-xl js-calendly" style="width:100%;">Réserver un appel Premium</a>
           <p class="pcard__cta-sub">Accès sur qualification · Entretien de 30 min</p>
         </div>
 
@@ -1535,7 +1543,7 @@
           </ul>
 
           <a id="js-standard-cta" href="https://buy.stripe.com/4gMeVcbCO54G8jN99jfAc0n" target="_blank" rel="noopener noreferrer" class="btn btn-orange btn-xl" style="width:100%;justify-content:center;margin-top:var(--sp-5);">
-            <span class="js-standard-cta-text">Démarrer en Standard 12 mois</span>&nbsp;→
+            <span class="js-standard-cta-text">Démarrer en Standard 12 mois</span>
           </a>
 
           <p class="pcard__engage-label" style="margin-top:var(--sp-4);">Choisir un engagement :</p>
@@ -2036,22 +2044,12 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revIO.observe(el));
 
-    /* ── Count-up ──────────────────────────── */
-    function animateCount(el) {
-      const target = parseInt(el.dataset.target, 10), suffix = el.dataset.suffix || '';
-      const start = performance.now();
-      (function step(now) {
-        const p = Math.min((now - start) / 1400, 1);
-        const e = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.floor(e * target) + suffix;
-        if (p < 1) requestAnimationFrame(step);
-        else { el.textContent = target + suffix; el.classList.add('count-done'); }
-      })(start);
-    }
-    const cntIO = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); cntIO.unobserve(e.target); } });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.js-count').forEach(el => cntIO.observe(el));
+    /* ── Count-up disabled — render static numbers ── */
+    document.querySelectorAll('.js-count').forEach(el => {
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      if (!isNaN(target)) el.textContent = target + suffix;
+    });
 
     /* ── Testimonial video thumbs ─────────── */
     (function() {
