@@ -148,10 +148,6 @@
       from { opacity: 0; transform: translateX(-10px); }
       to   { opacity: 1; transform: none; }
     }
-    @keyframes badge-in {
-      from { opacity: 0; transform: translateY(-8px); letter-spacing: 0.4em; }
-      to   { opacity: 1; transform: none; letter-spacing: 0.28em; }
-    }
     @keyframes count-pop {
       0%   { transform: scale(1); }
       40%  { transform: scale(1.14); color: var(--orange-light); }
@@ -332,7 +328,6 @@
       transition: background .35s var(--ease-out-quart), box-shadow .35s var(--ease-out-quart);
     }
     .nav__logo   { color: var(--white); transition: color .35s; }
-    .nav__logo strong { color: var(--orange); font-weight: 800; }
     .nav__link   { color: rgba(255,255,255,.78); transition: color .35s; }
     .nav__burger span { background: var(--white); transition: background .35s; }
 
@@ -355,17 +350,17 @@
       max-width: 1240px;
       margin-inline: auto;
     }
-    .nav__logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.03em; display: inline-flex; align-items: center; gap: var(--sp-2); }
-    .nav__links { display: flex; align-items: center; gap: var(--sp-6); }
+    .nav__logo { font-weight: 800; font-size: 1.375rem; letter-spacing: -0.03em; }
+    .nav__links { display: flex; align-items: center; gap: var(--sp-8); }
     .nav__link  { font-size: 0.875rem; font-weight: 500; }
     .nav__link:hover { color: var(--orange) !important; }
 
     .nav__cta {
-      font-size: .8125rem;
+      font-size: .875rem;
       font-weight: 600;
       color: var(--white);
       background: var(--orange);
-      padding: .5rem 1.125rem;
+      padding: .5rem 1.25rem;
       border-radius: var(--radius-full);
       transition: background .2s, transform .15s, box-shadow .2s;
       box-shadow: 0 2px 12px rgba(255,103,0,.3);
@@ -463,90 +458,77 @@
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
       pointer-events: none;
     }
-    .hero__content { position: relative; z-index: 1; max-width: 980px; }
+    .hero__content { position: relative; z-index: 1; }
 
-    .hero__badge {
-      display: inline-block;
-      font-size: 0.75rem;
+    /* Hero — Pour les grimpeurs (mirror landing structure) */
+    .hero__for {
       font-weight: 800;
-      color: var(--orange);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.125rem;
-      background: rgba(255,103,0,.10);
-      border: 1px solid rgba(255,103,0,.32);
-      border-radius: var(--radius-full);
-      margin-bottom: var(--sp-6);
-      animation: badge-in .8s var(--ease-out-expo) .05s both;
-    }
-
-    .hero__h1 {
-      font-weight: 800;
-      font-size: clamp(2.25rem, 6vw, 4.75rem);
-      line-height: 1.08;
+      font-size: clamp(2.25rem, 6.2vw, 5rem);
+      line-height: 1.06;
       color: var(--white);
       letter-spacing: -0.035em;
-      margin-bottom: var(--sp-6);
-      animation: hero-in .75s var(--ease-out-expo) .18s both;
+      margin-bottom: var(--sp-4);
+      max-width: 18ch;
+      margin-inline: auto;
+      animation: hero-in .75s var(--ease-out-expo) .05s both;
     }
-    .hero__h1 .h1-accent { color: var(--orange-light); }
+    .hero__claim {
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3.9vw, 2.625rem);
+      line-height: 1.25;
+      color: var(--orange-light);
+      max-width: calc(100vw - var(--sp-12));
+      margin-inline: auto;
+      margin-bottom: var(--sp-6);
+      letter-spacing: -0.02em;
+      animation: hero-in .7s var(--ease-out-expo) .34s both;
+    }
 
     .hero__sub {
       font-size: clamp(1.0625rem, 2vw, 1.3125rem);
-      color: rgba(255,255,255,.72);
-      max-width: 64ch;
-      margin: 0 auto var(--sp-10);
+      color: rgba(255,255,255,.5);
+      max-width: 60ch;
+      margin: 0 auto var(--sp-8);
       line-height: 1.7;
-      animation: hero-in .7s var(--ease-out-expo) .34s both;
+      animation: hero-in .65s var(--ease-out-expo) .48s both;
     }
-    .hero__sub strong { color: var(--white); font-weight: 700; }
+    .hero__sub strong { color: rgba(255,255,255,.85); font-weight: 700; }
 
-    .hero__ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--sp-4);
-      justify-content: center;
-      animation: hero-in .65s var(--ease-out-expo) .5s both;
-      margin-bottom: var(--sp-12);
+    .hero__cta {
+      animation: hero-in .6s var(--ease-out-expo) .62s both;
     }
 
-    .hero__stats {
+    /* ─────────────────────────────────────────
+       STATS STRIP — parchemin sous le hero (copy from landing)
+    ───────────────────────────────────────── */
+    .s-action {
+      background: var(--cream);
+      padding: var(--sp-10) 0;
+    }
+    .action-stats {
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 0;
+      gap: clamp(var(--sp-8), 6vw, var(--sp-20));
       flex-wrap: nowrap;
-      animation: hero-in .65s var(--ease-out-expo) .68s both;
-      width: 100%;
-      max-width: 720px;
-      margin: 0 auto;
+      padding: var(--sp-5) 0;
+      border-block: 1px solid var(--gray-300);
+      overflow: visible;
     }
-    .hstat {
-      flex: 1;
-      text-align: center;
-      padding: 0 var(--sp-4);
-    }
-    .hstat + .hstat { border-left: 1px solid rgba(255,255,255,.12); }
-    .hstat__n {
-      font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+    .astat { text-align: center; }
+    .astat__n {
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
       font-weight: 800;
-      color: var(--white);
+      color: var(--orange);
       line-height: 1;
       letter-spacing: -0.03em;
       font-variant-numeric: tabular-nums;
-      margin-bottom: var(--sp-2);
+      white-space: nowrap;
     }
-    .hstat__l {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,.5);
-      line-height: 1.4;
-      letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 560px) {
-      .hero__stats { max-width: 420px; }
-      .hstat { padding: 0 var(--sp-2); }
-      .hstat__l { font-size: 0.6875rem; }
+    .astat__l {
+      font-size: .8125rem;
+      color: var(--gray-500);
+      margin-top: var(--sp-1);
+      font-weight: 500;
     }
 
     /* ─────────────────────────────────────────
@@ -1631,12 +1613,10 @@
   <!-- ═══════════════════════════════════════  NAV ════ -->
   <nav class="nav" id="nav" aria-label="Navigation principale">
     <div class="nav__inner">
-      <a href="#top" class="nav__logo">Kaskad <strong>Premium</strong></a>
+      <a href="#top" class="nav__logo">Kaskad Coaching</a>
       <div class="nav__links">
-        <a href="#methode" class="nav__link">Méthode</a>
-        <a href="#process" class="nav__link">Process</a>
-        <a href="#tarifs" class="nav__link">Tarifs</a>
-        <a href="#faq" class="nav__link">FAQ</a>
+        <a href="../" class="nav__link">Coaching Standard</a>
+        <a href="#tarifs" class="nav__link">Coaching Premium</a>
         <a href="#" class="nav__cta js-calendly" data-cta-loc="nav">Réserver un appel</a>
       </div>
       <button class="nav__burger" id="js-burger" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -1647,11 +1627,9 @@
 
   <div class="nav-mobile" id="js-mobile-nav" aria-label="Menu mobile" role="dialog">
     <button class="nav-mobile__close" id="js-mobile-close" aria-label="Fermer le menu">✕</button>
-    <a href="#methode" class="nav-mobile__link js-mobile-close-link">Méthode</a>
-    <a href="#process" class="nav-mobile__link js-mobile-close-link">Process</a>
-    <a href="#tarifs" class="nav-mobile__link js-mobile-close-link">Tarifs</a>
-    <a href="#faq" class="nav-mobile__link js-mobile-close-link">FAQ</a>
-    <a href="#" class="btn btn-orange btn-lg js-calendly js-mobile-close-link" data-cta-loc="nav-mobile">Réserver un appel</a>
+    <a href="../" class="nav-mobile__link js-mobile-close-link">Coaching Standard</a>
+    <a href="#tarifs" class="nav-mobile__link js-mobile-close-link">Coaching Premium</a>
+    <a href="#" class="btn btn-orange js-calendly js-mobile-close-link" data-cta-loc="nav-mobile">Réserver un appel</a>
   </div>
 
   <!-- ═══════════════════════════════════════  SECTION 1 — HERO ════ -->
@@ -1661,34 +1639,40 @@
     <div class="hero__parallax-glow" aria-hidden="true"></div>
 
     <div class="hero__content">
-      <span class="hero__badge">Kaskad Premium</span>
 
-      <h1 class="hero__h1">
-        Pour les grimpeurs qui ont déjà tout essayé <span class="h1-accent">sans résultat.</span>
-      </h1>
+      <h1 class="hero__for">Pour les grimpeurs qui ont&nbsp;déjà</h1>
 
-      <p class="hero__sub">
-        Accompagnement individuel haut de gamme pour casser un plafond structurel.
-        <strong>4 places ouvertes par mois.</strong> Sur sélection.
+      <p class="hero__claim">
+        tout essayé sans résultat
       </p>
 
-      <div class="hero__ctas">
-        <a href="#" class="btn btn-orange btn-xl btn-pulse js-calendly" data-cta-loc="hero">Réserver un appel de qualification</a>
-        <a href="#methode" class="btn btn-ghost-white btn-xl">Voir comment ça fonctionne ↓</a>
+      <p class="hero__sub">
+        Accompagnement individuel haut de gamme pour casser un plafond structurel.<br>
+        <strong>3 places ouvertes par mois.</strong> Sur sélection.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#" class="btn btn-orange btn-xl btn-pulse js-calendly" data-cta-loc="hero">Réserver un appel de qualification →</a>
       </div>
 
-      <div class="hero__stats" role="group" aria-label="Chiffres clés Premium">
-        <div class="hstat">
-          <div class="hstat__n">70+</div>
-          <div class="hstat__l">grimpeurs accompagnés</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════  STATS ══ -->
+  <section class="s-action" id="stats" data-nav="light">
+    <div class="wrap wrap--narrow">
+      <div class="action-stats reveal">
+        <div class="astat">
+          <div class="astat__n">70+</div>
+          <div class="astat__l">Grimpeurs accompagnés</div>
         </div>
-        <div class="hstat">
-          <div class="hstat__n">4</div>
-          <div class="hstat__l">places ouvertes par mois</div>
+        <div class="astat">
+          <div class="astat__n">3</div>
+          <div class="astat__l">Places ouvertes par mois</div>
         </div>
-        <div class="hstat">
-          <div class="hstat__n">+1.5</div>
-          <div class="hstat__l">niveau gagné en 6 mois</div>
+        <div class="astat">
+          <div class="astat__n">+0.5</div>
+          <div class="astat__l">Niveau gagné en 6 mois</div>
         </div>
       </div>
     </div>
