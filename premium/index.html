@@ -257,6 +257,7 @@
     .btn:hover  { transform: translateY(-2px); }
     .btn:active { transform: translateY(1px) scale(0.98); }
     .btn-xl { font-size: 1.1875rem; font-weight: 700; padding: 1.25rem 2.75rem; }
+    .btn-xxl { font-size: 1.375rem; font-weight: 700; padding: 1.5rem 3.25rem; }
     .btn-lg { font-size: 1.0625rem; font-weight: 700; padding: 1.125rem 2.25rem; }
 
     .btn-orange { background: var(--orange); color: var(--white); box-shadow: 0 4px 24px rgba(255,103,0,.4); }
@@ -481,8 +482,8 @@
     }
     .hero__claim {
       font-weight: 700;
-      font-size: clamp(1.5rem, 3.9vw, 2.625rem);
-      line-height: 1.25;
+      font-size: clamp(1.75rem, 4.4vw, 3rem);
+      line-height: 1.2;
       color: var(--orange-light);
       max-width: calc(100vw - var(--sp-12));
       margin-inline: auto;
@@ -492,11 +493,11 @@
     }
 
     .hero__sub {
-      font-size: clamp(1.0625rem, 2vw, 1.3125rem);
-      color: rgba(255,255,255,.5);
-      max-width: 60ch;
+      font-size: clamp(1.1875rem, 2.4vw, 1.5rem);
+      color: rgba(255,255,255,.6);
+      max-width: 64ch;
       margin: 0 auto var(--sp-8);
-      line-height: 1.7;
+      line-height: 1.65;
       animation: hero-in .65s var(--ease-out-expo) .48s both;
     }
     .hero__sub strong { color: rgba(255,255,255,.85); font-weight: 700; }
@@ -645,15 +646,16 @@
 
     .qual-foot {
       text-align: center;
-      max-width: 760px;
+      max-width: 820px;
       margin: var(--sp-12) auto 0;
-      font-size: 0.9375rem;
-      color: var(--dark-700);
+      font-size: clamp(1rem, 1.6vw, 1.1875rem);
+      color: var(--dark-800);
       line-height: 1.7;
       padding-top: var(--sp-8);
       border-top: 1px dashed rgba(0,0,0,.12);
     }
-    .qual-foot a { color: var(--orange); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .qual-foot strong { color: var(--dark-900); }
+    .qual-foot a { color: var(--orange); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
     .qual-foot a:hover { color: var(--orange-dark); }
 
     @media (max-width: 720px) {
@@ -804,6 +806,11 @@
     .pstep:last-child::before { display: none; }
     .pstep:hover {
       transform: translateY(-3px);
+      background: rgba(0,127,255,.06);
+      border-color: rgba(0,127,255,.22);
+      box-shadow: 0 20px 60px rgba(0,127,255,.18), 0 0 200px rgba(0,127,255,.12);
+    }
+    .pstep--orange:hover {
       background: rgba(255,103,0,.06);
       border-color: rgba(255,103,0,.22);
       box-shadow: 0 20px 60px rgba(255,103,0,.18), 0 0 200px rgba(255,103,0,.12);
@@ -811,12 +818,14 @@
     .pstep__n {
       font-size: 2.75rem;
       font-weight: 800;
-      color: var(--orange);
+      color: var(--blue);
       line-height: 1;
       letter-spacing: -0.04em;
       font-variant-numeric: tabular-nums;
       align-self: start;
     }
+    .pstep--orange .pstep__n { color: var(--orange); }
+    .pstep--xl .pstep__n     { font-size: clamp(3rem, 5vw, 4.25rem); }
     .pstep__content {}
     .pstep__title {
       font-size: 1.125rem;
@@ -825,17 +834,22 @@
       margin-bottom: var(--sp-2);
       letter-spacing: -0.01em;
     }
+    .pstep--xl .pstep__title { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     .pstep__meta {
       display: inline-block;
       font-size: 0.6875rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--orange);
+      color: var(--blue);
       padding: 2px 10px;
-      background: rgba(255,103,0,.10);
+      background: rgba(0,127,255,.10);
       border-radius: var(--radius-full);
       margin-bottom: var(--sp-3);
+    }
+    .pstep--orange .pstep__meta {
+      color: var(--orange);
+      background: rgba(255,103,0,.10);
     }
     .pstep__body {
       font-size: 0.9375rem;
@@ -850,24 +864,14 @@
       padding: var(--sp-6) var(--sp-8);
       max-width: 880px;
       margin-inline: auto;
-      display: flex;
-      align-items: center;
-      gap: var(--sp-5);
       color: rgba(255,255,255,.85);
-      font-size: 0.9375rem;
+      font-size: 1rem;
       line-height: 1.7;
       position: relative;
       z-index: 1;
+      text-align: center;
     }
-    .process-cta-card__icon {
-      flex-shrink: 0;
-      width: 48px; height: 48px;
-      background: var(--orange);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(255,103,0,.4);
-    }
-    .process-cta-card__icon svg { width: 22px; height: 22px; color: white; }
+    .process-cta-card__icon { display: none; }
 
     @media (max-width: 680px) {
       .pstep { grid-template-columns: 1fr; padding: var(--sp-6); gap: var(--sp-3); }
@@ -922,9 +926,19 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 30% 40%, rgba(255,103,0,.22) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 70% 60%, rgba(0,127,255,.18) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 60% at 30% 40%, rgba(255,103,0,.32) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 70% 60%, rgba(255,103,0,.18) 0%, transparent 60%);
       pointer-events: none;
+    }
+    .case--blue .case__media::before {
+      background:
+        radial-gradient(ellipse 70% 60% at 30% 40%, rgba(0,127,255,.36) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 70% 60%, rgba(0,127,255,.18) 0%, transparent 60%);
+    }
+    .case--purple .case__media::before {
+      background:
+        radial-gradient(ellipse 70% 60% at 30% 40%, rgba(139,92,246,.36) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 70% 60%, rgba(139,92,246,.18) 0%, transparent 60%);
     }
     .case__initial {
       position: relative;
@@ -991,6 +1005,8 @@
     }
     .case__row dd { color: var(--dark-900); font-weight: 500; line-height: 1.5; }
     .case__row dd strong { color: var(--orange); font-weight: 700; }
+    .case--blue   .case__row dd strong { color: var(--blue); }
+    .case--purple .case__row dd strong { color: #8B5CF6; }
     .case__quote {
       margin-top: auto;
       padding: var(--sp-3) var(--sp-4);
@@ -1002,20 +1018,29 @@
       font-size: 0.8125rem;
       line-height: 1.6;
     }
+    .case--blue   .case__quote { border-left-color: var(--blue); }
+    .case--purple .case__quote { border-left-color: #8B5CF6; }
     .case__quote::before { content: '\201C '; color: var(--orange); font-weight: 800; font-style: normal; }
     .case__quote::after  { content: ' \201D'; color: var(--orange); font-weight: 800; font-style: normal; }
+    .case--blue   .case__quote::before, .case--blue   .case__quote::after  { color: var(--blue); }
+    .case--purple .case__quote::before, .case--purple .case__quote::after  { color: #8B5CF6; }
 
     .cases-note {
-      max-width: 720px;
+      max-width: 820px;
       margin: var(--sp-12) auto 0;
       text-align: center;
-      font-size: 0.9375rem;
+      font-size: 1rem;
       color: var(--dark-700);
-      line-height: 1.7;
+      line-height: 1.8;
       padding-top: var(--sp-8);
       border-top: 1px dashed rgba(0,0,0,.1);
     }
-    .cases-note__btn { margin-top: var(--sp-5); display: inline-block; }
+    .cases-note__btn {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      margin-left: var(--sp-2);
+    }
 
     @media (max-width: 960px) {
       .cases-list { grid-template-columns: 1fr 1fr; }
@@ -1101,23 +1126,13 @@
     }
 
     /* ─────────────────────────────────────────
-       SECTION 7 — PRICING (DARK)
+       SECTION 7 — PRICING (light, mirror landing)
     ───────────────────────────────────────── */
     .s-pricing {
-      background-color: var(--dark-900);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
+      background: var(--cream);
       padding: var(--sp-20) 0;
       position: relative;
       overflow: hidden;
-    }
-    .s-pricing::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 10% 50%, rgba(255,103,0,.08) 0%, transparent 60%),
-        radial-gradient(ellipse 55% 45% at 90% 50%, rgba(0,127,255,.08) 0%, transparent 60%);
-      pointer-events: none;
     }
     .pricing-head { text-align: center; max-width: 760px; margin: 0 auto var(--sp-12); position: relative; z-index: 1; }
     .pricing-head .sec-lead { margin-inline: auto; }
@@ -1125,7 +1140,7 @@
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--sp-5);
+      gap: var(--sp-6);
       max-width: 1180px;
       margin: 0 auto;
       align-items: stretch;
@@ -1133,32 +1148,32 @@
       z-index: 1;
     }
     .pcard {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.1);
+      background: var(--white);
+      border: 2px solid var(--gray-200);
       border-radius: var(--radius-lg);
-      padding: var(--sp-8) var(--sp-6) var(--sp-8);
+      padding: var(--sp-10) var(--sp-7) var(--sp-8);
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: transform .35s var(--ease-out-quart), border-color .3s, box-shadow .35s, background .3s;
+      transition: transform .35s var(--ease-out-quart), border-color .3s, box-shadow .35s;
       transform-style: preserve-3d;
       will-change: transform;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
     }
     .pcard:hover {
       transform: translateY(-4px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.18);
+      border-color: rgba(0,0,0,.16);
+      box-shadow: 0 20px 60px rgba(0,0,0,.08);
     }
     .pcard--featured {
-      background: linear-gradient(180deg, rgba(255,103,0,.10), rgba(255,255,255,.04));
       border-color: var(--orange);
-      box-shadow: 0 24px 80px rgba(255,103,0,.22), 0 0 0 1px rgba(255,103,0,.35), 0 0 240px rgba(255,103,0,.20);
+      box-shadow: 0 20px 64px rgba(255,103,0,.22), 0 0 0 3px rgba(255,103,0,.14);
       transform: scale(1.03);
       z-index: 2;
     }
     .pcard--featured:hover {
       transform: scale(1.03) translateY(-4px);
-      box-shadow: 0 32px 100px rgba(255,103,0,.32), 0 0 0 1px rgba(255,103,0,.45), 0 0 280px rgba(255,103,0,.28);
+      box-shadow: 0 28px 80px rgba(255,103,0,.32), 0 0 0 3px rgba(255,103,0,.22);
     }
 
     .pcard__badge {
@@ -1173,18 +1188,17 @@
       padding: 6px 14px;
       border-radius: var(--radius-full);
       white-space: nowrap;
-      box-shadow: 0 4px 16px rgba(0,0,0,.3);
     }
-    .pcard__badge--gray   { background: rgba(255,255,255,.10); color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.18); }
-    .pcard__badge--orange { background: var(--orange); color: var(--white); box-shadow: 0 6px 24px rgba(255,103,0,.45); }
+    .pcard__badge--gray   { background: var(--gray-100); color: var(--gray-500); border: 1px solid var(--gray-200); }
+    .pcard__badge--orange { background: var(--orange); color: var(--white); box-shadow: 0 6px 24px rgba(255,103,0,.4); }
     .pcard__badge--blue   { background: var(--blue);   color: var(--white); box-shadow: 0 6px 24px rgba(0,127,255,.4); }
 
     .pcard__title {
-      font-size: 1.125rem;
+      font-size: 1.25rem;
       font-weight: 800;
-      color: var(--white);
+      color: var(--dark-900);
       letter-spacing: -0.01em;
-      margin-bottom: var(--sp-2);
+      margin-bottom: var(--sp-3);
       margin-top: var(--sp-2);
     }
     .pcard__price-block {
@@ -1192,30 +1206,25 @@
       margin-bottom: var(--sp-2);
     }
     .pcard__price {
-      font-size: 3rem;
+      font-size: 3.25rem;
       font-weight: 800;
-      color: var(--white);
+      color: var(--dark-900);
       line-height: 1;
       letter-spacing: -0.03em;
       font-variant-numeric: tabular-nums;
     }
-    .pcard--featured .pcard__price { color: var(--orange-light); }
+    .pcard--featured .pcard__price { color: var(--orange); }
     .pcard__price-unit {
-      font-size: 0.9375rem;
+      font-size: 1rem;
       font-weight: 500;
-      color: rgba(255,255,255,.55);
-    }
-    .pcard__total {
-      font-size: 0.8125rem;
-      color: rgba(255,255,255,.55);
-      margin-bottom: var(--sp-3);
+      color: var(--gray-500);
     }
     .pcard__save {
       display: inline-block;
       font-size: 0.75rem;
       font-weight: 700;
       color: var(--green);
-      background: rgba(0,170,70,.12);
+      background: rgba(0,170,70,.10);
       border: 1px solid rgba(0,170,70,.28);
       padding: 4px 10px;
       border-radius: var(--radius-full);
@@ -1223,7 +1232,7 @@
     }
     .pcard__save--invisible { visibility: hidden; }
 
-    .pcard__divider { height: 1px; background: rgba(255,255,255,.12); margin: var(--sp-2) 0 var(--sp-5); }
+    .pcard__divider { height: 1px; background: var(--gray-200); margin: var(--sp-2) 0 var(--sp-5); }
 
     .pcard__features {
       display: flex;
@@ -1234,33 +1243,41 @@
     }
     .pfeat {
       display: flex; align-items: flex-start; gap: var(--sp-3);
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
       line-height: 1.55;
-      color: rgba(255,255,255,.85);
+      color: var(--dark-700);
     }
     .pfeat__icon {
       flex-shrink: 0;
       width: 18px; height: 18px;
       border-radius: 50%;
-      background: rgba(0,170,70,.18);
+      background: rgba(0,170,70,.14);
       display: inline-flex; align-items: center; justify-content: center;
       margin-top: 2px;
     }
     .pfeat__icon svg { width: 10px; height: 10px; }
-    .pcard--featured .pfeat__icon { background: rgba(255,103,0,.22); }
-    .pcard--featured .pfeat__icon svg { color: var(--orange-light); }
-    .pfeat--strong { color: var(--white); font-weight: 600; }
 
     .pcard__cta {
       width: 100%;
       justify-content: center;
     }
 
-    .pricing-foot {
-      max-width: 880px;
+    .pricing-note {
+      max-width: 720px;
       margin: var(--sp-10) auto 0;
-      background: linear-gradient(135deg, rgba(255,103,0,.12), rgba(255,103,0,.04));
-      border: 1px solid rgba(255,103,0,.32);
+      text-align: center;
+      font-size: 1rem;
+      color: var(--dark-700);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .pricing-note strong { color: var(--dark-900); font-style: normal; }
+
+    .pricing-foot {
+      max-width: 920px;
+      margin: var(--sp-8) auto 0;
+      background: var(--white);
+      border: 1px solid rgba(255,103,0,.28);
       border-radius: var(--radius-lg);
       padding: var(--sp-6) var(--sp-8);
       display: flex;
@@ -1276,9 +1293,10 @@
       align-items: center;
       gap: var(--sp-3);
       font-size: 0.875rem;
-      color: rgba(255,255,255,.82);
+      color: var(--dark-700);
       line-height: 1.55;
     }
+    .pfoot-item strong { color: var(--dark-900); }
     .pfoot-item__icon { font-size: 1.25rem; flex-shrink: 0; }
     .pricing-cta-wrap {
       text-align: center;
@@ -1287,8 +1305,8 @@
       z-index: 1;
     }
     .pricing-cta-note {
-      font-size: 0.8125rem;
-      color: rgba(255,255,255,.5);
+      font-size: 0.875rem;
+      color: var(--gray-500);
       margin-top: var(--sp-3);
     }
 
@@ -1507,9 +1525,9 @@
 
     <div class="hero__content">
 
-      <h1 class="hero__for">Prêt à passer à la vitesse&nbsp;supérieure&nbsp;?</h1>
+      <h1 class="hero__for">Prêt à progresser&nbsp;?</h1>
 
-      <p class="hero__levels">2 coachs diplômés · Personnification maximale · Séances physiques</p>
+      <p class="hero__levels">2 coachs diplômés · Personnification maximale · Séances en physique</p>
 
       <p class="hero__claim">
         Tu as besoin de plus qu'un programme.
@@ -1520,7 +1538,7 @@
       </p>
 
       <div class="hero__cta">
-        <a href="#" class="btn btn-orange btn-xl btn-pulse js-calendly" data-cta-loc="hero">Réserver un appel de qualification →</a>
+        <a href="#" class="btn btn-orange btn-xxl btn-pulse js-calendly" data-cta-loc="hero">Réserver un appel de qualification →</a>
       </div>
 
     </div>
@@ -1625,7 +1643,7 @@
     <div class="wrap">
       <div class="method-head">
         <span class="sec-eyebrow reveal">Premium vs Standard</span>
-        <h2 class="sec-title reveal d1">Ce qui change concrètement quand tu passes en Premium.</h2>
+        <h2 class="sec-title reveal d1">Ce qui change quand tu passes en Premium.</h2>
         <p class="sec-lead reveal d2">
           Le Standard fait déjà 80% du travail : diagnostic, radar 21 axes, plan sur mesure, communauté. Ça suffit pour la plupart des grimpeurs.<br>
           Mais quand tu veux aller plus loin dans l'accompagnement, voici les <strong>trois choses qui changent tout</strong>.
@@ -1696,7 +1714,7 @@
       </div>
 
       <div class="timeline">
-        <article class="pstep reveal d1">
+        <article class="pstep pstep--orange reveal d1">
           <div class="pstep__n">01</div>
           <div class="pstep__content">
             <span class="pstep__meta">Jour 1 · 30 min</span>
@@ -1751,7 +1769,7 @@
           </div>
         </article>
 
-        <article class="pstep reveal d1">
+        <article class="pstep pstep--orange pstep--xl reveal d1">
           <div class="pstep__n">06</div>
           <div class="pstep__content">
             <span class="pstep__meta">Jour 7</span>
@@ -1773,7 +1791,7 @@
           </div>
         </article>
 
-        <article class="pstep reveal d3">
+        <article class="pstep pstep--orange reveal d3">
           <div class="pstep__n">08</div>
           <div class="pstep__content">
             <span class="pstep__meta">Tous les 3 mois</span>
@@ -1786,17 +1804,10 @@
       </div>
 
       <div class="process-cta-card reveal d5">
-        <div class="process-cta-card__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 5h13a4 4 0 010 8h-6m0 0l3-3m-3 3l3 3"/>
-          </svg>
-        </div>
-        <div>
-          <strong style="color:var(--white);">Et entre tout ça,</strong>
-          tu as un <strong style="color:var(--orange-light);">canal Discord prioritaire</strong> avec tes coachs.
-          Tu leur demandes un avis sur une séance ? Réponse sous 24h.
-          Tu te blesses ou t'as un imprévu ? On adapte. Tu es jamais seul.
-        </div>
+        <strong style="color:var(--white);">Et entre tout ça,</strong>
+        tu as un <strong style="color:var(--orange-light);">canal Discord prioritaire</strong> avec tes coachs.
+        Tu leur demandes un avis sur une séance ? Réponse sous 24h.
+        Tu te blesses ou t'as un imprévu ? On adapte. Tu es jamais seul.
       </div>
     </div>
   </section>
@@ -1843,7 +1854,7 @@
           </div>
         </article>
 
-        <article class="case js-tilt reveal d2">
+        <article class="case case--blue js-tilt reveal d2">
           <div class="case__media">
             <span class="case__placeholder-tag">Profil type</span>
             <span class="case__initial">P</span>
@@ -1873,7 +1884,7 @@
           </div>
         </article>
 
-        <article class="case js-tilt reveal d3">
+        <article class="case case--purple js-tilt reveal d3">
           <div class="case__media">
             <span class="case__placeholder-tag">Profil type</span>
             <span class="case__initial">C</span>
@@ -1906,8 +1917,8 @@
 
       <p class="cases-note">
         D'autres cas documentés arriveront ici au fur et à mesure.<br>
-        En attendant, tu peux lire <strong>tous les témoignages de la communauté Kaskad</strong> sur la page principale.
-        <a href="../#temoignages" class="btn btn-ghost-orange cases-note__btn">Voir les témoignages →</a>
+        En attendant, tu peux lire <strong>tous les témoignages de la communauté Kaskad</strong>
+        <a href="../#temoignages" class="btn btn-orange btn-lg cases-note__btn">Voir les témoignages →</a>
       </p>
     </div>
   </section>
@@ -1917,7 +1928,7 @@
     <div class="wrap">
       <div class="coachs-head">
         <span class="sec-eyebrow reveal">L'équipe</span>
-        <h2 class="sec-title reveal d1">Tu seras suivi par des humains. Pas une IA. Pas de programme automatisé.</h2>
+        <h2 class="sec-title reveal d1">Tu seras suivi par des humains. Pas par une IA.</h2>
       </div>
 
       <div class="coachs-grid">
@@ -1955,14 +1966,13 @@
   </section>
 
   <!-- ═══════════════════════════════════════  SECTION 7 — PRICING ════ -->
-  <section class="s-pricing" id="tarifs" data-nav="dark">
+  <section class="s-pricing" id="tarifs" data-nav="light">
     <div class="wrap">
       <div class="pricing-head">
-        <span class="sec-eyebrow sec-eyebrow--ghost reveal">Les formules Premium</span>
-        <h2 class="sec-title sec-title--white sec-title--lg reveal d1">Choisis ton engagement.</h2>
-        <p class="sec-lead sec-lead--white reveal d2">
-          3 durées possibles. Plus tu t'engages longtemps, plus le tarif mensuel baisse.
-          <strong>L'idée c'est qu'on travaille sur la durée — pas un sprint de 6 semaines.</strong>
+        <span class="sec-eyebrow reveal">Les formules Premium</span>
+        <h2 class="sec-title sec-title--lg reveal d1">Choisis ton engagement.</h2>
+        <p class="sec-lead sec-lead--center reveal d2">
+          Le contenu est <strong>identique sur les 3 formules</strong>. C'est juste l'engagement qui change — et plus tu t'engages longtemps, plus le tarif mensuel baisse.
         </p>
       </div>
 
@@ -1983,7 +1993,11 @@
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées, image par image</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord prioritaire avec tes coachs</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Validation Yohan sur chaque plan trimestriel</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 réajustements trimestriels complets</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Réajustements trimestriels complets</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Audit récupération + préparation mentale</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bibliothèque Protocoles Miracles à vie</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 séances en physique <em style="color:var(--gray-500);">(si proche géographiquement)</em></li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Lien parrainage personnel (1 mois offert par client référé)</li>
           </ul>
           <a href="#" class="btn btn-ghost-orange btn-lg pcard__cta js-calendly" data-cta-loc="pricing-6m">Choisir 6 mois</a>
         </article>
@@ -1998,15 +2012,17 @@
           <span class="pcard__save">Tu économises 450&nbsp;€ par rapport au Premium 6 mois</span>
           <div class="pcard__divider"></div>
           <ul class="pcard__features">
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard inclus</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 coachs attitrés (Florentin + Nicolas)</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel individuel hebdomadaire (15-30 min)</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées, image par image</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord prioritaire avec tes coachs</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Validation Yohan sur chaque plan trimestriel</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>3 réajustements trimestriels complets</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Audit récupération + préparation mentale</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Accès à vie aux <strong>Protocoles Miracles</strong></li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard inclus</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 coachs attitrés (Florentin + Nicolas)</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel individuel hebdomadaire (15-30 min)</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées, image par image</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord prioritaire avec tes coachs</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Validation Yohan sur chaque plan trimestriel</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Réajustements trimestriels complets</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Audit récupération + préparation mentale</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bibliothèque Protocoles Miracles à vie</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 séances en physique <em style="color:var(--gray-500);">(si proche géographiquement)</em></li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Lien parrainage personnel (1 mois offert par client référé)</li>
           </ul>
           <a href="#" class="btn btn-orange btn-lg pcard__cta js-calendly" data-cta-loc="pricing-9m">Choisir 9 mois</a>
         </article>
@@ -2027,10 +2043,10 @@
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées, image par image</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord prioritaire avec tes coachs</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Validation Yohan sur chaque plan trimestriel</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>4 réajustements trimestriels complets</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Réajustements trimestriels complets</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Audit récupération + préparation mentale</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bibliothèque Protocoles Miracles à vie</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span><strong>2 séances en physique</strong> avec ton coach <em style="color:rgba(255,255,255,.5);">(si proche géographiquement)</em></li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 séances en physique <em style="color:var(--gray-500);">(si proche géographiquement)</em></li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Lien parrainage personnel (1 mois offert par client référé)</li>
           </ul>
           <a href="#" class="btn btn-ghost-orange btn-lg pcard__cta js-calendly" data-cta-loc="pricing-12m">Choisir 12 mois</a>
@@ -2160,7 +2176,7 @@
     <div class="wrap s-final__inner">
       <h2 class="s-final__h2 reveal">
         Tu as lu jusqu'ici.<br>
-        Ça veut sûrement dire quelque chose.
+        Tu sais que Premium est ce qu'il te faut.
       </h2>
       <p class="s-final__sub reveal d1">
         Le prochain pas c'est un appel de 30 minutes avec moi ou un coach.<br>
@@ -2350,14 +2366,19 @@
     /* ── 3D card tilt (ported from landing) ── */
     document.querySelectorAll('.js-tilt').forEach(card => {
       let animFrame;
-      const isBlue  = card.classList.contains('ccard--blue') || card.classList.contains('mcard--blue');
-      const isGreen = card.classList.contains('ccard--green');
+      const isBlue   = card.classList.contains('ccard--blue')
+                    || card.classList.contains('mcard--blue')
+                    || card.classList.contains('case--blue');
+      const isGreen  = card.classList.contains('ccard--green');
+      const isPurple = card.classList.contains('case--purple');
       const isFeatured = card.classList.contains('pcard--featured');
       const glowColor = isBlue
         ? 'rgba(0,127,255,.5)'
         : isGreen
           ? 'rgba(0,170,70,.46)'
-          : 'rgba(255,103,0,.46)';
+          : isPurple
+            ? 'rgba(139,92,246,.5)'
+            : 'rgba(255,103,0,.46)';
       card.addEventListener('mousemove', (e) => {
         cancelAnimationFrame(animFrame);
         animFrame = requestAnimationFrame(() => {
