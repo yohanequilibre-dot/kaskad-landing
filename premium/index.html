@@ -463,14 +463,16 @@
     /* Hero — Pour les grimpeurs (mirror landing structure) */
     .hero__for {
       font-weight: 800;
-      font-size: clamp(2.25rem, 6.2vw, 5rem);
+      font-size: clamp(1.85rem, 5.4vw, 4.25rem);
       line-height: 1.06;
       color: var(--white);
       letter-spacing: -0.035em;
       margin-bottom: var(--sp-4);
-      max-width: 18ch;
-      margin-inline: auto;
       animation: hero-in .75s var(--ease-out-expo) .05s both;
+      text-wrap: nowrap;
+    }
+    @media (max-width: 640px) {
+      .hero__for { text-wrap: balance; }
     }
     .hero__claim {
       font-weight: 700;
