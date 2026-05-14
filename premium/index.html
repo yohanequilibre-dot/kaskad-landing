@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kaskad Premium — Coaching escalade individuel haut de gamme</title>
-  <meta name="description" content="Accompagnement individuel pour grimpeurs 6c+ en plafond structurel. Analyse vidéo, plan sur mesure, coach attitré. 4 places par mois.">
+  <meta name="description" content="Accompagnement individuel pour grimpeurs 6c+ en plafond structurel. Analyse vidéo, plan sur mesure, coach attitré. 3 places par mois.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0A0E1A">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kaskad Premium — Coaching escalade individuel haut de gamme">
-  <meta property="og:description" content="Accompagnement individuel pour grimpeurs 6c+ en plafond structurel. 4 places par mois. Sur sélection.">
+  <meta property="og:description" content="Accompagnement individuel pour grimpeurs 6c+ en plafond structurel. 3 places par mois. Sur sélection.">
   <meta property="og:image" content="../yohan (2).png">
   <meta property="og:locale" content="fr_FR">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kaskad Premium — Coaching escalade individuel haut de gamme">
-  <meta name="twitter:description" content="Accompagnement individuel pour grimpeurs 6c+ en plafond structurel. 4 places par mois. Sur sélection.">
+  <meta name="twitter:description" content="Accompagnement individuel pour grimpeurs 6c+ en plafond structurel. 3 places par mois. Sur sélection.">
   <meta name="twitter:image" content="../yohan (2).png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -463,16 +463,13 @@
     /* Hero — Pour les grimpeurs (mirror landing structure) */
     .hero__for {
       font-weight: 800;
-      font-size: clamp(1.85rem, 5.4vw, 4.25rem);
-      line-height: 1.06;
+      font-size: clamp(2.5rem, 7.2vw, 6rem);
+      line-height: 1.04;
       color: var(--white);
-      letter-spacing: -0.035em;
+      letter-spacing: -0.04em;
       margin-bottom: var(--sp-4);
       animation: hero-in .75s var(--ease-out-expo) .05s both;
-      text-wrap: nowrap;
-    }
-    @media (max-width: 640px) {
-      .hero__for { text-wrap: balance; }
+      text-wrap: balance;
     }
     .hero__claim {
       font-weight: 700;
@@ -644,6 +641,8 @@
       transition: transform .35s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart), border-color .3s;
       position: relative;
       overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
     .mcard::before {
       content: '';
@@ -692,203 +691,6 @@
 
     @media (max-width: 960px) {
       .method-grid { grid-template-columns: 1fr; max-width: 540px; }
-    }
-
-    /* ─────────────────────────────────────────
-       SECTION 3 BIS — APP KASKAD
-    ───────────────────────────────────────── */
-    .s-app {
-      background: var(--cream);
-      padding: var(--sp-12) 0 var(--sp-20);
-      position: relative;
-      border-top: 1px dashed rgba(0,0,0,.08);
-    }
-    .app-head { text-align: center; max-width: 740px; margin: 0 auto var(--sp-12); }
-    .app-head .sec-lead { margin-inline: auto; }
-
-    .app-mock {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: var(--sp-8);
-      margin: 0 auto var(--sp-16);
-      max-width: 920px;
-      flex-wrap: wrap;
-    }
-    .device {
-      border-radius: 28px;
-      background: linear-gradient(160deg, var(--dark-800), var(--dark-900));
-      padding: 14px 10px;
-      box-shadow:
-        0 32px 80px rgba(0,0,0,.22),
-        0 0 0 1px rgba(255,255,255,.04),
-        inset 0 0 0 1px rgba(255,255,255,.06);
-      position: relative;
-    }
-    .device--phone { width: 248px; height: 502px; border-radius: 38px; padding: 12px 8px; }
-    .device--phone::before {
-      content: '';
-      position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
-      width: 84px; height: 18px;
-      background: var(--dark-900); border-radius: var(--radius-full);
-      z-index: 2;
-    }
-    .device__screen {
-      background: linear-gradient(170deg, #0F1626, #1a2238);
-      border-radius: 26px;
-      width: 100%; height: 100%;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .device--phone .device__screen { border-radius: 28px; }
-    .device__top {
-      padding: 38px var(--sp-4) var(--sp-3);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .device__top-label {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 4px;
-    }
-    .device__top-title {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-    .device__body { padding: var(--sp-3) var(--sp-4); flex: 1; display: flex; flex-direction: column; gap: var(--sp-3); }
-    .dev-card {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 10px;
-      padding: var(--sp-3);
-      font-size: 0.6875rem;
-      color: rgba(255,255,255,.78);
-      line-height: 1.5;
-    }
-    .dev-card__label {
-      display: block;
-      font-size: 0.5625rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,103,0,.85);
-      margin-bottom: 4px;
-    }
-    .dev-card__title {
-      color: var(--white);
-      font-weight: 700;
-      font-size: 0.8125rem;
-      margin-bottom: 2px;
-    }
-    .dev-radar {
-      width: 100%;
-      aspect-ratio: 1.4;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(255,103,0,.25) 0%, transparent 55%),
-        conic-gradient(from 0deg, rgba(0,127,255,.18), rgba(255,103,0,.18), rgba(0,127,255,.18));
-      border-radius: 8px;
-      position: relative;
-      margin-top: 6px;
-    }
-    .dev-radar::before {
-      content: '';
-      position: absolute; inset: 14%;
-      border-radius: 50%;
-      border: 1px dashed rgba(255,255,255,.18);
-    }
-    .dev-radar::after {
-      content: '';
-      position: absolute; inset: 30%;
-      border-radius: 50%;
-      border: 1px solid rgba(255,103,0,.45);
-      background: rgba(255,103,0,.08);
-    }
-
-    .device--laptop { width: 460px; max-width: 92vw; height: 280px; border-radius: 14px; padding: 8px; }
-    .device--laptop .device__screen { border-radius: 6px; }
-    .device--laptop .device__top { padding: var(--sp-4) var(--sp-5) var(--sp-3); }
-    .device--laptop::after {
-      content: '';
-      position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
-      width: 70%; height: 8px;
-      background: linear-gradient(180deg, #2A3245, #1a2030);
-      border-radius: 0 0 14px 14px;
-    }
-    .device--laptop .device__body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--sp-2);
-    }
-
-    @media (max-width: 720px) {
-      .device--laptop { display: none; }
-    }
-
-    .app-features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--sp-4);
-      max-width: 1140px;
-      margin: 0 auto;
-    }
-    .afeat {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      padding: var(--sp-6);
-      border: 1px solid rgba(0,0,0,.06);
-      transition: transform .3s var(--ease-out-quart), box-shadow .3s var(--ease-out-quart), border-color .3s;
-    }
-    .afeat:hover {
-      transform: translateY(-3px);
-      border-color: rgba(0,127,255,.2);
-      box-shadow: 0 16px 48px rgba(0,127,255,.12);
-    }
-    .afeat__head {
-      display: flex; align-items: center; gap: var(--sp-3);
-      margin-bottom: var(--sp-3);
-    }
-    .afeat__emoji {
-      font-size: 1.25rem;
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      background: rgba(0,127,255,.10);
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .afeat__title {
-      font-size: 0.8125rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--dark-900);
-      line-height: 1.25;
-    }
-    .afeat__body {
-      font-size: 0.9375rem;
-      color: var(--dark-700);
-      line-height: 1.7;
-    }
-
-    .app-foot {
-      text-align: center;
-      margin-top: var(--sp-10);
-      font-size: 0.875rem;
-      color: var(--gray-500);
-      letter-spacing: 0.02em;
-    }
-    .app-foot strong { color: var(--dark-800); font-weight: 700; }
-
-    @media (max-width: 960px) {
-      .app-features { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 560px) {
-      .app-features { grid-template-columns: 1fr; }
-      .device--phone { width: 220px; height: 440px; }
     }
 
     /* ─────────────────────────────────────────
@@ -1042,6 +844,8 @@
       display: grid;
       grid-template-columns: 280px 1fr;
       transition: transform .35s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
+      transform-style: preserve-3d;
+      will-change: transform;
     }
     .case:hover {
       transform: translateY(-4px);
@@ -1190,6 +994,8 @@
       transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
       box-shadow: 0 2px 12px rgba(0,0,0,.04);
       border: 1px solid rgba(0,0,0,.05);
+      transform-style: preserve-3d;
+      will-change: transform;
     }
     .ccard:hover { transform: translateY(-6px); }
     .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.32); }
@@ -1278,6 +1084,8 @@
       flex-direction: column;
       position: relative;
       transition: transform .35s var(--ease-out-quart), border-color .3s, box-shadow .35s, background .3s;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
     .pcard:hover {
       transform: translateY(-4px);
@@ -1738,7 +1546,7 @@
       </div>
 
       <div class="method-grid">
-        <article class="mcard reveal d1">
+        <article class="mcard js-tilt reveal d1">
           <div class="mcard__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="6" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="12" r="2"/>
@@ -1754,7 +1562,7 @@
           </p>
         </article>
 
-        <article class="mcard reveal d2">
+        <article class="mcard js-tilt reveal d2">
           <div class="mcard__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="12,3 21,8.5 18,19 6,19 3,8.5"/>
@@ -1770,7 +1578,7 @@
           </p>
         </article>
 
-        <article class="mcard reveal d3">
+        <article class="mcard js-tilt reveal d3">
           <div class="mcard__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="7" width="13" height="10" rx="1.5"/>
@@ -1791,142 +1599,6 @@
         Ces 3 outils ne sont disponibles qu'en accompagnement Premium.<br>
         Le Standard fonctionne sur des programmes structurés. Le Premium fonctionne sur un
         <strong>diagnostic individualisé</strong>.
-      </p>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════  SECTION 3 BIS — APP ════ -->
-  <section class="s-app" id="app" data-nav="light">
-    <div class="wrap">
-      <div class="app-head">
-        <span class="sec-eyebrow sec-eyebrow--blue reveal">Application Kaskad</span>
-        <h2 class="sec-title reveal d1">Tu n'es pas livré à toi-même. Tu as une application dédiée.</h2>
-        <p class="sec-lead reveal d2">
-          Kaskad Premium inclut l'accès complet à notre application <strong>Kaskad</strong> —
-          l'outil qu'on a construit en 18 mois pour donner à nos membres une expérience de
-          coaching numérique premium.
-        </p>
-      </div>
-
-      <div class="app-mock reveal d2" aria-hidden="true">
-        <div class="device device--phone">
-          <div class="device__screen">
-            <div class="device__top">
-              <div class="device__top-label">Programme du jour</div>
-              <div class="device__top-title">Mardi — Bloc + projection</div>
-            </div>
-            <div class="device__body">
-              <div class="dev-card">
-                <span class="dev-card__label">Échauffement</span>
-                <div class="dev-card__title">10 min — Mobilité épaules</div>
-                Activation chaîne post.
-              </div>
-              <div class="dev-card">
-                <span class="dev-card__label">Bloc — flash</span>
-                <div class="dev-card__title">6 blocs × niveau projet</div>
-                Repos 2 min entre essais
-              </div>
-              <div class="dev-card">
-                <span class="dev-card__label">Projection</span>
-                <div class="dev-card__title">2 essais sur ton 7c</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="device device--laptop">
-          <div class="device__screen">
-            <div class="device__top">
-              <div class="device__top-label">Radar 21 axes</div>
-              <div class="device__top-title">Profil — Archétype Spécialiste</div>
-            </div>
-            <div class="device__body">
-              <div class="dev-radar"></div>
-              <div>
-                <div class="dev-card">
-                  <span class="dev-card__label">Déficit #1</span>
-                  <div class="dev-card__title">Endurance de force</div>
-                </div>
-                <div class="dev-card" style="margin-top:6px;">
-                  <span class="dev-card__label">Déficit #2</span>
-                  <div class="dev-card__title">Lecture en dévers</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-features">
-        <article class="afeat reveal d1">
-          <div class="afeat__head">
-            <span class="afeat__emoji" aria-hidden="true">📱</span>
-            <h3 class="afeat__title">Ton programme personnalisé</h3>
-          </div>
-          <p class="afeat__body">
-            Tes séances du mois, jour par jour. Plan construit par ton coach, ajusté par l'IA Kaskad
-            selon ta progression.
-          </p>
-        </article>
-
-        <article class="afeat reveal d2">
-          <div class="afeat__head">
-            <span class="afeat__emoji" aria-hidden="true">📊</span>
-            <h3 class="afeat__title">Radar 21 axes & diagnostic</h3>
-          </div>
-          <p class="afeat__body">
-            Ton profil de grimpeur visualisé. Évolution mois après mois. Identification de tes
-            axes faibles en temps réel.
-          </p>
-        </article>
-
-        <article class="afeat reveal d3">
-          <div class="afeat__head">
-            <span class="afeat__emoji" aria-hidden="true">✅</span>
-            <h3 class="afeat__title">Check-ins hebdomadaires</h3>
-          </div>
-          <p class="afeat__body">
-            Chaque dimanche, 2 minutes pour faire le bilan : qualité de semaine, victoires,
-            blessures éventuelles. Ton coach voit tout en temps réel.
-          </p>
-        </article>
-
-        <article class="afeat reveal d1">
-          <div class="afeat__head">
-            <span class="afeat__emoji" aria-hidden="true">⏱️</span>
-            <h3 class="afeat__title">Timer de séance</h3>
-          </div>
-          <p class="afeat__body">
-            Lance ta séance dans l'app, suis tes exercices pas à pas, note ton RPE après chaque
-            session. Tout est tracé.
-          </p>
-        </article>
-
-        <article class="afeat reveal d2">
-          <div class="afeat__head">
-            <span class="afeat__emoji" aria-hidden="true">📓</span>
-            <h3 class="afeat__title">Logbook intégré</h3>
-          </div>
-          <p class="afeat__body">
-            Ton carnet d'ascensions personnel. Photos, vidéos, stats par style. Tes meilleurs
-            flashs, tes projets en cours.
-          </p>
-        </article>
-
-        <article class="afeat reveal d3">
-          <div class="afeat__head">
-            <span class="afeat__emoji" aria-hidden="true">💬</span>
-            <h3 class="afeat__title">Communauté Discord intégrée</h3>
-          </div>
-          <p class="afeat__body">
-            Accès direct au Discord Kaskad depuis l'app. Créneaux coachs hebdomadaires
-            (Florentin mardi, Nicolas vendredi). Communauté de grimpeurs Premium.
-          </p>
-        </article>
-      </div>
-
-      <p class="app-foot reveal d4">
-        <strong>PWA installable iOS + Android.</strong> Mode hors-ligne. Notifications push avant chaque séance.
       </p>
     </div>
   </section>
@@ -2041,7 +1713,7 @@
       </div>
 
       <div class="cases-list">
-        <article class="case reveal d1">
+        <article class="case js-tilt reveal d1">
           <div class="case__media">
             <span class="case__placeholder-tag">Placeholder · Léo Barachant</span>
             <span class="case__initial">L</span>
@@ -2071,7 +1743,7 @@
           </div>
         </article>
 
-        <article class="case reveal d2">
+        <article class="case js-tilt reveal d2">
           <div class="case__media">
             <span class="case__placeholder-tag">Placeholder · Stéphane</span>
             <span class="case__initial">S</span>
@@ -2117,7 +1789,7 @@
       </div>
 
       <div class="coachs-grid">
-        <article class="ccard ccard--orange reveal d1">
+        <article class="ccard js-tilt ccard--orange reveal d1">
           <span class="ccard__accent" aria-hidden="true"></span>
           <div class="ccard__avatar">
             <img src="../yohan (2).png" alt="Yohan, créateur de Kaskad" loading="lazy" decoding="async" style="object-position:center center;">
@@ -2127,7 +1799,7 @@
           <p class="ccard__bio">Architecte des plans trimestriels. Présent à chaque réajustement.</p>
         </article>
 
-        <article class="ccard ccard--green reveal d2">
+        <article class="ccard js-tilt ccard--green reveal d2">
           <span class="ccard__accent" aria-hidden="true"></span>
           <div class="ccard__avatar">
             <img src="../florentin (1).JPG" alt="Florentin, coach Kaskad" loading="lazy" decoding="async" style="object-position:center 28%;">
@@ -2137,7 +1809,7 @@
           <p class="ccard__bio">Coach attitré possible pour profils Spécialiste / Tétanisé bloc.</p>
         </article>
 
-        <article class="ccard ccard--blue reveal d3">
+        <article class="ccard js-tilt ccard--blue reveal d3">
           <span class="ccard__accent" aria-hidden="true"></span>
           <div class="ccard__avatar">
             <img src="../nicolas.png" alt="Nicolas, coach Kaskad" loading="lazy" decoding="async">
@@ -2169,7 +1841,7 @@
 
       <div class="pricing-grid">
         <!-- 6 mois -->
-        <article class="pcard reveal d1">
+        <article class="pcard js-tilt reveal d1">
           <span class="pcard__badge pcard__badge--gray">Test approfondi</span>
           <h3 class="pcard__title">Premium 6 mois</h3>
           <div class="pcard__price-block">
@@ -2189,7 +1861,7 @@
         </article>
 
         <!-- 9 mois -->
-        <article class="pcard pcard--featured reveal d2">
+        <article class="pcard pcard--featured js-tilt reveal d2">
           <span class="pcard__badge pcard__badge--orange">★ Le plus choisi</span>
           <h3 class="pcard__title">Premium 9 mois</h3>
           <div class="pcard__price-block">
@@ -2208,7 +1880,7 @@
         </article>
 
         <!-- 12 mois -->
-        <article class="pcard reveal d3">
+        <article class="pcard js-tilt reveal d3">
           <span class="pcard__badge pcard__badge--blue">Transformation profonde</span>
           <h3 class="pcard__title">Premium 12 mois</h3>
           <div class="pcard__price-block">
@@ -2231,7 +1903,7 @@
       <div class="pricing-foot reveal d4">
         <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">💳</span>Paiement mensuel possible sur toutes les formules</div>
         <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">🔒</span>Pas d'engagement renouvelable automatique : tu décides à la fin</div>
-        <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">👤</span><strong>4 places ouvertes par mois</strong> — discovery call obligatoire</div>
+        <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">👤</span><strong>3 places ouvertes par mois</strong> — discovery call obligatoire</div>
       </div>
 
       <div class="pricing-cta-wrap reveal d5">
@@ -2272,11 +1944,11 @@
 
         <div class="fitem">
           <button class="fitem__q" id="fq3" aria-expanded="false" aria-controls="fa3">
-            Vous prenez vraiment 4 personnes par mois ?
+            Vous prenez vraiment 3 personnes par mois ?
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
           <div class="fitem__a" id="fa3" role="region" aria-labelledby="fq3">
-            <div class="fitem__a-inner">Oui. Chaque coach attitré (Florentin ou Nicolas) ne peut suivre qu'un nombre limité de clients Premium en parallèle pour garantir la qualité de l'analyse vidéo et des visios. Si les 4 places sont prises, on te met sur liste d'attente.</div>
+            <div class="fitem__a-inner">Oui. Chaque coach attitré (Florentin ou Nicolas) ne peut suivre qu'un nombre limité de clients Premium en parallèle pour garantir la qualité de l'analyse vidéo et des visios. Si les 3 places sont prises, on te met sur liste d'attente.</div>
           </div>
         </div>
 
@@ -2360,7 +2032,7 @@
 
     <div class="wrap s-final__inner">
       <h2 class="s-final__h2 reveal">
-        <strong>4 places</strong> ouvertes ce mois-ci.<br>
+        <strong>3 places</strong> ouvertes ce mois-ci.<br>
         Réserve ton appel de qualification.
       </h2>
       <p class="s-final__sub reveal d1">
@@ -2546,6 +2218,40 @@
         });
       }, { threshold: 0.18 });
       io.observe(card);
+    });
+
+    /* ── 3D card tilt (ported from landing) ── */
+    document.querySelectorAll('.js-tilt').forEach(card => {
+      let animFrame;
+      const isBlue  = card.classList.contains('ccard--blue');
+      const isGreen = card.classList.contains('ccard--green');
+      const isFeatured = card.classList.contains('pcard--featured');
+      const glowColor = isBlue
+        ? 'rgba(0,127,255,.5)'
+        : isGreen
+          ? 'rgba(0,170,70,.46)'
+          : 'rgba(255,103,0,.46)';
+      card.addEventListener('mousemove', (e) => {
+        cancelAnimationFrame(animFrame);
+        animFrame = requestAnimationFrame(() => {
+          const r  = card.getBoundingClientRect();
+          const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+          const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+          card.style.transition = 'none';
+          const baseScale = isFeatured ? 1.04 : 1.01;
+          card.style.transform = `perspective(900px) rotateY(${dx * 4}deg) rotateX(${-dy * 3}deg) translateY(-5px) scale(${baseScale})`;
+          card.style.boxShadow = `${-dx * 12}px ${-dy * 9}px 50px rgba(0,0,0,.14), 0 0 220px ${glowColor}`;
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(animFrame);
+        card.style.transition = 'transform .55s cubic-bezier(0.25,1,0.5,1), box-shadow .55s cubic-bezier(0.25,1,0.5,1)';
+        card.style.transform  = '';
+        card.style.boxShadow  = '';
+      });
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'none';
+      });
     });
 
     /* ── FAQ accordion ─────────────────────── */
