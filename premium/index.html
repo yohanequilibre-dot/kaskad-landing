@@ -580,10 +580,23 @@
        SECTION 2,QUALIFIER
     ───────────────────────────────────────── */
     .s-qualifier {
-      background: var(--white);
+      background-color: var(--dark-800);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
       padding: var(--sp-20) 0 var(--sp-16);
       position: relative;
+      overflow: hidden;
     }
+    .s-qualifier .sec-title { color: var(--white); }
+    .s-qualifier .sec-lead { color: rgba(255,255,255,.72); }
+    .s-qualifier .sec-lead strong { color: var(--white); }
+    .s-qualifier .qual-foot {
+      color: rgba(255,255,255,.72);
+      border-top-color: rgba(255,255,255,.14);
+    }
+    .s-qualifier .qual-foot strong { color: var(--white); }
+    .s-qualifier .qual-foot a { color: var(--orange-light); }
+    .s-qualifier .qual-foot a:hover { color: var(--orange); }
     .qual-head { text-align: center; max-width: 760px; margin: 0 auto var(--sp-12); }
     .qual-grid {
       display: grid;
@@ -916,7 +929,7 @@
        SECTION 5,CASE STUDIES
     ───────────────────────────────────────── */
     .s-cases {
-      background: var(--white);
+      background: var(--cream);
       padding: var(--sp-20) 0;
     }
     .cases-head { text-align: center; max-width: 720px; margin: 0 auto var(--sp-12); }
@@ -1084,9 +1097,16 @@
        SECTION 6,COACHS
     ───────────────────────────────────────── */
     .s-coachs {
-      background: var(--cream);
+      background-color: var(--dark-800);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
       padding: var(--sp-20) 0;
+      position: relative;
+      overflow: hidden;
     }
+    .s-coachs .sec-title { color: var(--white); }
+    .s-coachs .sec-lead { color: rgba(255,255,255,.72); }
+    .s-coachs .sec-lead strong { color: var(--white); }
     .coachs-head { text-align: center; max-width: 760px; margin: 0 auto var(--sp-12); }
     .coachs-head .sec-lead { margin-inline: auto; }
 
@@ -1381,52 +1401,58 @@
     }
 
     /* ─────────────────────────────────────────
-       SECTION 8,FAQ
+       SECTION 8, FAQ (deep navy, mirror landing)
     ───────────────────────────────────────── */
     .s-faq {
-      background: var(--white);
+      background-color: #1c2d42;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
       padding: var(--sp-20) 0;
+      position: relative;
+      overflow: hidden;
     }
+    .s-faq .sec-title { color: var(--white); }
     .faq-head { text-align: center; max-width: 720px; margin: 0 auto var(--sp-12); }
     .faq-list { max-width: 820px; margin: 0 auto; }
     .fitem {
-      border-bottom: 1px solid rgba(0,0,0,.10);
+      border-bottom: 1px solid rgba(255,255,255,.10);
       transition: background .3s var(--ease-out-quart), padding .3s var(--ease-out-quart);
       border-radius: var(--radius-sm);
     }
-    .fitem:first-child { border-top: 1px solid rgba(0,0,0,.10); }
+    .fitem:first-child { border-top: 1px solid rgba(255,255,255,.10); }
     .fitem.is-open {
-      background: rgba(255,103,0,.06);
+      background: rgba(255,103,0,.07);
       border-color: transparent;
       padding-inline: var(--sp-5);
       margin-inline: calc(-1 * var(--sp-5));
     }
     .fitem__q {
       width: 100%; display: flex; align-items: center; justify-content: space-between;
-      gap: var(--sp-4); padding: var(--sp-5) 0; text-align: left;
-      font-size: 1.0625rem; font-weight: 600; color: var(--dark-900); transition: color .2s;
+      gap: var(--sp-4); padding: var(--sp-6) 0; text-align: left;
+      font-size: 1.0625rem; font-weight: 600; color: rgba(255,255,255,.9); transition: color .2s;
     }
     .fitem__q:hover { color: var(--orange); }
     .fitem.is-open .fitem__q { color: var(--orange); font-weight: 700; }
     .fitem__icon {
-      flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(0,0,0,.06);
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,.12);
       display: flex; align-items: center; justify-content: center;
       transition: background .3s var(--ease-out-quart), transform .4s var(--ease-out-quart);
     }
     .fitem.is-open .fitem__icon { background: var(--orange); transform: rotate(45deg); }
-    .fitem__icon svg { width: 12px; height: 12px; stroke: var(--dark-900); stroke-width: 2.5; stroke-linecap: round; transition: stroke .25s; }
+    .fitem__icon svg { width: 12px; height: 12px; stroke: rgba(255,255,255,.75); stroke-width: 2.5; stroke-linecap: round; transition: stroke .25s; }
     .fitem.is-open .fitem__icon svg { stroke: var(--white); }
     .fitem__a { overflow: hidden; max-height: 0; transition: max-height .45s var(--ease-out-quart); }
     .fitem__a-inner {
       padding: 0 0 var(--sp-6) 0;
       font-size: 1rem;
-      color: var(--dark-700);
-      line-height: 1.85;
+      color: rgba(255,255,255,.72);
+      line-height: 1.8;
       max-width: 64ch;
       opacity: 0;
       transition: opacity .3s var(--ease-out-quart) .08s;
     }
+    .fitem__a-inner strong { color: var(--white); }
     .fitem.is-open .fitem__a-inner { opacity: 1; }
 
     /* ─────────────────────────────────────────
@@ -1660,7 +1686,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════  SECTION 2,QUALIFIER ════ -->
-  <section class="s-qualifier" id="qualifier" data-nav="light">
+  <section class="s-qualifier" id="qualifier" data-nav="dark">
     <div class="wrap">
       <div class="qual-head reveal">
         <h2 class="sec-title">Ce n'est pas fait pour toi.</h2>
@@ -1990,7 +2016,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════  SECTION 6,COACHS ════ -->
-  <section class="s-coachs" id="coachs" data-nav="light">
+  <section class="s-coachs" id="coachs" data-nav="dark">
     <div class="wrap">
       <div class="coachs-head">
         <span class="sec-eyebrow reveal">L'équipe</span>
@@ -2151,7 +2177,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════  SECTION 8,FAQ ════ -->
-  <section class="s-faq" id="faq" data-nav="light">
+  <section class="s-faq" id="faq" data-nav="dark">
     <div class="wrap">
       <div class="faq-head">
         <span class="sec-eyebrow reveal">Ce que tu te dis sûrement</span>
