@@ -274,6 +274,9 @@
     .btn-ghost-orange { background: transparent; color: var(--orange); border: 1.5px solid rgba(255,103,0,.4); }
     .btn-ghost-orange:hover { background: rgba(255,103,0,.08); border-color: var(--orange); }
 
+    .btn-white-on-orange { background: var(--white); color: var(--orange); font-weight: 700; }
+    .btn-white-on-orange:hover { box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+
     @media (max-width: 768px) {
       .btn { min-height: 44px; }
       .btn-xl { padding: 1rem 1.5rem; font-size: 1rem; }
@@ -284,20 +287,16 @@
        SECTION HEADERS
     ───────────────────────────────────────── */
     .sec-eyebrow {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
+      display: block;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: var(--sp-4);
-      padding: 0.375rem 0.875rem;
-      background: rgba(255,103,0,.10);
-      border: 1px solid rgba(255,103,0,.22);
-      border-radius: var(--radius-full);
+      margin-bottom: var(--sp-2);
     }
-    .sec-eyebrow--blue { color: var(--blue); background: rgba(0,127,255,.10); border-color: rgba(0,127,255,.22); }
-    .sec-eyebrow--ghost { background: transparent; border-color: rgba(255,255,255,.18); color: rgba(255,255,255,.7); }
+    .sec-eyebrow--blue  { color: var(--blue); }
+    .sec-eyebrow--ghost { color: rgba(255,255,255,.7); }
 
     .sec-title {
       font-weight: 800;
@@ -654,8 +653,9 @@
       margin-top: 1px;
     }
     .qitem--yes .qitem__icon { background: rgba(0,170,70,.15); color: var(--green); }
-    .qitem--no  .qitem__icon { background: rgba(0,0,0,.08); color: var(--gray-500); }
-    .qitem--no  { color: var(--gray-500); }
+    .qitem--no  .qitem__icon { background: rgba(0,0,0,.12); color: var(--dark-700); }
+    .qitem--no  { color: var(--dark-700); }
+    .qitem--no  em { color: var(--gray-500); }
 
     .qual-foot {
       text-align: center;
@@ -1097,16 +1097,12 @@
        SECTION 6,COACHS
     ───────────────────────────────────────── */
     .s-coachs {
-      background-color: var(--dark-800);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
+      background: var(--white);
       padding: var(--sp-20) 0;
-      position: relative;
-      overflow: hidden;
+      border-top: 1px solid rgba(0,0,0,.09);
+      border-bottom: 1px solid rgba(0,0,0,.09);
+      box-shadow: inset 0 6px 16px -10px rgba(0,0,0,.12), inset 0 -6px 16px -10px rgba(0,0,0,.12);
     }
-    .s-coachs .sec-title { color: var(--white); }
-    .s-coachs .sec-lead { color: rgba(255,255,255,.72); }
-    .s-coachs .sec-lead strong { color: var(--white); }
     .coachs-head { text-align: center; max-width: 760px; margin: 0 auto var(--sp-12); }
     .coachs-head .sec-lead { margin-inline: auto; }
 
@@ -1360,28 +1356,33 @@
     .pricing-note strong { color: var(--dark-900); font-style: normal; }
 
     .pricing-foot {
-      max-width: 720px;
+      max-width: 1080px;
       margin: var(--sp-10) auto 0;
       background: var(--white);
       border: 1px solid rgba(255,103,0,.28);
       border-radius: var(--radius-lg);
-      padding: var(--sp-6) var(--sp-8);
-      display: flex;
-      flex-direction: column;
-      gap: var(--sp-4);
+      padding: var(--sp-8) var(--sp-6);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-6);
       position: relative;
       z-index: 1;
     }
     .pfoot-item {
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
       gap: var(--sp-3);
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       color: var(--dark-700);
       line-height: 1.6;
     }
     .pfoot-item strong { color: var(--dark-900); }
-    .pfoot-item__icon { font-size: 1.25rem; flex-shrink: 0; line-height: 1.4; }
+    .pfoot-item__icon { font-size: 1.75rem; flex-shrink: 0; line-height: 1; }
+    @media (max-width: 720px) {
+      .pricing-foot { grid-template-columns: 1fr; max-width: 480px; }
+    }
     .pricing-cta-wrap {
       text-align: center;
       margin-top: var(--sp-10);
@@ -1459,7 +1460,7 @@
        SECTION 9,FINAL CTA (DARK)
     ───────────────────────────────────────── */
     .s-final {
-      background: var(--dark-900);
+      background: var(--orange);
       padding: var(--sp-20) 0;
       text-align: center;
       position: relative;
@@ -1469,30 +1470,11 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 20% 50%, rgba(255,103,0,.22) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0,127,255,.18) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 70% at 20% 50%, rgba(255,255,255,.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 50%, rgba(0,0,0,.08) 0%, transparent 55%);
       pointer-events: none;
-      animation: hero-glow-breathe 9s ease-in-out infinite;
     }
-    .s-final__orb-a, .s-final__orb-b {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(110px);
-      z-index: 0;
-    }
-    .s-final__orb-a {
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(255,103,0,.28) 0%, transparent 62%);
-      top: -120px; left: -120px;
-      animation: sect-orb-a 22s ease-in-out infinite;
-    }
-    .s-final__orb-b {
-      width: 420px; height: 420px;
-      background: radial-gradient(circle, rgba(0,127,255,.22) 0%, transparent 62%);
-      bottom: -100px; right: -80px;
-      animation: sect-orb-b 26s ease-in-out infinite;
-    }
+    .s-final__orb-a, .s-final__orb-b { display: none; }
     .s-final__inner { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; }
     .s-final__h2 {
       font-weight: 800;
@@ -1502,36 +1484,37 @@
       letter-spacing: -0.035em;
       margin-bottom: var(--sp-5);
     }
-    .s-final__h2 strong { color: var(--orange); }
+    .s-final__h2 strong { color: var(--white); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 3px; }
     .s-final__sub {
       font-size: clamp(1rem, 2vw, 1.1875rem);
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.92);
       line-height: 1.7;
-      margin-bottom: var(--sp-10);
+      margin-bottom: var(--sp-6);
       max-width: 64ch;
       margin-inline: auto;
     }
+    .s-final__sub strong { color: var(--white); }
     .s-final__reassure {
       margin-top: var(--sp-5);
       font-size: 0.875rem;
-      color: rgba(255,255,255,.55);
+      color: rgba(255,255,255,.82);
       line-height: 1.7;
       max-width: 60ch;
       margin-inline: auto;
     }
+    .s-final__reassure strong { color: var(--white); }
     .s-final__quote {
       margin-top: var(--sp-12);
       max-width: 640px;
       margin-inline: auto;
       padding: var(--sp-6) var(--sp-8);
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
       border-radius: var(--radius-lg);
-      backdrop-filter: blur(6px);
     }
     .s-final__quote p {
       font-size: 1rem;
-      color: rgba(255,255,255,.82);
+      color: var(--white);
       font-style: italic;
       line-height: 1.75;
       margin-bottom: var(--sp-3);
@@ -1539,7 +1522,7 @@
     .s-final__quote-name {
       font-size: 0.8125rem;
       font-weight: 700;
-      color: var(--orange);
+      color: var(--white);
       letter-spacing: 0.04em;
     }
 
@@ -2016,7 +1999,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════  SECTION 6,COACHS ════ -->
-  <section class="s-coachs" id="coachs" data-nav="dark">
+  <section class="s-coachs" id="coachs" data-nav="light">
     <div class="wrap">
       <div class="coachs-head">
         <span class="sec-eyebrow reveal">L'équipe</span>
@@ -2067,15 +2050,9 @@
         <span class="sec-eyebrow reveal">Les formules Premium</span>
         <h2 class="sec-title sec-title--lg reveal d1">Choisis ton engagement.</h2>
         <p class="sec-lead sec-lead--center reveal d2" style="max-width:80ch;">
-          Avant de te donner les chiffres, deux questions honnêtes.
-        </p>
-        <p class="sec-lead sec-lead--center reveal d2" style="max-width:80ch;">
-          <strong>La première :</strong> ça fait combien de mois que tu progresses moins vite que tu voudrais ? Si t'es honnête, c'est sûrement plus que tu penses.
+          Avant de te donner les chiffres, deux questions sincères. <strong>La première :</strong> ça fait combien de mois que tu progresses moins vite que tu voudrais ? Si t'es honnête, c'est sûrement plus que tu penses. <strong>La deuxième :</strong> dans 12 mois, si rien ne change, où tu en seras ? Quasiment au même endroit probablement. <strong>C'est ça le vrai coût de pas signer.</strong>
         </p>
         <p class="sec-lead sec-lead--center reveal d3" style="max-width:80ch;">
-          <strong>La deuxième :</strong> dans 12 mois, si rien ne change, où tu en seras ? Quasiment au même endroit probablement. <strong>C'est ça le vrai coût de pas signer.</strong>
-        </p>
-        <p class="sec-lead sec-lead--center reveal d4" style="max-width:80ch;">
           Maintenant, les chiffres : <strong>trois durées possibles. Plus tu t'engages et montres ta motivation, plus le tarif baisse.</strong>
         </p>
       </div>
@@ -2142,7 +2119,7 @@
           <h3 class="pcard__name">L'engagement long pour aller le plus loin</h3>
           <p class="pcard__tagline">Pour ceux qui veulent maximiser l'économie et le suivi.</p>
           <div class="pcard__price">399<span class="pcard__price-unit"> €/mois</span></div>
-          <span class="pcard__save">Tu économises 1 200&nbsp;€ par rapport au Premium 9 mois</span>
+          <span class="pcard__save">Tu économises 1 200&nbsp;€ par rapport au Premium 6 mois</span>
           <div class="pcard__divider"></div>
           <ul class="pcard__features">
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard inclus</li>
@@ -2217,120 +2194,90 @@
 
         <div class="fitem">
           <button class="fitem__q" id="fq4" aria-expanded="false" aria-controls="fa4">
-            Quel niveau faut-il avoir pour rejoindre Kaskad Premium ?
-            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
-          </button>
-          <div class="fitem__a" id="fa4" role="region" aria-labelledby="fq4">
-            <div class="fitem__a-inner">Le Premium s'adresse en priorité aux grimpeurs <strong>entre 6b+ et 8a</strong> qui veulent maximiser leur progression et avoir le suivi le plus personnalisé possible. Mais on a déjà accompagné tous les profils, l'important c'est ta motivation et ton envie de t'investir. On en parle pendant l'appel de qualification.</div>
-          </div>
-        </div>
-
-        <div class="fitem">
-          <button class="fitem__q" id="fq5" aria-expanded="false" aria-controls="fa5">
-            Est-ce que je dois avoir un hangboard ou du matériel spécifique ?
-            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
-          </button>
-          <div class="fitem__a" id="fa5" role="region" aria-labelledby="fq5">
-            <div class="fitem__a-inner">Non, le programme est construit en fonction de ce dont tu disposes. Si tu n'as que ta salle, le programme est fait pour ta salle. Si tu as des élastiques à la maison, on l'intègre. Les coachs prennent en compte tout ce que tu as à ta disposition lors de la rédaction de ton plan. Tu peux t'acheter du matériel si tu veux mais ce n'est jamais un prérequis.</div>
-          </div>
-        </div>
-
-        <div class="fitem">
-          <button class="fitem__q" id="fq6" aria-expanded="false" aria-controls="fa6">
             Comment ça se passe si je me blesse lors de l'accompagnement ?
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa6" role="region" aria-labelledby="fq6">
+          <div class="fitem__a" id="fa4" role="region" aria-labelledby="fq4">
             <div class="fitem__a-inner">Si tu te blesses en cours de programme, le plan est ajusté <strong>immédiatement</strong>. C'est exactement pour ça que notre suivi humain existe et qu'on a fait du Premium un accompagnement aussi serré. Si c'est léger, ça peut être une diminution du rythme et de l'intensité, avec ajout d'exercices de rééducation. Si c'est plus grave, on met en pause l'accompagnement <strong>sans frais</strong> jusqu'à ce que tu puisses regrimper correctement.</div>
           </div>
         </div>
 
         <div class="fitem">
-          <button class="fitem__q" id="fq7" aria-expanded="false" aria-controls="fa7">
+          <button class="fitem__q" id="fq5" aria-expanded="false" aria-controls="fa5">
             Est-ce que je peux arrêter le coaching quand je veux ?
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa7" role="region" aria-labelledby="fq7">
+          <div class="fitem__a" id="fa5" role="region" aria-labelledby="fq5">
             <div class="fitem__a-inner">On fonctionne en engagements de <strong>6, 9 ou 12 mois</strong> pour permettre aux coachs d'organiser ton entraînement (une planification de 6 mois n'a rien à voir avec une planification de 12 mois) et aussi te garder engagé.<br><br>Si tu sais que tu es là pour la durée, tu vas rester motivé. Les résultats exceptionnels de nos membres ne sont pas uniquement dus au cadre qu'on pose, c'est aussi parce qu'on sait faire ressortir le meilleur de toi-même et te garder gonflé à bloc !<br><br>La <strong>garantie 15 jours satisfait ou remboursé</strong> s'applique sur le premier mois quelle que soit la formule.</div>
           </div>
         </div>
 
         <div class="fitem">
-          <button class="fitem__q" id="fq8" aria-expanded="false" aria-controls="fa8">
+          <button class="fitem__q" id="fq6" aria-expanded="false" aria-controls="fa6">
             Combien de temps avant de voir des résultats ?
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa8" role="region" aria-labelledby="fq8">
+          <div class="fitem__a" id="fa6" role="region" aria-labelledby="fq6">
             <div class="fitem__a-inner">Les premiers signaux concrets (qualité de séance, compréhension de tes blocages, progression sur exercices ciblés) arrivent <strong>dès la première semaine</strong>. Les progressions de cotation varient énormément, certains membres prennent une cotation en quelques semaines. Pour la grande majorité de nos membres Premium, il faut <strong>6 à 8 semaines</strong> pour passer une cotation supérieure, et 6 à 12 mois pour la transformation en profondeur.</div>
           </div>
         </div>
 
         <div class="fitem">
-          <button class="fitem__q" id="fq9" aria-expanded="false" aria-controls="fa9">
-            Est-ce que ça marche si je grimpe seulement en salle ?
-            <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
-          </button>
-          <div class="fitem__a" id="fa9" role="region" aria-labelledby="fq9">
-            <div class="fitem__a-inner">Oui. Le plan s'adapte à ton terrain de pratique : salle, falaise, les deux. On fait le point sur tous les outils que tu as à ta disposition et tout ce qui te plaît dans la grimpe avant de commencer la rédaction de ton programme !</div>
-          </div>
-        </div>
-
-        <div class="fitem">
-          <button class="fitem__q" id="fq10" aria-expanded="false" aria-controls="fa10">
+          <button class="fitem__q" id="fq7" aria-expanded="false" aria-controls="fa7">
             Et si Kaskad Premium ne me convient pas ou que je dois annuler ?
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa10" role="region" aria-labelledby="fq10">
+          <div class="fitem__a" id="fa7" role="region" aria-labelledby="fq7">
             <div class="fitem__a-inner">Tu as <strong>14 jours de rétractation légale</strong> dès la signature. Au-delà, la <strong>garantie 15 jours satisfait ou remboursé</strong> te couvre si dans le premier mois tu sens que Premium n'est pas pour toi.<br><br>On a tout intérêt à ce que tu restes donc on a tout intérêt à ce que ça marche pour toi. Notre écosystème fonctionne pour tous, il va aussi fonctionner pour toi.</div>
           </div>
         </div>
 
         <div class="fitem">
-          <button class="fitem__q" id="fq11" aria-expanded="false" aria-controls="fa11">
+          <button class="fitem__q" id="fq8" aria-expanded="false" aria-controls="fa8">
             Comment ça se passe avec mes coachs au quotidien ?
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa11" role="region" aria-labelledby="fq11">
+          <div class="fitem__a" id="fa8" role="region" aria-labelledby="fq8">
             <div class="fitem__a-inner">Tu échanges avec moi (Yohan) et tes <strong>deux coachs attitrés (Nicolas + Florentin)</strong> dans une conversation privée dédiée. On répond chacun en 24h en moyenne, que ce soit pour analyser tes vidéos de grimpe, faire un point hebdomadaire pour ajuster la trajectoire, ou répondre à tes questions. Si tu pars en vacances, si tu te blesses ou si ton emploi du temps change, le plan s'adapte en temps réel. <strong>Tu n'es jamais seul.</strong></div>
           </div>
         </div>
 
         <div class="fitem">
-          <button class="fitem__q" id="fq12" aria-expanded="false" aria-controls="fa12">
+          <button class="fitem__q" id="fq9" aria-expanded="false" aria-controls="fa9">
             «&nbsp;J'ai pas la discipline et la motivation pour suivre un plan.&nbsp;»
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa12" role="region" aria-labelledby="fq12">
+          <div class="fitem__a" id="fa9" role="region" aria-labelledby="fq9">
             <div class="fitem__a-inner">C'est exactement pour ça que la garantie, la communauté et le suivi avec tes coachs existent. Notre écosystème remplace ta discipline et ta motivation afin que tu restes engagé vers ton objectif. Ton programme est conçu pour <strong>se superposer à ton rythme actuel</strong>, l'appliquer ne te demande presque aucun effort supplémentaire. Et en Premium, l'appel hebdo individuel est là spécifiquement pour ne jamais te laisser décrocher.</div>
           </div>
         </div>
 
         <div class="fitem">
-          <button class="fitem__q" id="fq13" aria-expanded="false" aria-controls="fa13">
+          <button class="fitem__q" id="fq10" aria-expanded="false" aria-controls="fa10">
             «&nbsp;J'ai déjà essayé d'autres programmes ou coachs et ça n'a pas marché.&nbsp;»
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa13" role="region" aria-labelledby="fq13">
+          <div class="fitem__a" id="fa10" role="region" aria-labelledby="fq10">
             <div class="fitem__a-inner">C'est précisément pour ça qu'on construit un écosystème. Chez Kaskad, en plus d'<strong>identifier d'abord ce qui te bloque vraiment</strong> puis de construire ton programme, on adapte continuellement celui-ci à ta vraie vie, on t'intègre à une communauté de grimpeurs motivés et on simplifie tout au maximum, à la fois pour que progresser soit facile et amusant pour toi, mais aussi pour que tu comprennes l'intérêt de chacun des choix faits pour toi. Et surtout, si ton profil n'est pas fait pour ce qu'on propose, <strong>on te le dit directement</strong>.</div>
           </div>
         </div>
 
         <div class="fitem">
-          <button class="fitem__q" id="fq14" aria-expanded="false" aria-controls="fa14">
+          <button class="fitem__q" id="fq11" aria-expanded="false" aria-controls="fa11">
             «&nbsp;Je grimpe seulement 2 fois par semaine. Ça vaut le coup ?&nbsp;»
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa14" role="region" aria-labelledby="fq14">
+          <div class="fitem__a" id="fa11" role="region" aria-labelledby="fq11">
             <div class="fitem__a-inner">Oui et c'est même là que c'est le plus intéressant pour toi. La plupart des grimpeurs ne stagnent pas à cause d'un manque de temps mais à cause d'une <strong>mauvaise structure</strong>. Concrètement : moins tu grimpes, plus tu dois optimiser ton temps si tu veux progresser. Ton plan d'entraînement Premium est calibré sur ta vraie disponibilité (1, 2, 3… séances/semaine), <strong>pas sur un volume théorique</strong>.</div>
           </div>
         </div>
 
         <div class="fitem">
-          <button class="fitem__q" id="fq15" aria-expanded="false" aria-controls="fa15">
+          <button class="fitem__q" id="fq12" aria-expanded="false" aria-controls="fa12">
             «&nbsp;Je suis pas sûr que ça marche pour mon profil.&nbsp;»
             <span class="fitem__icon" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor"/></svg></span>
           </button>
-          <div class="fitem__a" id="fa15" role="region" aria-labelledby="fq15">
+          <div class="fitem__a" id="fa12" role="region" aria-labelledby="fq12">
             <div class="fitem__a-inner">On a accompagné <strong>tous les profils qui existent</strong> : du niveau 6a au 8a, en bloc et en voie, en salle et en falaise, en retour de blessure et en pleine forme, etc. Ton diagnostic est la première chose qu'on fait : si on voit que Premium ne te convient pas, on te le dit dès le départ et on te rembourse directement.</div>
           </div>
         </div>
@@ -2340,9 +2287,6 @@
 
   <!-- ═══════════════════════════════════════  SECTION 9,FINAL CTA ════ -->
   <section class="s-final" id="demarrer" data-nav="dark">
-    <div class="s-final__orb-a" aria-hidden="true"></div>
-    <div class="s-final__orb-b" aria-hidden="true"></div>
-
     <div class="wrap s-final__inner">
       <h2 class="s-final__h2 reveal">
         Tu as lu jusqu'ici.<br>
@@ -2360,7 +2304,7 @@
         Pas plus compliqué que ça.
       </p>
 
-      <a href="#" class="btn btn-orange btn-xl btn-pulse js-calendly reveal d2" data-cta-loc="final">Réserver mon appel maintenant →</a>
+      <a href="#" class="btn btn-white-on-orange btn-xl js-calendly reveal d2" data-cta-loc="final">Réserver mon appel maintenant →</a>
 
       <p class="s-final__reassure reveal d3">
         🔒 Aucun paiement à l'appel, pas de pression commerciale.<br>
