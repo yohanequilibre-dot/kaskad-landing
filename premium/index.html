@@ -605,21 +605,30 @@
       margin: 0 auto;
     }
     .qcol {
-      background: var(--cream);
+      background: var(--white);
       border-radius: var(--radius-lg);
       padding: var(--sp-8) var(--sp-6);
-      border: 1px solid rgba(0,0,0,.06);
+      border: 2px solid var(--gray-200);
+      position: relative;
+      overflow: hidden;
       transition: transform .3s var(--ease-out-quart), box-shadow .35s var(--ease-out-quart);
     }
-    .qcol--yes {
-      border-color: rgba(0,170,70,.25);
-      background: linear-gradient(180deg, rgba(0,170,70,.04), var(--cream));
+    .qcol::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
     }
-    .qcol--no {
-      border-color: rgba(0,0,0,.08);
-      background: linear-gradient(180deg, rgba(0,0,0,.02), var(--cream));
+    .qcol--yes::before { background: var(--green); }
+    .qcol--no::before  { background: #EF4444; }
+    .qcol--yes:hover {
+      box-shadow: 0 20px 60px rgba(0,170,70,.18), 0 0 200px rgba(0,170,70,.18);
+      transform: translateY(-4px);
     }
-    .qcol:hover { transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,.07); }
+    .qcol--no:hover {
+      box-shadow: 0 20px 60px rgba(239,68,68,.18), 0 0 200px rgba(239,68,68,.18);
+      transform: translateY(-4px);
+    }
     .qcol__title {
       font-size: 1.0625rem;
       font-weight: 800;
@@ -630,7 +639,7 @@
       border-bottom: 1px solid rgba(0,0,0,.07);
     }
     .qcol--yes .qcol__title { color: var(--green); }
-    .qcol--no  .qcol__title { color: var(--gray-500); }
+    .qcol--no  .qcol__title { color: #EF4444; }
 
     .qlist { display: flex; flex-direction: column; gap: var(--sp-4); }
     .qitem {
@@ -653,7 +662,7 @@
       margin-top: 1px;
     }
     .qitem--yes .qitem__icon { background: rgba(0,170,70,.15); color: var(--green); }
-    .qitem--no  .qitem__icon { background: rgba(0,0,0,.12); color: var(--dark-700); }
+    .qitem--no  .qitem__icon { background: rgba(239,68,68,.14); color: #EF4444; }
     .qitem--no  { color: var(--dark-700); }
     .qitem--no  em { color: var(--gray-500); }
 
@@ -1187,8 +1196,8 @@
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--sp-6);
-      max-width: 1180px;
+      gap: var(--sp-5);
+      max-width: 1340px;
       margin: 0 auto;
       align-items: stretch;
       position: relative;
@@ -1198,7 +1207,7 @@
       background: var(--white);
       border: 2px solid var(--gray-200);
       border-radius: var(--radius-lg);
-      padding: var(--sp-10) var(--sp-8);
+      padding: var(--sp-10) var(--sp-6);
       display: flex;
       flex-direction: column;
       position: relative;
@@ -1262,9 +1271,18 @@
       font-size: 1.375rem;
       font-weight: 800;
       color: var(--dark-900);
-      margin-bottom: var(--sp-2);
+      margin-bottom: var(--sp-5);
       letter-spacing: -0.02em;
       line-height: 1.25;
+    }
+    .pcard__name-sub {
+      display: block;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--dark-700);
+      font-style: italic;
+      margin-top: 4px;
+      letter-spacing: 0;
     }
     .pcard__tagline {
       font-size: .875rem;
@@ -1343,6 +1361,58 @@
       margin-top: var(--sp-3);
       line-height: 1.6;
     }
+
+    /* Feature separator (e.g. "Exclusif Premium") */
+    .feat-sep {
+      font-size: .6875rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      padding-top: var(--sp-3);
+      margin-top: var(--sp-2);
+      margin-bottom: var(--sp-1);
+      list-style: none;
+      border-top: 1px solid rgba(0,0,0,.08);
+    }
+
+    /* Tooltip for "i" indicator (séances en physique) */
+    .tooltip-wrap { position: relative; display: inline-flex; align-items: center; }
+    .tooltip-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: var(--gray-200); color: var(--gray-500);
+      font-size: .625rem; font-weight: 700;
+      cursor: help; font-style: normal;
+      transition: background .2s;
+      margin-left: 4px;
+    }
+    .tooltip-icon:hover, .tooltip-icon:focus {
+      background: var(--blue); color: var(--white); outline: none;
+    }
+    .tooltip-body {
+      position: absolute;
+      bottom: calc(100% + 10px); left: 50%;
+      transform: translateX(-50%);
+      background: var(--dark-900); color: var(--white);
+      font-size: .8125rem; line-height: 1.6;
+      padding: 10px 14px; border-radius: var(--radius-md);
+      width: 260px; max-width: 90vw;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s var(--ease-out-quart);
+      z-index: 20;
+      font-style: normal;
+      font-weight: 500;
+      text-align: left;
+    }
+    .tooltip-body::after {
+      content: '';
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 7px solid transparent; border-top-color: var(--dark-900);
+    }
+    .tooltip-wrap:hover .tooltip-body,
+    .tooltip-icon:focus + .tooltip-body { opacity: 1; pointer-events: auto; }
 
     .pricing-note {
       max-width: 720px;
@@ -1503,7 +1573,7 @@
       margin-inline: auto;
     }
     .s-final__reassure strong { color: var(--white); }
-    .s-final__quote {
+    .s-final__steps {
       margin-top: var(--sp-12);
       max-width: 640px;
       margin-inline: auto;
@@ -1511,19 +1581,38 @@
       background: rgba(255,255,255,.12);
       border: 1px solid rgba(255,255,255,.18);
       border-radius: var(--radius-lg);
+      text-align: left;
     }
-    .s-final__quote p {
-      font-size: 1rem;
-      color: var(--white);
-      font-style: italic;
-      line-height: 1.75;
-      margin-bottom: var(--sp-3);
-    }
-    .s-final__quote-name {
+    .s-final__steps-title {
       font-size: 0.8125rem;
       font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      margin-bottom: var(--sp-4);
+      text-align: center;
+    }
+    .s-final__steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      padding: 0;
+      margin: 0;
+    }
+    .s-final__steps-list li {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,.92);
+      line-height: 1.6;
+      display: flex;
+      gap: var(--sp-3);
+      align-items: flex-start;
+    }
+    .s-final__step-num {
+      font-weight: 800;
       color: var(--white);
-      letter-spacing: 0.04em;
+      flex-shrink: 0;
+      min-width: 1.25rem;
     }
 
     /* ─────────────────────────────────────────
@@ -2052,87 +2141,93 @@
         <p class="sec-lead sec-lead--center reveal d2" style="max-width:80ch;">
           Avant de te donner les chiffres, deux questions sincères. <strong>La première :</strong> ça fait combien de mois que tu progresses moins vite que tu voudrais ? Si t'es honnête, c'est sûrement plus que tu penses. <strong>La deuxième :</strong> dans 12 mois, si rien ne change, où tu en seras ? Quasiment au même endroit probablement. <strong>C'est ça le vrai coût de pas signer.</strong>
         </p>
-        <p class="sec-lead sec-lead--center reveal d3" style="max-width:80ch;">
-          Maintenant, les chiffres : <strong>trois durées possibles. Plus tu t'engages et montres ta motivation, plus le tarif baisse.</strong>
-        </p>
       </div>
 
       <div class="pricing-grid">
-        <!-- 6 mois -->
-        <article class="pcard js-tilt reveal d1">
-          <div class="pcard__badge pcard__badge--gray">L'engagement court</div>
-          <p class="pcard__eyebrow">Premium 6 mois</p>
-          <h3 class="pcard__name">Pour tester l'accompagnement en profondeur</h3>
-          <p class="pcard__tagline">Idéal pour démarrer sur 6 mois et sentir la différence.</p>
+        <!-- 6 mois — bleu -->
+        <article class="pcard pcard--blue js-tilt reveal d1">
+          <div class="pcard__badge pcard__badge--blue">L'engagement court</div>
+          <p class="pcard__eyebrow pcard__eyebrow--blue">Coaching Premium</p>
+          <h3 class="pcard__name">Premium 6 mois<br><span class="pcard__name-sub">Pour débuter</span></h3>
           <div class="pcard__price">499<span class="pcard__price-unit"> €/mois</span></div>
           <span class="pcard__save pcard__save--invisible">placeholder</span>
           <div class="pcard__divider"></div>
-          <ul class="pcard__features">
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard inclus</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 coachs attitrés (Florentin + Nicolas)</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel individuel hebdomadaire (15-30 min)</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées, image par image</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord prioritaire avec tes coachs</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Validation Yohan sur chaque plan trimestriel</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Réajustements trimestriels complets</li>
+          <ul class="pcard__features tier-list">
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
+            <li class="feat-sep">Exclusif Premium</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel hebdomadaire avec un coach (30 min)</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Suivi réalisé par 2 coachs</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées sur ta grimpe</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Audit récupération + préparation mentale</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bibliothèque Protocoles Miracles à vie</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 séances en physique <em style="color:var(--gray-500);">(si proche géographiquement)</em></li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Lien parrainage personnel (1 mois offert par client référé)</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Séances de coaching en physique&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="En savoir plus">i</span><span class="tooltip-body">Nombre variable selon proximité géographique, plus d'informations lors de l'appel.</span></span></li>
           </ul>
           <div class="pcard__footer">
-            <a href="#" class="btn btn-ghost-orange btn-lg pcard__cta js-calendly" data-cta-loc="pricing-6m">Choisir 6 mois</a>
+            <a href="#" class="btn btn-blue btn-lg pcard__cta js-calendly" data-cta-loc="pricing-6m">Choisir 6 mois</a>
           </div>
         </article>
 
-        <!-- 9 mois -->
+        <!-- 9 mois — orange featured -->
         <article class="pcard pcard--featured js-tilt reveal d2">
           <div class="pcard__badge pcard__badge--orange">★ Le plus choisi</div>
-          <p class="pcard__eyebrow">Premium 9 mois</p>
-          <h3 class="pcard__name">Le sweet spot pour s'engager sereinement</h3>
-          <p class="pcard__tagline">La durée la plus choisie : assez pour transformer, sans surengager.</p>
+          <p class="pcard__eyebrow">Coaching Premium</p>
+          <h3 class="pcard__name">Premium 9 mois<br><span class="pcard__name-sub">Pour s'engager</span></h3>
           <div class="pcard__price">449<span class="pcard__price-unit"> €/mois</span></div>
-          <span class="pcard__save">Tu économises 450&nbsp;€ par rapport au Premium 6 mois</span>
+          <span class="pcard__save">450&nbsp;€ d'économie par rapport à 6 mois</span>
           <div class="pcard__divider"></div>
-          <ul class="pcard__features">
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard inclus</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 coachs attitrés (Florentin + Nicolas)</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel individuel hebdomadaire (15-30 min)</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées, image par image</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord prioritaire avec tes coachs</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Validation Yohan sur chaque plan trimestriel</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Réajustements trimestriels complets</li>
+          <ul class="pcard__features tier-list">
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
+            <li class="feat-sep">Exclusif Premium</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel hebdomadaire avec un coach (30 min)</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Suivi réalisé par 2 coachs</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées sur ta grimpe</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Audit récupération + préparation mentale</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bibliothèque Protocoles Miracles à vie</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 séances en physique <em style="color:var(--gray-500);">(si proche géographiquement)</em></li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Lien parrainage personnel (1 mois offert par client référé)</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Séances de coaching en physique&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="En savoir plus">i</span><span class="tooltip-body">Nombre variable selon proximité géographique, plus d'informations lors de l'appel.</span></span></li>
           </ul>
           <div class="pcard__footer">
             <a href="#" class="btn btn-orange btn-lg pcard__cta js-calendly" data-cta-loc="pricing-9m">Choisir 9 mois</a>
           </div>
         </article>
 
-        <!-- 12 mois -->
+        <!-- 12 mois — bleu -->
         <article class="pcard pcard--blue js-tilt reveal d3">
           <div class="pcard__badge pcard__badge--blue">Le plus complet</div>
-          <p class="pcard__eyebrow">Premium 12 mois</p>
-          <h3 class="pcard__name">L'engagement long pour aller le plus loin</h3>
-          <p class="pcard__tagline">Pour ceux qui veulent maximiser l'économie et le suivi.</p>
+          <p class="pcard__eyebrow pcard__eyebrow--blue">Coaching Premium</p>
+          <h3 class="pcard__name">Premium 12 mois<br><span class="pcard__name-sub">Pour se transformer</span></h3>
           <div class="pcard__price">399<span class="pcard__price-unit"> €/mois</span></div>
-          <span class="pcard__save">Tu économises 1 200&nbsp;€ par rapport au Premium 6 mois</span>
+          <span class="pcard__save">1 200&nbsp;€ d'économie par rapport à 6 mois</span>
           <div class="pcard__divider"></div>
-          <ul class="pcard__features">
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard inclus</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 coachs attitrés (Florentin + Nicolas)</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel individuel hebdomadaire (15-30 min)</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées, image par image</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord prioritaire avec tes coachs</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Validation Yohan sur chaque plan trimestriel</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Réajustements trimestriels complets</li>
+          <ul class="pcard__features tier-list">
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
+            <li class="feat-sep">Exclusif Premium</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel hebdomadaire avec un coach (30 min)</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Suivi réalisé par 2 coachs</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Analyses vidéo illimitées sur ta grimpe</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Audit récupération + préparation mentale</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bibliothèque Protocoles Miracles à vie</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>2 séances en physique <em style="color:var(--gray-500);">(si proche géographiquement)</em></li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Lien parrainage personnel (1 mois offert par client référé)</li>
+            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Séances de coaching en physique&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="En savoir plus">i</span><span class="tooltip-body">Nombre variable selon proximité géographique, plus d'informations lors de l'appel.</span></span></li>
           </ul>
           <div class="pcard__footer">
             <a href="#" class="btn btn-blue btn-lg pcard__cta js-calendly" data-cta-loc="pricing-12m">Choisir 12 mois</a>
@@ -2289,32 +2384,24 @@
   <section class="s-final" id="demarrer" data-nav="dark">
     <div class="wrap s-final__inner">
       <h2 class="s-final__h2 reveal">
-        Tu as lu jusqu'ici.<br>
-        Tu sais que Premium est ce qu'il te faut.
+        Tu as lu jusqu'ici, <strong>tu sais que Premium est ce qu'il te faut.</strong>
       </h2>
-      <p class="s-final__sub reveal d1">
-        Voilà ce qui se passe maintenant si tu cliques.
-      </p>
-      <p class="s-final__sub reveal d1">
-        <strong>1.</strong> Tu choisis un créneau de 30 minutes qui t'arrange.<br>
-        <strong>2.</strong> On se parle en visio : pas de pitch, juste une vraie discussion sur ta grimpe et ce que tu cherches.<br>
-        <strong>3.</strong> À la fin de l'appel, on te dit franchement ce dont tu as vraiment besoin : que ce soit le Premium, le Standard, ou rien pour l'instant.
-      </p>
-      <p class="s-final__sub reveal d1">
-        Pas plus compliqué que ça.
-      </p>
 
-      <a href="#" class="btn btn-white-on-orange btn-xl js-calendly reveal d2" data-cta-loc="final">Réserver mon appel maintenant →</a>
+      <a href="#" class="btn btn-white-on-orange btn-xl js-calendly reveal d1" data-cta-loc="final">Réserver mon appel de qualification →</a>
 
-      <p class="s-final__reassure reveal d3">
+      <p class="s-final__reassure reveal d2">
         🔒 Aucun paiement à l'appel, pas de pression commerciale.<br>
         Sur tous les appels qu'on a passés cette année, on a dit non la plupart du temps. <strong>C'est ça la différence.</strong>
       </p>
 
-      <figure class="s-final__quote reveal d4">
-        <p>L'appel m'a surpris. Je m'attendais à un pitch de vente, j'ai eu une vraie discussion sur ce que je voulais vraiment. On m'a dit clairement «&nbsp;si tu veux juste un programme, prends Standard&nbsp;». J'ai pris Premium en connaissance de cause.</p>
-        <figcaption class="s-final__quote-name">Stéphane L.</figcaption>
-      </figure>
+      <div class="s-final__steps reveal d3">
+        <p class="s-final__steps-title">Voilà ce qui se passe maintenant si tu cliques :</p>
+        <ol class="s-final__steps-list">
+          <li><span class="s-final__step-num">1.</span> Tu choisis un créneau de 30 minutes qui t'arrange.</li>
+          <li><span class="s-final__step-num">2.</span> On se parle en visio : pas de pitch, juste une vraie discussion sur ta grimpe et ce que tu cherches.</li>
+          <li><span class="s-final__step-num">3.</span> À la fin de l'appel, on te dit franchement ce dont tu as vraiment besoin : que ce soit le Premium, le Standard, ou rien pour l'instant.</li>
+        </ol>
+      </div>
     </div>
   </section>
 
