@@ -815,6 +815,31 @@
       border-color: rgba(255,103,0,.22);
       box-shadow: 0 20px 60px rgba(255,103,0,.18), 0 0 200px rgba(255,103,0,.12);
     }
+    .pstep--green:hover {
+      background: rgba(0,170,70,.06);
+      border-color: rgba(0,170,70,.22);
+      box-shadow: 0 20px 60px rgba(0,170,70,.18), 0 0 200px rgba(0,170,70,.12);
+    }
+    .pstep--purple:hover {
+      background: rgba(139,92,246,.06);
+      border-color: rgba(139,92,246,.22);
+      box-shadow: 0 20px 60px rgba(139,92,246,.18), 0 0 200px rgba(139,92,246,.12);
+    }
+    .pstep--amber:hover {
+      background: rgba(245,158,11,.06);
+      border-color: rgba(245,158,11,.22);
+      box-shadow: 0 20px 60px rgba(245,158,11,.18), 0 0 200px rgba(245,158,11,.12);
+    }
+    .pstep--red:hover {
+      background: rgba(239,68,68,.06);
+      border-color: rgba(239,68,68,.22);
+      box-shadow: 0 20px 60px rgba(239,68,68,.18), 0 0 200px rgba(239,68,68,.12);
+    }
+    .pstep--cyan:hover {
+      background: rgba(6,182,212,.06);
+      border-color: rgba(6,182,212,.22);
+      box-shadow: 0 20px 60px rgba(6,182,212,.18), 0 0 200px rgba(6,182,212,.12);
+    }
     .pstep__n {
       font-size: 2.75rem;
       font-weight: 800;
@@ -825,6 +850,11 @@
       align-self: start;
     }
     .pstep--orange .pstep__n { color: var(--orange); }
+    .pstep--green  .pstep__n { color: #00AA46; }
+    .pstep--purple .pstep__n { color: #8B5CF6; }
+    .pstep--amber  .pstep__n { color: #F59E0B; }
+    .pstep--red    .pstep__n { color: #EF4444; }
+    .pstep--cyan   .pstep__n { color: #06B6D4; }
     .pstep--xl .pstep__n     { font-size: clamp(3rem, 5vw, 4.25rem); }
     .pstep__content {}
     .pstep__title {
@@ -847,10 +877,12 @@
       border-radius: var(--radius-full);
       margin-bottom: var(--sp-3);
     }
-    .pstep--orange .pstep__meta {
-      color: var(--orange);
-      background: rgba(255,103,0,.10);
-    }
+    .pstep--orange .pstep__meta { color: var(--orange); background: rgba(255,103,0,.10); }
+    .pstep--green  .pstep__meta { color: #00AA46;       background: rgba(0,170,70,.10);  }
+    .pstep--purple .pstep__meta { color: #8B5CF6;       background: rgba(139,92,246,.10);}
+    .pstep--amber  .pstep__meta { color: #F59E0B;       background: rgba(245,158,11,.10);}
+    .pstep--red    .pstep__meta { color: #EF4444;       background: rgba(239,68,68,.10); }
+    .pstep--cyan   .pstep__meta { color: #06B6D4;       background: rgba(6,182,212,.10); }
     .pstep__body {
       font-size: 0.9375rem;
       color: rgba(255,255,255,.68);
@@ -1718,7 +1750,7 @@
             <span class="pstep__meta">Jour 1 · 30 min</span>
             <h3 class="pstep__title">On se parle 30 minutes</h3>
             <p class="pstep__body">
-              Ce n'est pas un appel de vente. C'est un appel pour qu'on vérifie ensemble si Premium est fait pour toi. Si on sent que t'es plutôt sur du Standard, on te le dit franchement. Si ce n'est pas le bon moment pour toi, on te le dit aussi. <strong>On ne prend que les plus motivés et ceux qui en ont vraiment besoin.</strong>
+              Ce n'est pas un appel de vente, c'est un appel pour qu'on vérifie ensemble si Premium est fait pour toi. Si on sent que t'es plutôt sur du Standard, on te le dit franchement. Si ce n'est pas le bon moment pour toi, on te le dit aussi. <strong>On ne prend que les plus motivés et ceux qui en ont vraiment besoin.</strong>
             </p>
           </div>
         </article>
@@ -1729,23 +1761,23 @@
             <span class="pstep__meta">Jour 2</span>
             <h3 class="pstep__title">Tu rentres dans l'application Kaskad</h3>
             <p class="pstep__body">
-              Tu reçois ton accès à l'application Kaskad. Tu y remplis les <strong>documents qui nous permettent de te connaître</strong> : ton historique de grimpe, tes contraintes (boulot, famille, salle), ton matériel, tes objectifs précis. Tout ce dont on a besoin pour préparer un accompagnement vraiment taillé pour toi.
+              Tu reçois ton <strong>accès Premium</strong> à l'application Kaskad. Tu y complètes les informations de l'appel pour nous permettre de te connaître en détail : ton historique de grimpe, tes contraintes (boulot, famille, salle), ton matériel, tes objectifs précis… Tout ce dont on a besoin pour préparer un accompagnement vraiment taillé pour toi.
             </p>
           </div>
         </article>
 
-        <article class="pstep reveal d3">
+        <article class="pstep pstep--green reveal d3">
           <div class="pstep__n">03</div>
           <div class="pstep__content">
             <span class="pstep__meta">Jour 3</span>
             <h3 class="pstep__title">Tu fais tes tests physiques et tu te filmes</h3>
             <p class="pstep__body">
-              Tu passes une série de <strong>tests physiques</strong> (force de doigts, mobilité, endurance, etc.) et tu te filmes sur 2-3 voies représentatives de ton niveau actuel. C'est la matière première dont tes coachs ont besoin pour analyser ta grimpe en détail.
+              Tu passes une série de <strong>tests physiques</strong> (force de doigts, mobilité, endurance, etc.) et tu te filmes sur 2-3 projets représentatifs de ton niveau actuel. C'est la matière première dont tes coachs ont besoin pour pousser la personnalisation de ton plan au maximum.
             </p>
           </div>
         </article>
 
-        <article class="pstep reveal d4">
+        <article class="pstep pstep--purple reveal d4">
           <div class="pstep__n">04</div>
           <div class="pstep__content">
             <span class="pstep__meta">Jour 4 · si nécessaire</span>
@@ -1756,35 +1788,35 @@
           </div>
         </article>
 
-        <article class="pstep reveal d5">
+        <article class="pstep pstep--amber reveal d5">
           <div class="pstep__n">05</div>
           <div class="pstep__content">
             <span class="pstep__meta">Jours 5 &amp; 6</span>
             <h3 class="pstep__title">Tes coachs construisent ton plan</h3>
             <p class="pstep__body">
-              Florentin et Nicolas se mettent au travail pour construire <strong>ton plan trimestriel personnalisé</strong>. Ils croisent leurs analyses, débriefent ensemble, ajustent. Puis je relis l'ensemble pour m'assurer que tout est limpide, applicable, et taillé exactement pour toi.
+              Florentin et Nicolas se mettent au travail pour construire <strong>ton programme d'entraînement personnalisé</strong>. Ils croisent leurs analyses, débriefent ensemble, ajustent puis je relis l'ensemble pour m'assurer que tout est clair, limpide et directement applicable.
             </p>
           </div>
         </article>
 
-        <article class="pstep pstep--orange pstep--xl reveal d1">
+        <article class="pstep pstep--red pstep--xl reveal d1">
           <div class="pstep__n">06</div>
           <div class="pstep__content">
             <span class="pstep__meta">Jour 7</span>
             <h3 class="pstep__title">Tu commences ton plan</h3>
             <p class="pstep__body">
-              Tu reçois ton plan trimestriel directement dans l'application. Toutes les séances détaillées, les protocoles précis, les exercices avec leur RPE cible. <strong>Tu sais exactement quoi faire à chaque session.</strong> Pas de flou, pas de questionnement, tu te concentres sur la grimpe.
+              Tu reçois ton plan directement dans l'application : toutes les séances détaillées, les protocoles précis, les exercices avec leur cible, etc. <strong>Tu sais exactement quoi faire à chaque session.</strong> Pas de flou, pas de questionnement, tu te concentres sur ta grimpe et ta progression.
             </p>
           </div>
         </article>
 
-        <article class="pstep reveal d2">
+        <article class="pstep pstep--cyan reveal d2">
           <div class="pstep__n">07</div>
           <div class="pstep__content">
             <span class="pstep__meta">Semaine 2 · 15 à 30 min</span>
             <h3 class="pstep__title">Premier appel hebdomadaire individuel</h3>
             <p class="pstep__body">
-              Une semaine après le démarrage, tu as ton <strong>premier appel hebdomadaire</strong> avec ton coach attitré. 15 à 30 minutes en visio. Tu débriefes tes séances, tu poses tes questions, il ajuste ton plan en direct. Puis chaque semaine, sans exception.
+              Une semaine après le démarrage (et parfois avant selon tes besoins), tu as ton <strong>premier appel hebdomadaire</strong> avec ton coach principal : 15 à 30 minutes en visio. Tu débriefes tes séances, tu poses tes questions, il ajuste ton plan en direct. On répète chaque semaine, sans exception et parfois plus encore.
             </p>
           </div>
         </article>
@@ -1795,7 +1827,7 @@
             <span class="pstep__meta">Tous les 3 mois</span>
             <h3 class="pstep__title">On refait le point en profondeur</h3>
             <p class="pstep__body">
-              À la fin de chaque trimestre on refait un assessment complet. On remesure les <strong>21 axes</strong>. On compare avec le radar de départ. Tu vois en chiffres ce qui a bougé et ce qui doit encore bouger. Puis on construit le trimestre suivant. C'est comme ça qu'on évite de tourner en rond sur la même chose pendant 6 mois.
+              À la fin de chaque trimestre on refait un <strong>bilan complet</strong>. On remesure tout et on compare avec tes données de départ. Tu vois en chiffres ce qui a bougé et ce qui doit encore bouger, puis on construit le trimestre suivant. C'est comme ça qu'on évite de tourner en rond sur la même chose pendant 6 mois.
             </p>
           </div>
         </article>
