@@ -1362,6 +1362,43 @@
       line-height: 1.6;
     }
 
+    /* Collapsible "Tout le contenu Standard" toggle */
+    .pfeat-standard-toggle {
+      cursor: pointer;
+      user-select: none;
+      font-weight: 700;
+      color: var(--dark-900);
+    }
+    .pfeat-standard-toggle .pfeat-standard-arrow {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      transition: transform .3s var(--ease-out-quart);
+      display: inline-block;
+    }
+    .pfeat-standard-toggle:hover { color: var(--blue); }
+    .pfeat-standard-toggle:hover .pfeat-standard-arrow { color: var(--blue); }
+    .pcard.is-standard-expanded .pfeat-standard-arrow { transform: rotate(180deg); }
+    .pfeat-standard-item {
+      display: none;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity .3s var(--ease-out-quart), transform .3s var(--ease-out-quart);
+      padding-left: var(--sp-5);
+      font-size: 0.8125rem;
+      color: var(--dark-700);
+    }
+    .pfeat-standard-item .pfeat__icon {
+      width: 14px; height: 14px;
+      background: rgba(0,170,70,.10);
+    }
+    .pfeat-standard-item .pfeat__icon svg { width: 8px; height: 8px; }
+    .pcard.is-standard-expanded .pfeat-standard-item {
+      display: flex;
+      opacity: 1;
+      transform: none;
+    }
+
     /* Feature separator (e.g. "Exclusif Premium") */
     .feat-sep {
       font-size: .6875rem;
@@ -1870,7 +1907,7 @@
       <div class="process-head">
         <span class="sec-eyebrow reveal">Concrètement</span>
         <h2 class="sec-title sec-title--white reveal d1">Voilà comment ça se passe, semaine après semaine.</h2>
-        <p class="sec-lead sec-lead--white reveal d2">Pas de mystère. Pas de «&nbsp;on verra&nbsp;». Voici <strong>les étapes précises</strong> de ton accompagnement :</p>
+        <p class="sec-lead sec-lead--white reveal d2" style="max-width:96ch;margin-inline:auto;">Pas de mystère. Pas de «&nbsp;on verra&nbsp;». Voici <strong>les étapes précises</strong> de ton accompagnement&nbsp;:</p>
       </div>
 
       <div class="timeline">
@@ -1964,9 +2001,9 @@
       </div>
 
       <div class="process-cta-card reveal d5">
-        <strong style="color:var(--white);">Entre tout ça,</strong>
+        <strong style="color:var(--white);">En plus de tout ça,</strong>
         tu as un <strong style="color:var(--orange-light);">canal Discord prioritaire</strong> avec tes coachs.
-        Tu leur demandes un avis sur une séance ? Réponse sous 24h.
+        Besoin d'un avis sur une séance ? Réponse sous 24h.
         Tu te blesses ou tu as un imprévu ? Ils adaptent.
         <br><br>
         <strong style="color:var(--white);">C'est ça la vraie différence :</strong> tu n'es jamais laissé seul, jamais bloqué, jamais à devoir attendre la semaine suivante pour ajuster.
@@ -1979,7 +2016,7 @@
     <div class="wrap">
       <div class="cases-head">
         <span class="sec-eyebrow reveal">Notre approche</span>
-        <h2 class="sec-title reveal d1">Pas de promesses en l'air.<br>Des résultats mesurables.</h2>
+        <h2 class="sec-title reveal d1">Pas de promesses en l'air,<br>des résultats mesurables.</h2>
         <p class="sec-lead reveal d2">
           On commence tout juste les cas Premium. Mais voici déjà <strong>ce qui se passe quand quelqu'un décide d'avoir deux coachs à lui</strong> et de viser plus loin.
         </p>
@@ -1994,23 +2031,23 @@
           <div class="case__body">
             <div class="case__head">
               <h3 class="case__name">Stéphane</h3>
-              <span class="case__meta">Profil Yoyo · 12 semaines</span>
+              <span class="case__meta">Suivi 3 mois · falaise + bloc</span>
             </div>
             <dl class="case__row">
               <dt>Le point de départ</dt>
-              <dd>6a en tête, force de doigts insuffisante, plafond depuis des mois.</dd>
+              <dd>6a en tête, manque de force de doigts, difficultés sur les mouvements de coordination. Beaucoup d'extérieur, du mal à se donner en intérieur.</dd>
             </dl>
             <dl class="case__row">
               <dt>Ce qu'on a identifié</dt>
-              <dd>Manque de force de doigts <strong>ET</strong> mauvaise gestion d'effort en tête.</dd>
+              <dd>Manque de force de doigts <strong>ET</strong> coordination/lecture à retravailler. Motivation à booster sur l'intérieur.</dd>
             </dl>
             <dl class="case__row">
               <dt>Ce qu'on a fait</dt>
-              <dd>Protocole hangboard progressif + travail spécifique gestion d'effort voie.</dd>
+              <dd>Protocole hangboard progressif + séances ciblées coordination/dynamique + plan structuré pour les sessions en salle.</dd>
             </dl>
             <dl class="case__row">
-              <dt>Résultat</dt>
-              <dd><strong>Force doigts : 25 mm → 15 mm.</strong> Première 6b tête en falaise. 7a moulinette validé.</dd>
+              <dt>Résultat à 3 mois</dt>
+              <dd><strong>Force doigts : 25 mm → 15 mm sur 10 s.</strong> Première 6b en tête en falaise. 7a moulinette validé. En bloc : passage des bleus aux premiers noirs.</dd>
             </dl>
             <blockquote class="case__quote">Je suis passé de 25 mm à 15 mm sur 10 secondes pour ma force de doigts.</blockquote>
           </div>
@@ -2018,61 +2055,61 @@
 
         <article class="case case--blue js-tilt reveal d2">
           <div class="case__media">
-            <span class="case__placeholder-tag">Profil type</span>
-            <span class="case__initial">P</span>
+            <span class="case__placeholder-tag">Cas suivi · Léo Barachant</span>
+            <span class="case__initial">L</span>
           </div>
           <div class="case__body">
             <div class="case__head">
-              <h3 class="case__name">Le grimpeur ambitieux qui plafonne</h3>
-              <span class="case__meta">Niveau 6c+ à 7b · le profil le plus fréquent</span>
+              <h3 class="case__name">Léo Barachant</h3>
+              <span class="case__meta">Suivi 3 mois · voie haut niveau</span>
             </div>
             <dl class="case__row">
               <dt>Le point de départ</dt>
-              <dd>Tu grimpes en 6c+ ou 7a depuis longtemps. Tu sens que tu pourrais aller plus haut mais tu n'avances plus.</dd>
+              <dd>7a / 7a+, problèmes de dyno, de lecture et de force spécifique. Plafond depuis plusieurs mois sur du haut niveau.</dd>
             </dl>
             <dl class="case__row">
               <dt>Ce qu'on a identifié</dt>
-              <dd>Souvent ce n'est pas un manque de volume ou de force pure. C'est un <strong>déficit technique ou tactique</strong> invisible à l'œil nu.</dd>
+              <dd>Lacunes ciblées sur le <strong>mouvement dynamique</strong> et la <strong>lecture sous pression</strong>. Manque de force spécifique pour franchir le palier.</dd>
             </dl>
             <dl class="case__row">
               <dt>Ce qu'on a fait</dt>
-              <dd>Analyse vidéo image par image + plan trimestriel ciblé sur les 2-3 vrais déficits.</dd>
+              <dd>Plan ciblé dyno + travail de lecture en projection + renforcement spécifique, sur 3 mois.</dd>
             </dl>
             <dl class="case__row">
-              <dt>Résultat</dt>
-              <dd>Première voie un niveau au-dessus du plafond. <strong>Sensation que ça avance vraiment.</strong></dd>
+              <dt>Résultat à 3 mois</dt>
+              <dd><strong>Flash de 7a au Kilter.</strong> Presque une réussite de <strong>7c Kilter</strong>. Projet 8a voie à 2-3 mouvements près.</dd>
             </dl>
-            <blockquote class="case__quote">Pour la première fois, je sais sur quoi je dois travailler.</blockquote>
+            <blockquote class="case__quote">Je recommande pour tout le monde, même au niveau 7a, pour bien progresser sur les lacunes.</blockquote>
           </div>
         </article>
 
         <article class="case case--purple js-tilt reveal d3">
           <div class="case__media">
-            <span class="case__placeholder-tag">Profil type</span>
-            <span class="case__initial">C</span>
+            <span class="case__placeholder-tag">Cas suivi · Noa</span>
+            <span class="case__initial">N</span>
           </div>
           <div class="case__body">
             <div class="case__head">
-              <h3 class="case__name">Le grimpeur qui veut un coach à lui</h3>
-              <span class="case__meta">Tous niveaux · upsell depuis Standard</span>
+              <h3 class="case__name">Noa</h3>
+              <span class="case__meta">Suivi · soucis épaules + force spécifique</span>
             </div>
             <dl class="case__row">
               <dt>Le point de départ</dt>
-              <dd>Tu as déjà testé des programmes structurés, peut-être même le Standard. Tu veux un cran de plus dans l'accompagnement.</dd>
+              <dd>6c les bons jours. Gros soucis aux épaules, très peu de force pour les mouvements explosifs.</dd>
             </dl>
             <dl class="case__row">
               <dt>Ce qu'on a identifié</dt>
-              <dd>Tu ne progresses pas autant que tu pourrais parce que <strong>personne ne regarde TA grimpe en détail</strong>.</dd>
+              <dd>Fragilité des <strong>épaules</strong> à corriger en priorité, puis manque de force spécifique sur les moves dynamiques.</dd>
             </dl>
             <dl class="case__row">
               <dt>Ce qu'on a fait</dt>
-              <dd>Coach attitré + appel hebdo individuel + analyses vidéo illimitées.</dd>
+              <dd>Protocole prévention épaules + renforcement progressif + plan adapté aux contraintes physiques.</dd>
             </dl>
             <dl class="case__row">
               <dt>Résultat</dt>
-              <dd><strong>Quelqu'un qui te suit pour de vrai.</strong> Un plan qui s'ajuste chaque semaine à ta réalité.</dd>
+              <dd><strong>7a presque à chaque séance</strong> sans trop forcer. <strong>7b avec travail</strong> en 3 séances. Épaules stabilisées.</dd>
             </dl>
-            <blockquote class="case__quote">Premium, c'est moins une question de niveau qu'une question de proximité avec ton coach.</blockquote>
+            <blockquote class="case__quote">À des grimpeurs qui ont besoin d'une structure et qui stagnent depuis plusieurs mois sans comprendre d'où vient le souci.</blockquote>
           </div>
         </article>
       </div>
@@ -2139,7 +2176,10 @@
         <span class="sec-eyebrow reveal">Les formules Premium</span>
         <h2 class="sec-title sec-title--lg reveal d1">Choisis ton engagement.</h2>
         <p class="sec-lead sec-lead--center reveal d2" style="max-width:80ch;">
-          Avant de te donner les chiffres, deux questions sincères. <strong>La première :</strong> ça fait combien de mois que tu progresses moins vite que tu voudrais ? Si t'es honnête, c'est sûrement plus que tu penses. <strong>La deuxième :</strong> dans 12 mois, si rien ne change, où tu en seras ? Quasiment au même endroit probablement. <strong>C'est ça le vrai coût de pas signer.</strong>
+          Avant de te donner les chiffres, deux questions sincères.<br>
+          <strong>1 :</strong> ça fait combien de mois que tu progresses moins vite que tu voudrais ? Si t'es honnête, c'est sûrement plus que tu penses.<br>
+          <strong>2 :</strong> dans 12 mois, si rien ne change, où tu en seras ? Quasiment au même endroit probablement.<br>
+          <strong>Il y a un coût à ne pas s'engager dans sa progression.</strong>
         </p>
       </div>
 
@@ -2153,15 +2193,16 @@
           <span class="pcard__save pcard__save--invisible">placeholder</span>
           <div class="pcard__divider"></div>
           <ul class="pcard__features tier-list">
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
+            <li class="pfeat pfeat-standard-toggle js-standard-toggle" tabindex="0" role="button" aria-expanded="false"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard<span class="pfeat-standard-arrow" aria-hidden="true">▼</span></li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
             <li class="feat-sep">Exclusif Premium</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel hebdomadaire avec un coach (30 min)</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Suivi réalisé par 2 coachs</li>
@@ -2183,15 +2224,16 @@
           <span class="pcard__save">450&nbsp;€ d'économie par rapport à 6 mois</span>
           <div class="pcard__divider"></div>
           <ul class="pcard__features tier-list">
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
+            <li class="pfeat pfeat-standard-toggle js-standard-toggle" tabindex="0" role="button" aria-expanded="false"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard<span class="pfeat-standard-arrow" aria-hidden="true">▼</span></li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
             <li class="feat-sep">Exclusif Premium</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel hebdomadaire avec un coach (30 min)</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Suivi réalisé par 2 coachs</li>
@@ -2206,22 +2248,23 @@
 
         <!-- 12 mois — bleu -->
         <article class="pcard pcard--blue js-tilt reveal d3">
-          <div class="pcard__badge pcard__badge--blue">Le plus complet</div>
+          <div class="pcard__badge pcard__badge--blue">Le plus efficace</div>
           <p class="pcard__eyebrow pcard__eyebrow--blue">Coaching Premium</p>
           <h3 class="pcard__name">Premium 12 mois<br><span class="pcard__name-sub">Pour se transformer</span></h3>
           <div class="pcard__price">399<span class="pcard__price-unit"> €/mois</span></div>
           <span class="pcard__save">1 200&nbsp;€ d'économie par rapport à 6 mois</span>
           <div class="pcard__divider"></div>
           <ul class="pcard__features tier-list">
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
-            <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
+            <li class="pfeat pfeat-standard-toggle js-standard-toggle" tabindex="0" role="button" aria-expanded="false"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Tout le contenu Standard<span class="pfeat-standard-arrow" aria-hidden="true">▼</span></li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagnostic précis</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Diagramme radar 21 axes personnalisé</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Plan d'entraînement 100% sur mesure</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Discord Kaskad</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Conversation privée avec tes coachs + Yohan</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Adaptations en temps réel à tes besoins</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Créneaux questions/réponses hebdomadaires</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Rencontres communautaires</li>
+            <li class="pfeat pfeat-standard-item"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Bonus et ressources exclusives</li>
             <li class="feat-sep">Exclusif Premium</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Appel hebdomadaire avec un coach (30 min)</li>
             <li class="pfeat"><span class="pfeat__icon"><svg viewBox="0 0 12 10" fill="none" stroke="#00AA46" stroke-width="2.5" stroke-linecap="round"><path d="M1 5l3 3 7-7"/></svg></span>Suivi réalisé par 2 coachs</li>
@@ -2236,9 +2279,9 @@
       </div>
 
       <div class="pricing-foot reveal d4">
-        <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">💳</span><strong>Paiement mensuel</strong> disponible sur les 3 formules</div>
-        <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">🔒</span><strong>Garantie 15 jours, zéro question</strong> : si dans le premier mois tu sens que Premium n'est pas fait pour toi, on te rembourse intégralement. <strong>Le risque est de notre côté.</strong></div>
-        <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">👤</span><strong>Appel de qualification obligatoire</strong> avant de signer : on préfère ne pas s'engager avec un profil pas aligné</div>
+        <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">💳</span><strong>Paiement sécurisé</strong><br>Proposé sur une dizaine de moyens de paiement</div>
+        <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">🔒</span><strong>Garantie 15 jours, zéro question</strong><br>Si tu sens que Premium n'est pas fait pour toi, on te rembourse intégralement.</div>
+        <div class="pfoot-item"><span class="pfoot-item__icon" aria-hidden="true">👤</span><strong>Appel de qualification</strong><br>Avant de signer, on vérifie ensemble que Premium est la solution pour toi.</div>
       </div>
 
       <div class="pricing-cta-wrap reveal d5">
@@ -2384,17 +2427,13 @@
   <section class="s-final" id="demarrer" data-nav="dark">
     <div class="wrap s-final__inner">
       <h2 class="s-final__h2 reveal">
-        Tu as lu jusqu'ici, <strong>tu sais que Premium est ce qu'il te faut.</strong>
+        Tu as lu jusqu'ici,<br>
+        tu sais que Premium est ce qu'il te faut.
       </h2>
 
       <a href="#" class="btn btn-white-on-orange btn-xl js-calendly reveal d1" data-cta-loc="final">Réserver mon appel de qualification →</a>
 
-      <p class="s-final__reassure reveal d2">
-        🔒 Aucun paiement à l'appel, pas de pression commerciale.<br>
-        Sur tous les appels qu'on a passés cette année, on a dit non la plupart du temps. <strong>C'est ça la différence.</strong>
-      </p>
-
-      <div class="s-final__steps reveal d3">
+      <div class="s-final__steps reveal d2">
         <p class="s-final__steps-title">Voilà ce qui se passe maintenant si tu cliques :</p>
         <ol class="s-final__steps-list">
           <li><span class="s-final__step-num">1.</span> Tu choisis un créneau de 30 minutes qui t'arrange.</li>
@@ -2576,7 +2615,8 @@
       let animFrame;
       const isBlue   = card.classList.contains('ccard--blue')
                     || card.classList.contains('mcard--blue')
-                    || card.classList.contains('case--blue');
+                    || card.classList.contains('case--blue')
+                    || card.classList.contains('pcard--blue');
       const isGreen  = card.classList.contains('ccard--green');
       const isPurple = card.classList.contains('case--purple');
       const isFeatured = card.classList.contains('pcard--featured');
@@ -2609,6 +2649,29 @@
         card.style.transition = 'none';
       });
     });
+
+    /* ── Sync "Tout le contenu Standard" dropdown across all pricing cards ── */
+    (function() {
+      const toggles = document.querySelectorAll('.js-standard-toggle');
+      if (!toggles.length) return;
+      const cards = document.querySelectorAll('.pcard');
+      function setExpanded(expanded) {
+        cards.forEach(c => c.classList.toggle('is-standard-expanded', expanded));
+        toggles.forEach(t => t.setAttribute('aria-expanded', expanded ? 'true' : 'false'));
+      }
+      toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const expanded = !cards[0].classList.contains('is-standard-expanded');
+          setExpanded(expanded);
+          if (typeof track === 'function') {
+            track('premium_pricing_standard_toggle', { expanded });
+          }
+        });
+        toggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.click(); }
+        });
+      });
+    })();
 
     /* ── FAQ accordion ─────────────────────── */
     document.querySelectorAll('.fitem__q').forEach(btn => {
