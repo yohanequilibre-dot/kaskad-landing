@@ -1947,7 +1947,7 @@
   <script>
     /* ── URLs ─────────────────────────────── */
     const KASKAD = {
-      VIDEO_URL:           '',
+      VIDEO_URL:           'https://youtu.be/GfJRD479A6g',
       STRIPE_STANDARD_URL: '',
       CALENDLY_URL:        'https://calendly.com/yohan-equilibre/accompagnement-yohangrimpe',
       /* YouTube URLs pour les témoignages vidéo — ex: 'https://youtu.be/dQw4w9WgXcQ' */
@@ -1979,13 +1979,19 @@
       });
     })();
 
+    function toYouTubeEmbed(url) {
+      if (!url) return '';
+      const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+      return m ? 'https://www.youtube.com/embed/' + m[1] : url;
+    }
     if (KASKAD.VIDEO_URL) {
       const ph = document.getElementById('js-video-placeholder');
       if (ph) {
         const frame = document.getElementById('js-video-frame');
-        const sep   = KASKAD.VIDEO_URL.includes('?') ? '&' : '?';
+        const embed = toYouTubeEmbed(KASKAD.VIDEO_URL);
+        const sep   = embed.includes('?') ? '&' : '?';
         const iframe = document.createElement('iframe');
-        iframe.src  = KASKAD.VIDEO_URL + sep + 'autoplay=1&mute=1&rel=0&modestbranding=1';
+        iframe.src  = embed + sep + 'autoplay=1&mute=1&rel=0&modestbranding=1';
         iframe.title = 'Kaskad Coaching, ta progression en escalade';
         iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         iframe.allowFullscreen = true; iframe.loading = 'lazy';
