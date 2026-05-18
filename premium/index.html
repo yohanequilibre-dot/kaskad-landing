@@ -1128,7 +1128,7 @@
       padding: var(--sp-8) var(--sp-6);
       text-align: center;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
       box-shadow: 0 2px 12px rgba(0,0,0,.04);
       border: 1px solid rgba(0,0,0,.05);
@@ -1139,7 +1139,7 @@
     .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.32); }
     .ccard--blue:hover   { box-shadow: 0 20px 70px rgba(0,127,255,.22), 0 0 200px rgba(0,127,255,.32); }
     .ccard--green:hover  { box-shadow: 0 20px 70px rgba(0,170,70,.22),  0 0 200px rgba(0,170,70,.32); }
-    .ccard__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .ccard__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
     .ccard--orange .ccard__accent { background: var(--orange); }
     .ccard--blue   .ccard__accent { background: var(--blue); }
     .ccard--green  .ccard__accent { background: var(--green); }
@@ -2154,7 +2154,7 @@
           </div>
           <h3 class="ccard__name">Nicolas</h3>
           <p class="ccard__role">Coach spécialisé</p>
-          <p class="ccard__bio">Je possède un DEJPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi&nbsp;! Je gère les programmes courts et j'ai travaillé quelques temps au pôle escalade France&nbsp;!</p>
+          <p class="ccard__bio">Je possède une license STAPS avec un supplément équivalence DEJEPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi&nbsp;! Je gère surtout les programmes courts.</p>
         </article>
 
         <article class="ccard js-tilt ccard--orange reveal d2">
@@ -2174,7 +2174,7 @@
           </div>
           <h3 class="ccard__name">Florentin</h3>
           <p class="ccard__role">Coach spécialisé</p>
-          <p class="ccard__bio">Issu d'un DEJPS, j'ai été chef ouvreur et je suis coach depuis plus de 8 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances comme il faut&nbsp;!</p>
+          <p class="ccard__bio">Issu d'un BPJEPS APT ET PPRN&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon" tabindex="0" role="button" aria-label="Détail des acronymes BPJEPS APT et PPRN">i</span><span class="tooltip-body"><strong>APT</strong> : Activités physiques pour tous.<br><strong>PPRN</strong> : Préparation physique, Récupération et Nutrition.</span></span>, je suis chef ouvreur et coach depuis plus de 10 ans. Je suis spécialisé en programmation long terme pour optimiser tes performances comme il faut&nbsp;!</p>
         </article>
       </div>
     </div>

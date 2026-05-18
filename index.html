@@ -1213,7 +1213,7 @@
       padding: var(--sp-8) var(--sp-6);
       text-align: center;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       transition: transform .3s var(--ease-out-quart), box-shadow .4s var(--ease-out-quart);
       box-shadow: 0 2px 12px rgba(0,0,0,.04);
     }
@@ -1221,7 +1221,7 @@
     .ccard--orange:hover { box-shadow: 0 20px 70px rgba(255,103,0,.22), 0 0 200px rgba(255,103,0,.38), 0 0 440px rgba(255,103,0,.18); }
     .ccard--blue:hover   { box-shadow: 0 20px 70px rgba(0,127,255,.22), 0 0 200px rgba(0,127,255,.38), 0 0 440px rgba(0,127,255,.18); }
     .ccard--green:hover  { box-shadow: 0 20px 70px rgba(0,170,70,.22),  0 0 200px rgba(0,170,70,.38),  0 0 440px rgba(0,170,70,.18); }
-    .ccard__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .ccard__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
     .ccard__avatar {
       width: 101px; height: 101px; border-radius: 50%;
       margin: 0 auto var(--sp-4);
@@ -1786,7 +1786,7 @@
           </div>
           <p class="ccard__name">Nicolas</p>
           <p class="ccard__role">Coach spécialisé</p>
-          <p class="ccard__bio">Je possède une license STAPS avec un supplément équivalence DEJEPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je gère les programmes courts et j'ai travaillé quelques temps au pôle escalade France !</p>
+          <p class="ccard__bio">Je possède une license STAPS avec un supplément équivalence DEJEPS et un diplôme d'ostéopathe, tout ce qui est prévention des blessures et rééducation, c'est moi ! Je gère surtout les programmes courts.</p>
         </div>
 
         <!-- Yohan — centre -->
