@@ -725,6 +725,8 @@
       cursor: help; font-style: normal; transition: background .2s;
     }
     .tooltip-icon:hover, .tooltip-icon:focus { background: var(--blue); color: var(--white); outline: none; }
+    .tooltip-icon--dark { background: rgba(255,255,255,.18); color: var(--white); }
+    .tooltip-icon--dark:hover, .tooltip-icon--dark:focus { background: var(--orange); color: var(--white); }
     .tooltip-body {
       position: absolute;
       bottom: calc(100% + 10px); left: 50%;
@@ -932,6 +934,22 @@
     }
     .guarantee-contract:hover { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); transform: scale(1.06); }
     .guarantee-contract svg { flex-shrink: 0; }
+    .guarantee-claim {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--orange);
+      border-radius: var(--radius-full);
+      padding: 0.75rem 1.625rem;
+      box-shadow: 0 4px 24px rgba(255,103,0,.38);
+      transition: background .2s, transform .2s var(--ease-out-quart), box-shadow .25s;
+      margin-top: var(--sp-2);
+    }
+    .guarantee-claim:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 36px rgba(255,103,0,.5); }
+    .guarantee-claim svg { flex-shrink: 0; }
 
     /* Contract hover popover — controlled by JS */
     .contract-popover {
@@ -1370,7 +1388,6 @@
 
       <div class="hero__cta">
         <a href="#formules" class="btn btn-orange btn-xl btn-pulse">Je suis prêt à progresser →</a>
-        <a href="https://app.kaskadcoaching.com/public/signup" class="btn btn-ghost-white" style="margin-top:.75rem">Ou commence par le diagnostic gratuit (5 min)</a>
       </div>
 
     </div>
@@ -1593,7 +1610,7 @@
         <span class="sec-eyebrow reveal" style="color:rgba(255,103,0,.85);">Garantie</span>
         <h2 class="sec-title sec-title--white sec-title--lg reveal d1">Notre garantie<br>«&nbsp;Récupère ton argent&nbsp;»</h2>
         <p class="guarantee-lead reveal d2">
-          Tu avances <strong style="color:var(--orange-light);">3 mois à un tarif réduit</strong>, respectes 4 règles simples et on te les rembourse entièrement. Pas parce qu'on est fous, parce qu'on veut te motiver.
+          Tu avances <strong style="color:var(--orange-light);">3 mois à un tarif réduit</strong>&nbsp;<span class="tooltip-wrap"><span class="tooltip-icon tooltip-icon--dark" tabindex="0" role="button" aria-label="Détail du tarif réduit">i</span><span class="tooltip-body">Le tarif réduit, c'est <strong>350&nbsp;€</strong> pour les 3 mois.</span></span>, respectes 4 règles simples et on te les rembourse entièrement. Pas parce qu'on est fous, parce qu'on veut te motiver.
         </p>
 
         <div class="guarantee-rules">
@@ -1635,6 +1652,12 @@
               <p><strong>5.3 Décision et remboursement</strong>, Réponse écrite sous 14 jours. Remboursement par le même moyen de paiement, immédiatement à l'acceptation.</p>
             </div>
           </span>
+          <a href="#" class="guarantee-claim" data-cta="claim-guarantee">
+            Profite de la garantie
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
